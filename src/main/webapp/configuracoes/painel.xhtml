@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml">
+
+    <ui:define name="content">
+
+        <p:messages closable="true" severity="info,warn,error">
+            <p:autoUpdate/> 
+        </p:messages>
+        <p:fieldset legend="Configurações" id="fieldset">
+
+            <p:tabView>
+                <p:tab id="tabClinica" title="Clínica">
+                    <ui:include src="clinica.xhtml"/>
+                </p:tab>
+
+                <!--                 <p:tab id="tabUsuarios" title="Usuários">
+                                    <ui:include src="usuarios.xhtml"/>
+                                </p:tab>-->
+
+                <p:tab id="tabOpcoes" title="Avançadas">
+                    Opções de configuração diversificadas para o sistema e que não façam parte de outras abas.
+                </p:tab>
+
+            </p:tabView>
+
+        </p:fieldset>
+    </ui:define>
+</ui:composition>    

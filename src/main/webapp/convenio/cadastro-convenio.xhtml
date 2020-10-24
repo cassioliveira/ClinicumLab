@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="convenio" value="#{convenioBean.convenio}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+
+        <p:messages closable="true" severity="info,warn,error">
+            <p:autoUpdate/> 
+        </p:messages>
+        <p:fieldset legend="#{convenioBean.editando ? 'Editar cadastro - '.concat(' Convênio') : 'Novo cadastro - '.concat(' Convênio')}">
+            <h:form id="formConvenio">
+                <h:panelGrid columns="2" style="margin-left: 20px; margin-bottom: 5px">
+                    <p:outputLabel for="nome" value="Nome: "/>
+                    <p:inputText id="nome" size="30" placeholder="Nome do convênio" value="#{convenioBean.convenio.nomeConvenio}"/>
+
+                    <p:outputLabel for="contato" value="Contato: " />
+                    <p:inputText id="contato" size="30" placeholder="Nome da pessoa de contato" value="#{convenioBean.convenio.nomeContato}"/>
+
+                    <p:outputLabel for="estado" value="Estado: " />
+                    <p:selectOneMenu id="estado" style="width: 130px" value="#{convenioBean.convenio.estado}">
+                        <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+                        <f:selectItems value="#{convenioBean.estados}" var="estado" itemLabel="#{estado.descricao}" itemValue="#{estado}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="cidade" value="Cidade: " />
+                    <p:inputText id="cidade" size="20" value="#{convenioBean.convenio.cidade}"/>
+
+                    <p:outputLabel for="telefone" value="Telefone: " />
+                    <p:inputText id="telefone" size="20" onkeyup="mascara(this, masktel)" maxlength="15" placeholder="DDD + Número"
+                                 value="#{convenioBean.convenio.telefone}"/>
+
+                    <p:outputLabel for="celular" value="Celular: " />
+                    <p:inputText id="celular" size="20" onkeyup="mascara(this, masktel)" maxlength="15" placeholder="DDD + Número"
+                                 value="#{convenioBean.convenio.celular}"/>
+
+                    <p:outputLabel for="desconto" value="Desconto(%): " />
+                    <p:inputNumber id="desconto" size="20" placeholder="Desconto fixo em %" symbol="% " symbolPosition="suffix" 
+                                   minValue="0" maxValue="999" value="#{convenioBean.convenio.desconto}"/>
+
+                    <p:outputLabel for="desconto2" value="Desconto(R$): " />
+                    <p:inputNumber id="desconto2" size="30" placeholder="Desconto fixo em R$" symbol="R$ " class="money" 
+                                   decimalPlaces="2" value="#{convenioBean.convenio.desconto2}"/>
+
+                </h:panelGrid>
+
+                <p:outputLabel value="Cuidado! Se os dois campos de desconto forem preenchidos, o desconto total será a soma dos dois!" style="margin-left: 23px; color: red"/>
+            </h:form> 
+
+            <p:toolbar id="toolbarConvenio" style="margin-top: 10px;">
+                <f:facet name="left">
+                    <p:commandButton id="botaoSalvar" style="font-size: 13px;" value="Salvar"
+                                     icon="ui-icon ui-icon-disk" action="#{convenioBean.salvar}">
+                        <f:ajax execute="@form" render="@form"/>
+                    </p:commandButton>
+
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
+                              outcome="/convenio/listar-convenios" icon="fa fa-times">
+                    </p:button>
+                </f:facet>
+            </p:toolbar>
+        </p:fieldset>
+        <p:blockUI block="formConvenio" trigger="botaoSalvar"/>
+    </ui:define>
+</ui:composition>    

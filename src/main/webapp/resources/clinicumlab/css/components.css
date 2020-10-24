@@ -1,0 +1,327 @@
+/* TOGGLE */
+.aw-toggle {
+    float: right;
+    line-height: 50px;
+    margin-right: 15px;
+
+    color: #fff;
+}
+
+/* MENU */
+.aw-menu {
+    font-size: 1.1em;
+}
+
+.aw-menu > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.aw-menu > ul a {
+    display: block;
+    padding: 10px 15px;
+
+    text-decoration: none;
+    font-weight: 500;
+    color: #373737;
+} 
+
+.aw-menu > ul i {
+    margin-right: 6px;
+}
+
+.aw-menu > ul a:hover, .aw-menu > ul a:focus {
+    background-color: #dfdfdf;
+}
+
+.aw-menu > ul .is-selected {
+    border-left: 3px solid #1e94d2;
+    background-color: #f3f3f3;
+}
+
+.aw-menu > ul .is-selected a {
+    margin-left: -3px;
+    color: #1e94d2;
+}
+
+/* PAGE-TITLE */
+.aw-page-title {
+    margin: 0;
+    padding: 20px 0;
+
+    font-size: 1.5em;
+    color: #373737;
+}
+
+.welcome-message-home{
+    margin-top: 5%;
+    color: darkcyan;
+    /*text-shadow: #E0E0E0 2px -2px 3px, #E0E0E0 -2px 2px 3px;*/
+    vertical-align: middle;
+}
+
+/*Personaliza os textos dos fieldsets*/
+.ui-fieldset .ui-fieldset-legend {
+    background: none;
+    text-align: center !important;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1E94D2;
+    padding: 2px;
+}
+
+/*Dialog loading login*/
+.transparent-loading-login{
+    /*    background: rgba(10,10,10,0.4) !important;
+        color: black !important;*/
+    border: 0px !important;
+    border-radius: 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/*Dialog login*/
+.transparent-dialog-login{
+    background: rgba(10,10,10,0.8) !important;
+    color: black !important;
+    border: 0px !important;
+    border-radius: 20px !important;
+    width: 300px !important;
+    height: 170px !important;
+    margin-top: -10px !important;
+}
+
+/*Campos input Dialog login*/
+.transparent-dialog-login .ui-inputfield {
+    color: white;  
+    text-shadow: 1px 1px 1px black;
+    background: none;
+}
+/*Campos output Dialog login*/
+.transparent-dialog-login .ui-outputlabel {
+    color: whitesmoke !important;  
+    text-shadow: 3px 3px 3px black !important;
+}
+
+/*Botao Dialog login*/
+.transparent-dialog-login .ui-button{
+    background: none !important;
+    border: none !important;
+}
+
+/*Texto do botão Dialog login*/
+.transparent-dialog-login .ui-button-text{
+    display: none;
+}
+
+/*Barra de título Dialog login*/
+.transparent-dialog-login .ui-dialog-titlebar{
+    background: none !important;
+    border: none !important;
+}
+
+#logo-login{
+    float: bottom; 
+    padding-top: 50px; 
+    position: relative; 
+    text-align: center;
+}
+
+/*Configurações Tela de login*/
+.bodyLogin{
+    background: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.copy-right{
+    color: #4169E1;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.ui-button.botao-entrar-login{
+    background: #4169E1 !important; 
+    text-align: center !important; 
+    color: white; 
+    font-weight: bold;
+}
+
+#panelLogin{
+    width: 400px; 
+    height: 190px; 
+    text-align : center; 
+    background: #f3f3f3;
+}
+
+.box-acesso-negado{
+    background-color: #F2DEDE;
+    width: 400px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    margin-top: -100px;/* Aqui ele pega 50% da altura tela e sobe metade do valor da altura, no caso 100 */
+    border-radius: 10px;
+    left:50%;
+    margin-left:-250px; /* Aqui ele pega 50% da largura tela e diminui  metade do valor da largura, no caso 250 */
+    box-shadow: 3px 3px 5px #ccc;
+    padding: 5px;
+}
+
+#logo-acesso-negado{
+    text-align: center;
+    margin-top: 10px;
+}
+
+#titulo-acesso-negado{
+    color: #A94442; 
+    text-align: center; 
+    font-size: 33px;
+    margin-top: 7px;
+}
+
+#mensagem-acesso-negado{
+    color: #A94442; 
+    text-align: center; 
+    font-size: 16px;
+    margin-top: -10px;
+}
+
+.ui-button.botaoOK{
+    background: #F2A1A1 !important;
+    text-align: center !important;
+    margin-top: 10%;
+    margin-left: 44%;
+}
+
+.box-sessao-expirada{
+    background-color: #F2DEDE;
+    width: 250px !important;
+    text-align: center !important;
+    /*    height: 250px;
+        position: absolute;
+        top: 50%;
+        margin-top: -100px; Aqui ele pega 50% da altura tela e sobe metade do valor da altura, no caso 100 */
+    border-radius: 10px;
+    /*    left:50%;
+        margin-left:-250px;  Aqui ele pega 50% da largura tela e diminui  metade do valor da largura, no caso 250 */
+    box-shadow: 3px 3px 5px #ccc;
+    padding: 5px;
+    z-index: 9999;
+}
+
+.ui-button.botao-ok-sessao-expirada{
+    background: #F2A1A1 !important;
+    text-align: center !important;
+    margin-top: 10%;
+    /*margin-left: 40%;*/
+}
+
+.ui-button.botao-iniciar-atendimento{
+    background: #00B25F !important;
+    text-align: center !important;
+    width: 99%; 
+    font-size: 20px; 
+    color: white; 
+    margin-top: 10px; 
+}
+
+#container-box-welcome-screen{
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-welcome-base{
+    font-family: arial;
+    font-size:20px;
+    font-weight:700;
+    border:none;
+    padding:10px;
+    cursor: pointer;
+    display:inline-block;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    /*Trecho abaixo centraliza o texto verticalmente com flexbox*/
+    flex-direction: column;
+    justify-content: center;
+    overflow: auto;
+    /*    resize: vertical; Essa linha só se tiver texto grande dentro*/
+}
+
+.button-welcome{
+    background: #0055DA;
+    /*    background: #0D6BFF;*/
+    color: #FFFFFF;
+    width: 184px; 
+    height: 100px; 
+    margin: 3px 3px 4px 3px;
+    box-shadow:0 10px 0 #0049BB;
+    /*Trecho abaixo não permite selecionar o texto do botão*/
+    -webkit-touch-callout: none;  /* iPhone OS, Safari */
+    -webkit-user-select: none;    /* Chrome, Safari 3 */
+    -khtml-user-select: none;     /* Safari 2 */
+    -moz-user-select: none;       /* Firefox */
+    -ms-user-select: none;        /* IE10+ */
+    -o-user-select: none;
+}
+
+.button-welcome:hover{
+    font-size: 25px;
+    font-weight: bold;
+    /*background: #043891;*/
+    /*color: black;*/
+}
+
+.button-welcome:active{
+    position: relative;
+    top: 10px;
+    box-shadow: none;
+}
+
+.nounderscore-link{
+    text-decoration: none;
+}
+
+.bordas{
+    border: 1px solid red;
+}
+
+.negrito-centralizado{
+    font-weight: bold;
+    text-align: center; 
+}
+
+.ui-messages-info {
+    background-color: #28A745 !important;
+    color: white !important
+}
+
+.ui-messages-warn {
+    background-color: #FFC107 !important;
+    color: black !important
+}
+
+.ui-messages-error {
+    background-color: #DC3545 !important;
+    color: white !important
+}
+
+/*.ui-growl-item, ui-growl-item-container, ui-growl-info  {
+    background-color: #28A745 !important;
+    color: white !important
+}
+
+.ui-growl-item-container, ui-state-highlight, ui-corner-all, ui-helper-hidden, ui-shadow, ui-growl-error {
+    background-color: #FFC107 !important;
+    color: black !important
+}
+
+.ui-growl-item-container, ui-state-highlight, ui-corner-all, ui-helper-hidden, ui-shadow, ui-growl-error {
+    background-color: #DC3545 !important;
+    color: white !important
+}*/

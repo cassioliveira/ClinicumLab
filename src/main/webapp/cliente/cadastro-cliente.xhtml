@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="cliente" value="#{clienteBean.cliente}"/>
+    </f:metadata>
+
+    <ui:define name="content"> 
+
+        <p:fieldset legend="#{clienteBean.editando ? 'Editar cadastro - Cliente': 'Novo cadastro - Cliente'}">
+            <h:form id="formCliente">
+                <p:messages closable="true" severity="info,warn,error">
+                    <p:autoUpdate/> 
+                </p:messages>
+                <h:panelGrid columns="2" style="margin-left: 20px; margin-bottom: 5px">
+
+                    <p:outputLabel for="cadastro" value="Cadastro: " rendered="#{clienteBean.editando}"/>
+                    <p:outputLabel id="cadastro" value="#{clienteBean.cliente.cadastro}" rendered="#{clienteBean.editando}">
+                        <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy HH:mm"/>
+                    </p:outputLabel>
+
+                    <p:outputLabel for="codigo" value="Código: "/>
+                    <p:inputText id="codigo" size="13" placeholder="SEQ/AUTO" value="#{clienteBean.cliente.codigo}"/>
+
+                    <p:outputLabel for="nome" value="Nome: " />
+                    <p:inputText id="nome" size="40" value="#{clienteBean.cliente.nome}"/>
+
+                    <p:outputLabel for="nome-social" value="Nome Social: " />
+                    <p:inputText id="nome-social" size="40" value="#{clienteBean.cliente.nomeSocial}"/>
+
+                    <p:outputLabel for="email" value="E-mail: " />
+                    <p:inputText id="email" size="40" placeholder="usuario@dominio" value="#{clienteBean.cliente.email}"/>
+
+                    <p:outputLabel for="cpf" value="CPF: " />
+                    <p:inputMask id="cpf" mask="999.999.999-99" size="27" value="#{clienteBean.cliente.cpf}"/>
+
+                    <p:outputLabel for="rg" value="RG: " />
+                    <p:inputText id="rg" size="27" value="#{clienteBean.cliente.rg}"/>
+
+                    <p:outputLabel for="telefone" value="Telefone: " />
+                    <p:inputText id="telefone" size="27" onkeyup="mascara(this, masktel)" value="#{clienteBean.cliente.telefone}"
+                                 maxlength="15" placeholder="DDD + Número"/>
+
+                    <p:outputLabel for="celular" value="Celular: " />
+                    <p:inputText id="celular" size="27" onkeyup="mascara(this, masktel)" value="#{clienteBean.cliente.celular}"
+                                 maxlength="15" placeholder="DDD + Número"/>
+
+                    <p:outputLabel for="sexo" value="Sexo: " />
+                    <p:selectOneMenu id="sexo" style="width: 173px" value="#{clienteBean.cliente.sexo}">
+                        <f:selectItem noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Masculino" itemValue="masculino"/>
+                        <f:selectItem itemLabel="Feminino" itemValue="feminino"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="nascimento" value="Nascimento: " />
+                    <p:calendar id="nascimento" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" showOn="button" 
+                                maxlength="10" mask="true" size="21" locale="pt" value="#{clienteBean.cliente.dataNascimento}">
+                        <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" />           
+                    </p:calendar>
+
+                    <p:outputLabel for="rua" value="Rua: "/>
+                    <p:inputText id="rua" size="40" value="#{clienteBean.cliente.rua}"/>
+
+                    <p:outputLabel for="bairro" value="Bairro: "/>
+                    <p:inputText id="bairro" size="40" value="#{clienteBean.cliente.bairro}"/>
+
+                    <p:outputLabel for="estado" value="Estado: " />
+                    <p:selectOneMenu id="estado" style="width: 173px" value="#{clienteBean.cliente.estado}">
+                        <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+                        <f:selectItems value="#{clienteBean.estados}" var="estado" itemLabel="#{estado.descricao}" itemValue="#{estado}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="cidade" value="Cidade: " />
+                    <p:inputText id="cidade" size="27" value="#{clienteBean.cliente.cidade}"/>
+
+                    <p:outputLabel for="cep" value="CEP: "/>
+                    <p:inputMask id="cep" mask="99999-999" size="27" value="#{clienteBean.cliente.cep}"/>
+
+                </h:panelGrid>
+            </h:form>    
+
+            <p:toolbar id="toolbarCliente" style="margin-top: 10px;">
+                <f:facet name="left">
+                    <p:commandButton id="botaoSalvar" style="font-size: 13px;" value="Salvar"
+                                     icon="ui-icon ui-icon-disk" action="#{clienteBean.salvar}">
+                        <f:ajax execute="@form" render="@form"/>
+                    </p:commandButton>
+
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
+                              outcome="/cliente/listar-clientes" icon="fa fa-times">
+                    </p:button>
+                </f:facet>
+            </p:toolbar>
+        </p:fieldset>
+        <p:blockUI block="formCliente" trigger="botaoSalvar"/>
+    </ui:define>
+</ui:composition>     

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml"
+                xmlns:observacoes="http://xmlns.jcp.org/jsf/composite/components"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+
+        <p:fieldset legend="Hemograma Completo">
+            <h:form id="formHemograma">
+
+                <p:messages closable="true" severity="info,warn,error">
+                    <p:autoUpdate/> 
+                </p:messages>
+
+                <h:panelGrid columns="2">
+                    <p:outputLabel for="codigo" value="Código: "/>
+                    <p:inputText id="codigo" value="#{hemogramaBean.hemograma.codigo}" size="13" readonly="true" 
+                                 style="font-weight: bold" placeholder="HEMOGRA01"/>
+                    
+                    <p:outputLabel for="valor" value="Valor: " />
+                    <p:inputNumber id="valor" size="13" symbol="R$ " class="money" decimalPlaces="2" maxlength="8" maxValue="999999"
+                                   value="#{hemogramaBean.hemograma.valor}" />
+
+                    <p:outputLabel for="material" value="Material: "/>
+                    <p:selectOneMenu id="material" style="width: 102px; z-index: 8; vertical-align: middle"
+                                     value="#{hemogramaBean.hemograma.material}">
+                        <f:selectItem noSelectionOption="true"/> 
+                        <f:selectItem itemLabel="Sangue" itemValue="sangue"/>
+                        <f:selectItem itemLabel="Urina" itemValue="urina"/>
+                        <f:selectItem itemLabel="Fezes" itemValue="fezes"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+
+                <p:tabView>
+                    <p:tab title="ERITROGRAMA">
+
+                        <div class="ui-g">
+                            <div class="ui-g-4"/>
+                            <div class="ui-g-4 negrito-centralizado">VALORES DE REFERÊNCIA</div>
+                            <div class="ui-g-4" style="text-align: center"/>
+                        </div>
+
+                        <div class="ui-g">
+                            <div class="ui-g-4 negrito-centralizado">RESULTADO</div>
+                            <div class="ui-g-2 negrito-centralizado">HOMENS</div>
+                            <div class="ui-g-2 negrito-centralizado">MULHERES</div>
+                            <div class="ui-g-4"/>
+                        </div>
+
+                        <div class="ui-g">
+                            <div class="ui-g-4" >
+                                <h:panelGrid columns="3">
+                                    <p:outputLabel for="eritrocitos" value="Eritrócitos: "/>
+                                    <p:inputNumber id="eritrocitos" size="3" decimalPlaces="1" value="#{hemogramaBean.hemograma.eritrocitos}"/> 
+                                    <p:outputLabel value=" milhões/mm&sup3;"/>
+
+                                    <p:outputLabel for="hemoglobina" value="Hemoglobina: "/>
+                                    <p:inputNumber id="hemoglobina" size="3" decimalPlaces="1" value="#{hemogramaBean.hemograma.hemoglobina}"/>
+                                    <p:outputLabel value=" g%"/>
+
+                                    <p:outputLabel for="hematocrito" value="Hematócrito: "/>
+                                    <p:inputNumber id="hematocrito" size="3" decimalPlaces="1" value="#{hemogramaBean.hemograma.hematocrito}"/>
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel/>
+                                    <p:separator style="background-color: white"/>
+                                    <p:outputLabel/>
+
+                                    <p:outputLabel value="V.G.M. "/>
+                                    <p:inputText id="vgm" value="#{hemogramaBean.calculoVGM}" size="3" readonly="true" style="font-weight: bold; text-align: center"/>
+                                    <p:outputLabel value=" &mu;&sup3;"/>
+
+                                    <p:outputLabel value="H.G.M. "/>
+                                    <p:inputText id="hgm" value="#{hemogramaBean.calculoHGM}" size="3" readonly="true" style="font-weight: bold; text-align: center"/>
+                                    <p:outputLabel value=" &mu;&mu;g"/>
+
+                                    <p:outputLabel value="C.H.G.M. "/>
+                                    <p:inputText id="chgm" value="#{hemogramaBean.calculoCHGM}" size="3" readonly="true" style="font-weight: bold; text-align: center"/>
+                                    <p:outputLabel value=" %"/>
+                                </h:panelGrid>
+                            </div>
+
+                            <div class="ui-g-4 ui-g-nopad">
+                                <div class="ui-g-6" style="text-align: center">
+                                    <p:inputText value="#{hemogramaBean.hemograma.eritrocitosReferenciaHomem}" size="10" style="margin-top: 5px"/><br/>
+                                    <p:inputText value="#{hemogramaBean.hemograma.hemoglobinaReferenciaHomem}" size="10" style="margin-top: 5px"/><br/>
+                                    <p:inputText value="#{hemogramaBean.hemograma.hematocritoReferenciaHomem}" size="10" style="margin-top: 5px"/>
+                                </div>
+                                <div class="ui-g-6" style="text-align: center">
+                                    <p:inputText value="#{hemogramaBean.hemograma.eritrocitosReferenciaMulher}" size="10" style="margin-top: 5px"/><br/>
+                                    <p:inputText value="#{hemogramaBean.hemograma.hemoglobinaReferenciaMulher}" size="10" style="margin-top: 5px"/><br/>
+                                    <p:inputText value="#{hemogramaBean.hemograma.hematocritoReferenciaMulher}" size="10" style="margin-top: 5px"/>
+                                </div>
+                                <div class="ui-g-12" style="text-align: center">
+                                    <p:inputText value="#{hemogramaBean.hemograma.referenciaVgm}" size="10" style="margin-top: 5px"/><br/>
+                                    <p:inputText value="#{hemogramaBean.hemograma.referenciaHgm}" size="10" style="margin-top: 5px"/><br/>
+                                    <p:inputText value="#{hemogramaBean.hemograma.referenciaChgm}" size="10" style="margin-top: 5px"/>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-4" ></div>
+                        </div>
+                    </p:tab>
+
+                    <p:tab title="LEUCOGRAMA">
+                        <div class="ui-g">
+                            <div class="ui-g-2"/>
+                            <div class="ui-g-2" style="text-align: center"/>
+                            <div class="ui-g-4  negrito-centralizado">VALORES DE REFERÊNCIA</div>
+                            <div class="ui-g-2" style="text-align: center"/>
+                        </div>
+
+                        <div class="ui-g">
+                            <div class="ui-g-4 negrito-centralizado">RESULTADO</div>
+                            <div class="ui-g-2  negrito-centralizado">PERCENTUAL</div>
+                            <div class="ui-g-2  negrito-centralizado">mm&sup3;</div>
+                            <div class="ui-g-2"/>
+                        </div>
+
+                        <div class="ui-g">
+                            <div class="ui-g-3" >
+                                <h:panelGrid columns="3">
+                                    <p:outputLabel for="leucocitos" value="Leucócitos: "/>
+                                    <p:inputNumber id="leucocitos" size="3" decimalPlaces="1"/> 
+                                    <p:outputLabel value=" mm&sup3;"/>
+
+                                    <p:outputLabel for="neutrofilos" value="Neutrófilos: "/>
+                                    <p:inputText id="neutrofilos"  size="3" style="font-weight: bold"/>
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="bastonetes" value="Bastonetes: "/>
+                                    <p:inputText id="bastonetes"  size="3" style="font-weight: bold;"/>
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="segmentados" value="Segmentados: "/>
+                                    <p:inputText id="segmentados"  size="3" style="font-weight: bold"/>
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="eosinofilos" value="Eosinófilos: "/>
+                                    <p:inputText id="eosinofilos"  size="3" style="font-weight: bold"/>
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="basofilos" value="Basófilos: "/>
+                                    <p:inputText id="basofilos"  size="3" style="font-weight: bold"/>
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="linfocitos" value="Linfócitos: "/>
+                                    <p:inputText id="linfocitos"  size="3" style="font-weight: bold"/>
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="tipicos" value="Típicos: "/>
+                                    <p:inputText id="tipicos"  size="3" style="font-weight: bold"/>
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="atipicos" value="Atípicos: "/>
+                                    <p:inputText id="atipicos"  size="3" style="font-weight: bold"/>
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="monocitos" value="Monócitos: "/>
+                                    <p:inputText id="monocitos"  size="3" style="font-weight: bold"/>
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="plasmocitos" value="Plasmócitos: "/>
+                                    <p:inputText id="plasmocitos"  size="3" style="font-weight: bold"/>
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="plaquetas" value="Plaquetas: "/>
+                                    <p:inputNumber id="plaquetas" size="3" decimalPlaces="1"/> 
+                                    <p:outputLabel value=" mm&sup3;"/>
+                                </h:panelGrid>
+                            </div>
+
+                            <div class="ui-g-1" style="text-align: center">
+                                <h:panelGrid columns="1">
+                                    <p:inputText id="leucocitos2" size="3" style="font-weight: bold"/> 
+                                    <p:inputText id="neutrofilos2"  size="3" style="font-weight: bold"/>
+                                    <p:inputText id="bastonetes2"  size="3" style="font-weight: bold"/>
+                                    <p:inputText id="segmentados2"  size="3" style="font-weight: bold"/>
+                                    <p:inputText id="eosinofilos2"  size="3" style="font-weight: bold"/>
+                                    <p:inputText id="basofilos2"  size="3" style="font-weight: bold"/>
+                                    <p:inputText id="linfocitos2"  size="3" style="font-weight: bold"/>
+                                    <p:inputText id="tipicos2"  size="3" style="font-weight: bold"/>
+                                    <p:inputText id="atipicos2"  size="3" style="font-weight: bold"/>
+                                    <p:inputText id="monocitos2"  size="3" style="font-weight: bold"/>
+                                    <p:inputText id="plasmocitos2"  size="3" style="font-weight: bold"/>
+                                    <p:inputText id="plaquetas2" size="3" style="font-weight: bold"/> 
+                                </h:panelGrid>
+                            </div>
+
+                            <div class="ui-g-2" style="text-align: center">
+                                <p:inputText value="#{hemogramaBean.hemograma.leucocitosPercentual}" size="10" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.neutrofilosPercentual}" size="10" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.bastonetesPercentual}" size="10" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.segmentadosPercentual}" size="10" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.eosinofilosPercentual}" size="10" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.basofilosPercentual}" size="10" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.linfocitosPercentual}" size="10" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.tipicosPercentual}" size="10" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.atipicosPercentual}" size="10" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.monocitosPercentual}" size="10" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.plasmocitosPercentual}" size="10" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.plaquetasPercentual}" size="10" style="margin-top: 4px"/>
+                            </div>
+                            <div class="ui-g-2" style="text-align: center">
+                                <p:inputText value="#{hemogramaBean.hemograma.leucocitosMm3}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.neutrofilosMm3}" size="15" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.bastonetesMm3}" size="15" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.segmentadosMm3}" size="15" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.eosinofilosMm3}" size="15" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.basofilosMm3}" size="15" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.linfocitosMm3}" size="15" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.tipicosMm3}" size="15" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.atipicosMm3}" size="15" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.monocitosMm3}" size="15" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.plasmocitosMm3}" size="15" style="margin-top: 4px"/><br/>
+                                <p:inputText value="#{hemogramaBean.hemograma.plaquetasMm3}" size="15" style="margin-top: 4px"/>
+                            </div>
+                            <div class="ui-g-2" style="text-align: center" />
+
+                            <div class="ui-g-2" style="text-align: center"/>
+                        </div>
+                    </p:tab>
+                </p:tabView>
+
+                <observacoes:observacoes-exames value="#{hemogramaBean.hemograma.observacoes}" altura="130" largura="520" estilo="margin-left: 33px"/>
+
+            </h:form>  
+             <p:toolbar id="toolbarHemograma" style="margin-top: 10px;">
+                <f:facet name="left">
+                    <p:commandButton style="font-size: 13px;" value="Salvar" action="#{hemogramaBean.salvar}"
+                                     id="botaoSalvar" icon="ui-icon ui-icon-disk"/>
+
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
+                              outcome="/exame/listar-exames" icon="fa fa-times">
+                    </p:button>
+                </f:facet>
+            </p:toolbar>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>    

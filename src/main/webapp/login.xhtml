@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+
+    <h:head>
+        <!--icon="ui-icon ui-icon-help"-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="clinicumlab" name="css/custom.css" />
+        <h:outputStylesheet library="clinicumlab" name="css/layout.css" />
+        <h:outputStylesheet  library="clinicumlab" name="css/components.css" />
+        <title><ui:insert name="title">Login | ClinicumLab</ui:insert></title>
+        <link rel="icon" type="image/x-icon" href="http://localhost:8080/ClinicumLab/resources/clinicumlab/imagens/favicon.ico"/>
+    </h:head>
+
+    <h:body >
+        <p:messages closable="true" severity="info,warn,error">
+            <p:autoUpdate/> 
+        </p:messages>
+        <center>
+            <p:graphicImage library="clinicumlab" name="imagens/clinicumlab_login.png" style="margin-top: 60px"/>
+            <p:panel id="panelLogin" style="margin-top: 30px">
+                <center>
+                    <h:form id="login" prependId="false">
+                        <h:panelGrid id="loginPanelGrid" cellpadding="10" style="margin-top: 15px">
+                            <p:inputText id="username" required="true" placeholder="Login" requiredMessage="Nome de usuário é obrigatório!" 
+                                         size="40" />
+
+                            <p:password id="password" size="40" placeholder="Senha" required="true" requiredMessage="Senha é obrigatória!"/>
+
+                            <p:button value="Entrar" id="loginEnterButton" outcome="/inicio.xhtml" styleClass="botao-entrar-login"/>
+                        </h:panelGrid>
+                    </h:form>
+                </center>
+            </p:panel>
+            <p class="copy-right">&copy; 2018. Todos os direitos reservados <br/> Sistema de Gerenciamento de Laboratório de Análises Clínicas</p>
+        </center>
+    </h:body>
+</html>

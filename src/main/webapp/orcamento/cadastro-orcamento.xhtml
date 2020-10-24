@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml">
+
+    <ui:define name="content"> 
+
+        <p:messages closable="true" severity="info,warn,error">
+            <p:autoUpdate/> 
+        </p:messages>
+
+        <p:fieldset legend="Novo Orçamento">
+            <h:form id="formOrcamento">
+
+                <div class="ui-g">
+                    <div class="ui-g-6">
+                        <h:panelGrid columns="2" style="margin-left: 20px; margin-bottom: 5px">
+                            <p:outputLabel for="exames" value="Exame(s): "/>
+                            <h:panelGroup>
+                                <p:selectCheckboxMenu id="exames" label="Exame(s)" style="vertical-align: middle; width: 200px" filter="true" 
+                                                      updateLabel="true" filterMatchMode="contains">
+                                    <f:selectItem itemLabel="Hemograma Completo" itemValue="Hemograma Completo"/>
+                                    <f:selectItem itemLabel="Antibiograma" itemValue="Antibiograma"/>
+                                    <f:selectItem itemLabel="Espermograma" itemValue="Espermograma"/>
+                                </p:selectCheckboxMenu>
+                                <p:commandButton id="adicionar" icon="fa fa-plus" value="Adicionar" style="margin-left: 5px"/>
+                            </h:panelGroup>
+
+                            <p:outputLabel for="convenio" value="Convênio: "/>
+                            <p:selectOneMenu id="convenio" value="#{orcamentoBean.orcamento.convenio}" style="vertical-align: middle; width: 282px"
+                                             filter="true" filterMatchMode="contains">
+                                <f:selectItem itemLabel="Nenhum" itemValue="nenhum"/>
+                                <f:selectItems value="#{convenioBean.convenios}" var="convenio" itemLabel="#{convenio.nomeConvenio}" itemValue="#{convenio}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="valor-desconto" value="Desconto(R$): " />
+                            <p:inputNumber id="valor-desconto" size="30" placeholder="Desconto em R$" symbol="R$ " class="money" decimalPlaces="2"/>
+                        </h:panelGrid>
+                    </div>
+
+                    <div class="ui-g-2"></div>
+
+                    <div class="ui-g-2" style="text-align: center">
+                        <h:panelGrid style="text-align: center; width: 100%; height: 100%">
+                            <p:outputLabel for="total" value="Total Bruto" style="font-weight: bold; font-size: 15px"/>
+                            <p:outputLabel id="total" value="R$ 200,00" style="font-weight: bold; font-size: 30px; color: cornflowerblue"/>
+                        </h:panelGrid>
+                    </div>
+
+                    <div class="ui-g-2">
+                        <h:panelGrid style="text-align: center; width: 100%; height: 100%">
+                            <p:outputLabel for="desconto" value="Total com desconto" style="font-weight: bold; font-size: 15px"/>
+                            <p:outputLabel id="desconto" value="R$ 200,00" style="font-weight: bold; font-size: 30px; color: green"/>
+                        </h:panelGrid>
+                    </div>
+                </div>
+
+                <p:dataTable id="datatablePesquisaExames" var="geral" widgetVar="pesquisaExames"
+                             paginatorAlwaysVisible="false" style="margin-top: 1px; margin-left: 20px" rows="10" reflow="true" 
+                             paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
+                             scrollable="true" scrollRows="8" scrollHeight="180">
+
+                    <p:column id="acoes" headerText="Remover" style="text-align: center" width="3">
+                        <p:button id="botaoRemover" title="Remover" icon="ui-icon ui-icon-extlink" style="font-size: 10px">
+                            <p:tooltip for="botaoRemover" value="Remover linha selecionada"/>
+                        </p:button>   
+                    </p:column>
+
+                    <p:column headerText="Código" width="0.1" filterMatchMode="contains" filterStyle="width: 30px; display:none">
+                    </p:column>
+
+                    <p:column headerText="Exame" width="80" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+                    </p:column>
+
+                    <p:column headerText="Valor" style="text-align: center" width="20" filterStyle="width: 50px; display:none">
+                    </p:column>
+
+                    <p:column headerText="Prev. Entrega" style="text-align: center" width="35" filterStyle="width: 50px; display:none">
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:toolbar id="toolbarOrcamento" style="margin-top: 10px;">
+                    <f:facet name="left">
+                        <p:commandButton id="botaoImprimir" style="font-size: 13px;" value="Imprimir"
+                                         update="@form" icon="ui-icon ui-icon-print">
+                        </p:commandButton>
+                    </f:facet>
+                </p:toolbar>    
+            </h:form>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>    

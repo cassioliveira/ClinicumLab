@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="formColeta">
+
+        <p:messages closable="true" severity="info,warn,error">
+            <p:autoUpdate/> 
+        </p:messages>
+        <h:panelGrid columns="2">
+
+            <p:outputLabel for="dataColeta" value="Data da coleta: "/>
+            <p:calendar id="dataColeta" navigator="true" pattern="dd/MM/yyyy hh:MM" showOn="button" 
+                        size="15" locale="pt" mask="true" timeInput="true" yearRange="c-100:c+100">
+                <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy hh:MM" timeZone="#{initParam.timezone}"/>
+            </p:calendar>
+
+            <p:outputLabel for="material" value="Material: "/>
+            <p:selectCheckboxMenu id="material" label="teste" style="width: 163px; z-index: 8; vertical-align: middle" 
+                                  filter="true" updateLabel="true" filterMatchMode="contains">
+                <f:selectItem itemLabel="Sangue" itemValue="."/>
+                <f:selectItem itemLabel="Urina" itemValue="."/>
+                <f:selectItem itemLabel="Fezes" itemValue="."/>
+            </p:selectCheckboxMenu>
+
+            <p:outputLabel for="coleta" value="Coleta: "/>
+            <p:selectOneMenu id="coleta" style="vertical-align: middle; width: 135px">
+                <f:selectItem itemLabel="Local" itemValue="Local"/>
+                <f:selectItem itemLabel="Domícilio" itemValue="Domícilio"/>
+            </p:selectOneMenu>
+
+            <!--            <p:outputLabel for="status" value="Status: "/>
+                        <p:selectOneMenu id="status" style="vertical-align: middle; width: 135px">
+                            <f:selectItem itemLabel="Coletado" itemValue="Coletado"/>
+                            <f:selectItem itemLabel="Pendente" itemValue="Pendente"/>
+                        </p:selectOneMenu>-->
+
+        </h:panelGrid>
+    </h:form>
+</html>   
+
+
+

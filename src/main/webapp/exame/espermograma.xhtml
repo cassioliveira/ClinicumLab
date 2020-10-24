@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml"
+                xmlns:observacoes="http://xmlns.jcp.org/jsf/composite/components"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+
+        <p:fieldset legend="Espermograma">
+            <h:form id="formEspermograma">
+
+                <p:messages closable="true" severity="info,warn,error">
+                    <p:autoUpdate/> 
+                </p:messages>
+
+                <h:panelGrid columns="2">
+                    <p:outputLabel for="codigo" value="Código: "/>
+                    <p:inputText id="codigo" placeholder="ESPERMO01" size="13" readonly="true" style="font-weight: bold"
+                                 value="#{espermogramaBean.espermograma.codigo}"/>
+                    
+                    <p:outputLabel for="valor" value="Valor: " />
+                    <p:inputNumber id="valor" size="13" symbol="R$ " class="money" decimalPlaces="2" maxlength="8" maxValue="999999"
+                                   value="#{espermogramaBean.espermograma.valor}" />
+
+                    <p:outputLabel for="material" value="Material: "/>
+                    <p:selectOneMenu id="material" style="width: 102px; z-index: 8; vertical-align: middle"
+                                     value="#{espermogramaBean.espermograma.material}">
+                        <f:selectItem noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sangue" itemValue="sangue"/>
+                        <f:selectItem itemLabel="Urina" itemValue="urina"/>
+                        <f:selectItem itemLabel="Fezes" itemValue="fezes"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+
+                <p:tabView>
+                    <p:tab title="Características Gerais">
+
+                        <div class="ui-g">
+                            <div class="ui-g-5"/>
+                            <div class="ui-g-4 negrito-centralizado">VALORES DE REFERÊNCIA</div>
+                            <div class="ui-g-3" style="text-align: center"/>
+                        </div>
+
+                        <div class="ui-g">
+                            <div class="ui-g-5" >
+                                <h:panelGrid columns="3">
+                                    <p:outputLabel for="volume" value="Volume: "/>
+                                    <p:inputNumber id="volume" size="15" decimalPlaces="1" value="#{espermogramaBean.espermograma.volume}"/> 
+                                    <p:outputLabel value=" ml"/>
+
+                                    <p:outputLabel for="aspecto" value="Aspecto: "/>
+                                    <p:inputText id="aspecto" size="15" value="#{espermogramaBean.espermograma.aspecto}"/> 
+                                    <p:outputLabel/>
+
+                                    <p:outputLabel for="cor" value="Cor: "/>
+                                    <p:inputText id="cor" size="15" value="#{espermogramaBean.espermograma.cor}"/> 
+                                    <p:outputLabel/>
+
+                                    <p:outputLabel for="viscosidade" value="Viscosidade: "/>
+                                    <p:inputText id="viscosidade" size="15" value="#{espermogramaBean.espermograma.viscosidade}"/> 
+                                    <p:outputLabel/>
+
+                                    <p:outputLabel for="liquefacao" value="Liquefação: "/>
+                                    <p:inputText id="liquefacao" size="15" value="#{espermogramaBean.espermograma.liquefacao}"/> 
+                                    <p:outputLabel value=" min"/>
+
+                                    <p:outputLabel for="ph" value="pH: "/>
+                                    <p:inputText id="ph" size="15" value="#{espermogramaBean.espermograma.ph}"/> 
+                                    <p:outputLabel/>
+
+                                </h:panelGrid>
+                            </div>
+
+                            <div class="ui-g-4" style="text-align: center">
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.volumeReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.aspectoReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.corReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.viscosidadeReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.liquefacaoReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.phReferencia}"/>
+                            </div>
+
+                            <div class="ui-g-3" ></div>
+                        </div>
+                    </p:tab>
+
+                    <p:tab title="Citologia">
+                        <div class="ui-g">
+                            <div class="ui-g-5"/>
+                            <div class="ui-g-4 negrito-centralizado">VALORES DE REFERÊNCIA</div>
+                            <div class="ui-g-3" style="text-align: center"/>
+                        </div>
+
+                        <div class="ui-g">
+                            <div class="ui-g-5" >
+                                <h:panelGrid columns="3">
+                                    <p:outputLabel for="espermatozoides" value="Espermatozóides: "/>
+                                    <p:inputNumber id="espermatozoides" size="15" decimalPlaces="1" value="#{espermogramaBean.espermograma.numeroEspermatozoides}"/> 
+                                    <p:outputLabel value=" milhões/ml"/>
+
+                                    <p:outputLabel for="leucocitos" value="Leucócitos: "/>
+                                    <p:inputText id="leucocitos" size="15" value="#{espermogramaBean.espermograma.leucocitos}"/> 
+                                    <p:outputLabel value=" por campo"/>
+
+                                    <p:outputLabel for="hemacias" value="Hemácias: "/>
+                                    <p:inputText id="hemacias" size="15" value="#{espermogramaBean.espermograma.hemacias}"/> 
+                                    <p:outputLabel value=" por campo"/>
+                                </h:panelGrid>
+                            </div>
+
+                            <div class="ui-g-4" style="text-align: center">
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.numeroEspermatozoidesReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.leucocitosReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.hemaciasReferencia}"/>
+                            </div>
+
+                            <div class="ui-g-3" ></div>
+                        </div>
+                    </p:tab>
+
+                    <p:tab title="Morfologia">
+                        <div class="ui-g">
+                            <div class="ui-g-5"/>
+                            <div class="ui-g-4 negrito-centralizado">VALORES DE REFERÊNCIA</div>
+                            <div class="ui-g-3" style="text-align: center"/>
+                        </div>
+
+                        <div class="ui-g">
+                            <div class="ui-g-5" >
+                                <h:panelGrid columns="3">
+                                    <p:outputLabel for="formas-normais" value="Formas normais "/>
+                                    <p:inputNumber id="formas-normais" size="15" decimalPlaces="1" value="#{espermogramaBean.espermograma.formasNormais}"/> 
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="bicefalicos" value="Bicefálicos: "/>
+                                    <p:inputText id="bicefalicos" size="15" value="#{espermogramaBean.espermograma.bicefalicos}"/> 
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="bicaudais" value="Bicaudais: "/>
+                                    <p:inputText id="bicaudais" size="15" value="#{espermogramaBean.espermograma.bicaudais}"/> 
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="microcefalicos" value="Microcefálicos: "/>
+                                    <p:inputText id="microcefalicos" size="15" value="#{espermogramaBean.espermograma.microcefalicos}"/> 
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="macrocefalicos" value="Macrocefálicos: "/>
+                                    <p:inputText id="macrocefalicos" size="15" value="#{espermogramaBean.espermograma.macrocefalicos}"/> 
+                                    <p:outputLabel value=" %"/>
+                                </h:panelGrid>
+                            </div>
+
+                            <div class="ui-g-4" style="text-align: center">
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.formasNormaisReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.bicefalicosReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.bicaudaisReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.microcefalicosReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.macrocefalicosReferencia}"/>
+                            </div>
+
+                            <div class="ui-g-3" ></div>
+                        </div>
+                    </p:tab>
+
+                    <p:tab title="Vitalidade">
+                        <div class="ui-g">
+                            <div class="ui-g-5"/>
+                            <div class="ui-g-4 negrito-centralizado">VALORES DE REFERÊNCIA</div>
+                            <div class="ui-g-3" style="text-align: center"/>
+                        </div>
+
+                        <div class="ui-g">
+                            <div class="ui-g-5" >
+                                <h:panelGrid columns="3">
+                                    <p:outputLabel for="motilidade-imediata" value="Motilidade imediata: "/>
+                                    <p:inputNumber id="motilidade-imediata" size="15" decimalPlaces="1" value="#{espermogramaBean.espermograma.motilidadeImediata}"/> 
+                                    <p:outputLabel value=" %"/>
+
+                                    <p:outputLabel for="apos-6-hora" value="Após 6ª hora:"/>
+                                    <p:inputNumber id="apos-6-hora" size="15" decimalPlaces="1" value="#{espermogramaBean.espermograma.motilidade6Hora}"/> 
+                                    <p:outputLabel value=" %"/>                                   
+                                </h:panelGrid>
+                            </div>
+
+                            <div class="ui-g-4" style="text-align: center">
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.motilidadeImediataReferencia}"/><br/>
+                                <p:inputText  size="15" style="margin-top: 5px" value="#{espermogramaBean.espermograma.motilidade6HoraReferencia}"/>
+                            </div>
+
+                            <div class="ui-g-3" ></div>
+                        </div>
+                    </p:tab>
+                </p:tabView>
+
+                <observacoes:observacoes-exames altura="130" largura="560" value="#{espermogramaBean.espermograma.observacoes}"/>
+
+            </h:form>  
+
+            <p:toolbar id="toolbarEspermograma" style="margin-top: 10px;">
+                <f:facet name="left">
+                    <p:commandButton style="font-size: 13px;" value="Salvar" action="#{espermogramaBean.salvar}"
+                                     id="botaoSalvar" icon="ui-icon ui-icon-disk"/>
+
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
+                              outcome="/exame/listar-exames" icon="fa fa-times">
+                    </p:button>
+                </f:facet>
+            </p:toolbar>
+
+        </p:fieldset>
+    </ui:define>
+</ui:composition>    

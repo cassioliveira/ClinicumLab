@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="formTelaInformacoes">
+
+        <p:messages closable="true" severity="info,warn,error">
+            <p:autoUpdate/> 
+        </p:messages>
+
+        <h:panelGrid columns="2">
+
+            <p:outputLabel for="cliente" value="Cliente: "/>
+            <p:selectOneMenu id="cliente" style="vertical-align: middle; width: 400px" filter="true" filterMatchMode="contains"
+                             required="true" requiredMessage="É necessário informar um cliente">
+                <f:selectItem noSelectionOption="true"/>
+                <f:selectItem itemLabel="Cliente 1" itemValue="c1"/>
+                <f:selectItem itemLabel="Cliente 2" itemValue="c2"/>
+                <f:selectItem itemLabel="Cliente 3" itemValue="c3"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel for="requisitante" value="Requisitante: "/>
+            <p:selectOneMenu id="requisitante" style="vertical-align: middle; width: 400px" filter="true" filterMatchMode="contains"
+                             editable="true">
+                <f:selectItem noSelectionOption="true"/>
+                <f:selectItem itemLabel="Medico 1" itemValue="m1"/>
+                <f:selectItem itemLabel="Medico 2" itemValue="m2"/>
+                <f:selectItem itemLabel="Medico 3" itemValue="m3"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel for="convenio" value="Convênio: "/>
+            <p:selectOneMenu id="convenio" style="vertical-align: middle; width: 400px">
+                <f:selectItem itemLabel="Particular" itemValue="particular" />
+                <f:selectItem itemLabel="APCEF" itemValue="apcef" />
+                <f:selectItem itemLabel="UNIMED" itemValue="unimed"/>
+                <f:selectItem itemLabel="Prefeitura Municipal de Sumé" itemValue="prefeitura"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel for="listaExames" value="Exame(s): "/>
+            <h:panelGroup>
+                <p:selectCheckboxMenu id="listaExames" label="teste" style="width: 428px; z-index: 8; vertical-align: middle" filter="true"   
+                                      requiredMessage="É necessário informar um ou mais exames" required="true" updateLabel="true" filterMatchMode="contains">
+                    <f:selectItem itemLabel="Espermograma" itemValue="esperma"/>
+                    <f:selectItem itemLabel="Hemograma Completo" itemValue="hemograma"/>
+                    <f:selectItem itemLabel="Antibiograma" itemValue="antibio"/>
+                </p:selectCheckboxMenu>
+                <p:commandButton id="adicionar-exames" icon="fa fa-plus" value="Adicionar Exames" style="margin-left: 5px"/>
+            </h:panelGroup>
+
+        </h:panelGrid>
+
+        <p:dataTable id="datatablePesquisaExames" var="geral" widgetVar="pesquisaExames"
+                     paginatorAlwaysVisible="false" style="margin-top: 1px; " rows="10" reflow="true" 
+                     paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" 
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                     {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
+                     scrollable="true" scrollRows="8" scrollHeight="180">
+
+            <p:column headerText="Código" width="0.1" filterMatchMode="contains" filterStyle="width: 30px; display:none">
+            </p:column>
+
+            <p:column headerText="Exame" width="80" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+            </p:column>
+
+            <p:column headerText="Urgência" width="8" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+            </p:column>
+
+            <p:column headerText="Valor" style="text-align: center" width="20" filterStyle="width: 50px; display:none">
+            </p:column>
+
+            <p:column headerText="Validade" width="10" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+            </p:column>
+
+            <p:column id="acoes" headerText="Remover" style="text-align: center" width="10">
+                <p:button id="botaoVisualizar" title="Visualizar" icon="ui-icon ui-icon-extlink" style="font-size: 10px">
+                    <p:tooltip for="botaoVisualizar" value="Visualiza detalhes da linha selecionada"/>
+                </p:button>   
+
+                <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" >
+                    <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
+                </p:button>
+
+            </p:column>
+        </p:dataTable>
+
+    </h:form>
+</html>   
+
+
+

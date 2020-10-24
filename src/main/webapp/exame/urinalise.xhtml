@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml"
+                xmlns:observacoes="http://xmlns.jcp.org/jsf/composite/components"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+
+        <p:fieldset legend="Urinálise - Urina tipo I">
+            <h:form id="formHemograma">
+
+                <p:messages closable="true" severity="info,warn,error">
+                    <p:autoUpdate/> 
+                </p:messages>
+
+                <h:panelGrid columns="2">
+                    <p:outputLabel for="codigo" value="Código: "/>
+                    <p:inputText id="codigo"  value="#{urinaliseBean.urinalise.codigo}" size="12" readonly="true" 
+                                 style="font-weight: bold" placeholder="URINALI01"/>
+                    
+                    <p:outputLabel for="valor" value="Preço: " />
+                    <p:inputText id="valor" size="13" value="#{urinaliseBean.urinalise.valor}" 
+                                   maxlength="8" class="money">
+                        <!--<f:convertNumber type="currency" locale="pt_BR" pattern="#0,00" currencyCode="BRL" currencySymbol="R$"/>-->
+                    </p:inputText>
+
+                    <p:outputLabel for="material" value="Material: "/>
+                    <p:selectOneMenu id="material" style="width: 102px; z-index: 8; vertical-align: middle"
+                                     value="#{urinaliseBean.urinalise.material}">
+                        <f:selectItem noSelectionOption="true"/> 
+                        <f:selectItem itemLabel="Sangue" itemValue="sangue"/>
+                        <f:selectItem itemLabel="Urina" itemValue="urina"/>
+                        <f:selectItem itemLabel="Fezes" itemValue="fezes"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+
+                <p:tabView>
+                    <p:tab title="Exame físico">
+
+                        <div class="ui-g">
+                            <div class="ui-g-5"/>
+                            <div class="ui-g-4 negrito-centralizado">VALORES DE REFERÊNCIA</div>
+                            <div class="ui-g-3" style="text-align: center"/>
+                        </div>
+
+                        <div class="ui-g">
+                            <div class="ui-g-5" >
+                                <h:panelGrid columns="3">
+                                    <p:outputLabel for="volume" value="Volume: "/>
+                                    <p:inputText id="volume" size="15"  value="#{urinaliseBean.urinalise.volume}"/> 
+                                    <p:outputLabel value=" ml"/>
+
+                                    <p:outputLabel for="aspecto" value="Aspecto: "/>
+                                    <p:inputText id="aspecto" size="15" value="#{urinaliseBean.urinalise.aspecto}"/> 
+                                    <p:outputLabel/>
+
+                                    <p:outputLabel for="cor" value="Cor: "/>
+                                    <p:inputText id="cor" size="15" value="#{urinaliseBean.urinalise.cor}"/> 
+                                    <p:outputLabel/>
+
+                                    <p:outputLabel for="ph" value="pH: "/>
+                                    <p:inputText id="ph" size="15" value="#{urinaliseBean.urinalise.ph}"/> 
+                                    <p:outputLabel/>
+
+                                    <p:outputLabel for="densidade" value="Densidade: "/>
+                                    <p:inputText id="densidade" size="15" value="#{urinaliseBean.urinalise.densidade}"/> 
+                                    <p:outputLabel/>
+
+                                </h:panelGrid>
+                            </div>
+
+                            <div class="ui-g-4" style="text-align: center">
+                                <p:inputText value="#{urinaliseBean.urinalise.volumeReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.aspectoReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.corReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.phReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.densidadeReferencia}" size="15" style="margin-top: 5px"/>
+                            </div>
+
+                            <div class="ui-g-3" ></div>
+                        </div>
+                    </p:tab>
+
+                    <p:tab title="Exame químico">
+                        <div class="ui-g">
+                            <div class="ui-g-5"/>
+                            <div class="ui-g-4 negrito-centralizado">VALORES DE REFERÊNCIA</div>
+                            <div class="ui-g-3" style="text-align: center"/>
+                        </div>
+
+                        <div class="ui-g">
+                            <div class="ui-g-5" >
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel for="proteinas" value="Proteínas: "/>
+                                    <p:inputText id="proteinas" size="15" value="#{urinaliseBean.urinalise.proteinas}"/> 
+
+                                    <p:outputLabel for="glicose" value="Glicose: "/>
+                                    <p:inputText id="glicose" size="15" value="#{urinaliseBean.urinalise.glicose}"/> 
+
+                                    <p:outputLabel for="cetonicos" value="Corpos cetônicos: "/>
+                                    <p:inputText id="cetonicos" size="15" value="#{urinaliseBean.urinalise.corposCetonicos}"/> 
+
+                                    <p:outputLabel for="urobilinogenio" value="Urobilinogênio: "/>
+                                    <p:inputText id="urobilinogenio" size="15" value="#{urinaliseBean.urinalise.urobilinogenio}"/> 
+
+                                    <p:outputLabel for="bilirrubinas" value="Bilirrubinas: "/>
+                                    <p:inputText id="bilirrubinas" size="15" value="#{urinaliseBean.urinalise.bilirrubinas}"/> 
+
+                                    <p:outputLabel for="hemoglobina" value="Hemoglobina livre: "/>
+                                    <p:inputText id="hemoglobina" size="15" value="#{urinaliseBean.urinalise.hemoglobinaLivre}"/> 
+
+                                    <p:outputLabel for="pigmentos" value="Pigmentos biliares: "/>
+                                    <p:inputText id="pigmentos" size="15" value="#{urinaliseBean.urinalise.pigmentosBiliares}"/> 
+                                </h:panelGrid>
+                            </div>
+
+                            <div class="ui-g-4" style="text-align: center">
+                                <p:inputText value="#{urinaliseBean.urinalise.proteinasReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.glicoseReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.corposCetonicosReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.urobilinogenioReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.bilirrubinasReferencia}" size="15" style="margin-top: 5px"/>
+                                <p:inputText value="#{urinaliseBean.urinalise.hemoglobinaLivreReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.pigmentosBiliaresReferencia}" size="15" style="margin-top: 5px"/>
+                            </div>
+
+                            <div class="ui-g-3" ></div>
+                        </div>
+                    </p:tab>
+
+                    <p:tab title="Sedimentoscopia">
+                        <div class="ui-g">
+                            <div class="ui-g-5"/>
+                            <div class="ui-g-4 negrito-centralizado">VALORES DE REFERÊNCIA</div>
+                            <div class="ui-g-3" style="text-align: center"/>
+                        </div>
+
+                        <div class="ui-g">
+                            <div class="ui-g-5" >
+                                <h:panelGrid columns="3">
+                                    <p:outputLabel for="leucocitos" value="Leucócitos: "/>
+                                    <p:inputText id="leucocitos" size="15" value="#{urinaliseBean.urinalise.leucocitos}"/> 
+                                    <p:outputLabel value=" por campo"/>
+
+                                    <p:outputLabel for="hemacias" value="Hemácias: "/>
+                                    <p:inputText id="hemacias" size="15" value="#{urinaliseBean.urinalise.hemacias}"/> 
+                                    <p:outputLabel value=" por campo"/>
+
+                                    <p:outputLabel for="epiteliais" value="Células epiteliais: "/>
+                                    <p:inputText id="epiteliais" size="15" value="#{urinaliseBean.urinalise.celulasEpiteliais}"/> 
+                                    <p:outputLabel value=" por campo"/>
+
+                                    <p:outputLabel for="cilindros" value="Cilindros: "/>
+                                    <p:inputText id="cilindros" size="15" value="#{urinaliseBean.urinalise.cilindros}"/> 
+                                    <p:outputLabel/>
+
+                                    <p:outputLabel for="cristais" value="Cristais: "/>
+                                    <p:inputText id="cristais" size="15" value="#{urinaliseBean.urinalise.cristais}"/> 
+                                    <p:outputLabel/>
+
+                                    <p:outputLabel for="outros" value="Outros elementos: "/>
+                                    <p:inputText id="outros" size="15" value="#{urinaliseBean.urinalise.outrosElementos}"/> 
+                                    <p:outputLabel/>
+
+                                    <p:outputLabel for="bacterias" value="Bactérias: "/>
+                                    <p:inputText id="bacterias" size="15" value="#{urinaliseBean.urinalise.bacterias}"/> 
+                                    <p:outputLabel/>
+                                </h:panelGrid>
+                            </div>
+
+                            <div class="ui-g-4" style="text-align: center">
+                                <p:inputText value="#{urinaliseBean.urinalise.leucocitosReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.hemaciasReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.celulasEpiteliaisReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.cilindrosReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.cristaisReferencia}" size="15" style="margin-top: 5px"/>
+                                <p:inputText value="#{urinaliseBean.urinalise.outrosElementosReferencia}" size="15" style="margin-top: 5px"/><br/>
+                                <p:inputText value="#{urinaliseBean.urinalise.bacteriasReferencia}" size="15" style="margin-top: 5px"/>
+                            </div>
+
+                            <div class="ui-g-3" ></div>
+                        </div>
+                    </p:tab>
+
+                </p:tabView>
+
+                <observacoes:observacoes-exames value="#{urinaliseBean.urinalise.observacoes}" altura="130" largura="560"/>
+
+            </h:form> 
+            <p:toolbar id="toolbarUrinalise" style="margin-top: 10px;">
+                <f:facet name="left">
+                    <p:commandButton style="font-size: 13px;" value="Salvar" action="#{urinaliseBean.salvar}"
+                                     id="botaoSalvar" icon="ui-icon ui-icon-disk"/>
+
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
+                              outcome="/exame/listar-exames" icon="fa fa-times">
+                    </p:button>
+                </f:facet>
+            </p:toolbar>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>    

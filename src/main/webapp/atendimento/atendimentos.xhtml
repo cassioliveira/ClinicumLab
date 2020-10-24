@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+
+        <p:fieldset legend="Atendimentos em aberto">
+            <h:form id="formAtendimento">
+
+                <p:messages closable="true" severity="info,warn,error">
+                    <p:autoUpdate/> 
+                </p:messages>
+
+                <p:toolbar >
+                    <f:facet name="left">
+                        <p:button value="Atendimentos finalizados" id="botaoAtendimentosFinalizados"  icon="fa fa-down" />
+                    </f:facet>
+
+                    <f:facet name="right">
+                        <p:button value="Novo atendimento" id="botaoNovoCadastro"  icon="ui-icon ui-icon-pencil" 
+                                  onclick="PF('dialogAtendimento').show(); return 0;"/>
+                    </f:facet>
+                </p:toolbar>
+
+                <p:dataTable id="datatablePesquisaAtendimento" var="cliente" 
+                             paginatorAlwaysVisible="false" style="margin-top: 1px; " rows="10" reflow="true" 
+                             paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" widgetVar="pesquisaAtendimento"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
+                             scrollable="true" scrollRows="10" scrollHeight="290">
+
+                    <f:facet name="header">
+                        <p:outputPanel id="panelFiltroAtendimento">
+                            <p:inputText id="globalFilter" onkeyup="PF('pesquisaAtendimento').filter()" style="width:300px" placeholder="Pesquisar"/>
+                        </p:outputPanel>
+                    </f:facet>
+
+                    <p:column headerText="Protocolo" style="text-align: center" width="1.2%" filterMatchMode="exact" filterStyle="width: 20px; display:none">
+                    </p:column>
+
+                    <p:column headerText="Cliente" width="40" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+                    </p:column>
+
+                    <p:column headerText="Status" style="text-align: center" width="20" filterMatchMode="contains" filterStyle="width: 80px; display:none">
+                    </p:column>
+
+                    <p:column headerText="Pagamento" style="text-align: center" width="10" filterMatchMode="exact" filterStyle="width: 20px; display:none">
+                    </p:column>
+
+                    <p:column id="acoes" headerText="Ações" style="text-align: center" width="25">
+                        <p:button id="botaoVisualizar" title="Visualizar" icon="ui-icon ui-icon-extlink" style="font-size: 10px">
+                            <p:tooltip for="botaoVisualizar" value="Visualiza detalhes da linha selecionada"/>
+                        </p:button>   
+
+                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" >
+                            <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
+                        </p:button>
+
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:fieldset>
+
+        <p:dialog id="dialogAtendimento" draggable="false" closable="true" responsive="true" width="950" height="450" 
+                  hideEffect="fade" showEffect="fade" showHeader="true" widgetVar="dialogAtendimento" fitViewport="true"
+                  resizable="false" modal="true"  header="Protocolo - 0123456789" closeOnEscape="true" >
+            <p:tabView>
+                <p:tab title="Informações">
+                    <ui:include src="geral.xhtml"/>
+                </p:tab>
+
+                <p:tab id="tabColeta" title="Coleta">
+                    <ui:include src="coleta.xhtml"/>
+                </p:tab>
+
+                <p:tab title="Pagamento">
+                    <ui:include src="pagamento.xhtml"/>
+                </p:tab>
+
+                <!--                <p:tab title="Conclusão">
+                                    <ui:include src="conclusao.xhtml"/>
+                                </p:tab>-->
+            </p:tabView>
+
+            <p:toolbar id="panelButtonsAtendimentos" style="margin-top: 10px;" >
+                <f:facet name="left">
+                    <p:commandButton style="font-size: 13px;" id="botaoSalvar" value="Salvar" update="@form" icon="ui-icon ui-icon-disk"/>
+                </f:facet>    
+            </p:toolbar> 
+
+        </p:dialog>
+    </ui:define>
+</ui:composition>    

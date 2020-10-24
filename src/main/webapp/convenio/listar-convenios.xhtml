@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml">
+
+    <ui:define name="content">
+        <p:fieldset legend="Convênios cadastrados">
+            <h:form id="formPesquisaConvenio">
+                <p:messages closable="true" severity="info,warn,error">
+                    <p:autoUpdate/> 
+                </p:messages>
+
+                <p:toolbar>
+                    <f:facet name="right">
+                        <p:button value="Novo convênio" id="botaoTelaCadastro"  icon="fa fa-plus" 
+                                  outcome="/convenio/cadastro-convenio"/>
+                    </f:facet>
+                </p:toolbar>
+
+                <p:dataTable id="datatablePesquisaConvenio" var="convenio" value="#{convenioBean.convenios}"
+                             paginatorAlwaysVisible="false" style="margin-top: 1px; " rows="10" reflow="true" sortBy="#{convenio.nomeConvenio}"
+                             paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" widgetVar="pesquisaConvenio"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
+                             scrollable="true" scrollRows="10" scrollHeight="290">
+
+                    <f:facet name="header">
+                        <p:outputPanel id="panelFiltroConvenio">
+                            <p:inputText id="globalFilter" onkeyup="PF('pesquisaConvenio').filter()" style="width:300px" placeholder="Pesquisar..."/>
+                        </p:outputPanel>
+                    </f:facet>
+
+                    <p:column headerText="Convênio" width="50%" filterMatchMode="exact" 
+                              filterStyle="width: 20px; display:none">
+                        <h:outputText value="#{convenio.nomeConvenio}"/>
+                    </p:column>
+
+                    <p:column headerText="Contato" style="text-align: center" width="20%" filterMatchMode="exact" 
+                              filterStyle="width: 20px; display:none">
+                        <h:outputText value="#{convenio.nomeContato}"/>
+                    </p:column>
+
+                    <p:column headerText="Celular" style="text-align: center" width="20%" filterMatchMode="exact" 
+                              filterStyle="width: 20px; display:none">
+                        <h:outputText value="#{convenio.celular}"/>
+                    </p:column>
+
+                    <p:column id="acoes" headerText="Ações" style="text-align: center" width="10%">
+                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" 
+                                  outcome="/convenio/cadastro-convenio">
+                            <f:param name="convenio" value="#{convenio.id}"/>
+                            <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
+                        </p:button>
+
+                        <p:commandButton id="deleteButton" title="Remover" icon="ui-icon ui-icon-trash" style="font-size: 10px" 
+                                         action="#{convenioBean.excluir}" process="@this" update="datatablePesquisaConvenio">
+                            <f:setPropertyActionListener target="#{convenioBean.convenioSelecionado}" value="#{convenio}"/>
+                            <p:tooltip for="deleteButton" value="Excluir convênio"/>
+                            <p:confirm icon="ui-icon-alert" header="Exclusão de cadastro" message="Deseja realmente excluir o cadastro?"/>
+                        </p:commandButton>
+
+                    </p:column>
+                </p:dataTable>    
+            </h:form>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>    

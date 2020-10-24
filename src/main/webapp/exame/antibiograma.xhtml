@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml"
+                xmlns:componente="http://xmlns.jcp.org/jsf/composite/components"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <f:metadata>
+        <f:viewParam name="antibiograma" value="#{antibiogramaBean.antibiograma}" />
+    </f:metadata>
+
+    <ui:define name="content">
+
+        <p:fieldset legend="Antibiograma">
+            <h:form id="formAntibiograma">
+                <p:messages closable="true" severity="info,warn,error">
+                    <p:autoUpdate/> 
+                </p:messages>
+
+                <h:panelGrid columns="2">
+                    <p:outputLabel for="codigo" value="Código: "/>
+                    <p:inputText id="codigo" value="#{antibiogramaBean.antibiograma.codigo}" size="13" readonly="true" 
+                                 style="font-weight: bold" placeholder="ANTIBIO01"/>
+
+                    <p:outputLabel for="valor" value="Valor: " />
+                    <p:inputNumber id="valor" size="13" symbol="R$ " class="money" decimalPlaces="2" maxlength="8" maxValue="999999"
+                                   value="#{antibiogramaBean.antibiograma.valor}" />
+
+                    <p:outputLabel for="material" value="Material: "/>
+                    <p:selectOneMenu id="material" style="width: 102px; z-index: 8; vertical-align: middle"
+                                     value="#{antibiogramaBean.antibiograma.material}">
+                        <f:selectItem noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sangue" itemValue="sangue"/>
+                        <f:selectItem itemLabel="Urina" itemValue="urina"/>
+                        <f:selectItem itemLabel="Fezes" itemValue="fezes"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="negativo" value="Negativo? "/>
+                    <p:selectOneMenu id="negativo" style="width: 102px; z-index: 8; vertical-align: middle" 
+                                     value="#{antibiogramaBean.antibiograma.negativo}">
+                        <f:selectItem itemLabel="Não" itemValue="false"/>
+                        <f:selectItem itemLabel="Sim" itemValue="true"/>
+                    </p:selectOneMenu>
+
+
+                    <p:outputLabel id="legenda" value="Legenda: "/>
+                    <h:panelGroup>
+                        <p:panelGrid columns="4">
+                            <p:outputLabel id="sensivel" value="S = Sensível"/>
+                            <p:outputLabel id="intermediario" value="I = Intermediário"/>
+                            <p:outputLabel id="resistente" value="R = Resistente"/>
+                            <p:outputLabel id="naotestado" value="N = Não foram testados"/>
+                        </p:panelGrid>
+                    </h:panelGroup>
+
+<!--                    <p:selectOneMenu id="cefadroxil" style="vertical-align: middle; width: 20px" value="#{antibiogramaBean.antibiograma.cefadroxil}">
+                        <f:selectItem noSelectionOption="true" />
+                        <f:selectItem itemLabel="S" itemValue="s" />
+                        <f:selectItem itemLabel="I" itemValue="i"/>
+                        <f:selectItem itemLabel="R" itemValue="r"/>
+                        <f:selectItem itemLabel="N" itemValue="n"/> 
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="cefalexina" value="Cefalexina: "/>
+                    <componente:atributos-antibiograma id="cefalexina" value="#{antibiogramaBean.antibiograma.cefalexina}"/>-->
+
+                </h:panelGrid>
+
+                <div class="ui-g">
+                    <div class="ui-g-3" >
+
+                        <p:fieldset legend="Cefalosporinas" styleClass="legenda-antibiograma">
+
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="cefadroxil" value="Cefadroxil: "/>
+                                <componente:atributos-antibiograma id="cefadroxil" value="#{antibiogramaBean.antibiograma.cefadroxil}"/>
+
+                                <p:outputLabel for="cefalexina" value="Cefalexina: "/>
+                                <componente:atributos-antibiograma id="cefalexina" value="#{antibiogramaBean.antibiograma.cefalexina}"/>
+
+                                <p:outputLabel for="cefazolina" value="Cefazolina: "/>
+                                <componente:atributos-antibiograma id="cefazolina" value="#{antibiogramaBean.antibiograma.cefazolina}"/>
+
+                                <p:outputLabel for="cefalotina" value="Cefalotina: "/>
+                                <componente:atributos-antibiograma id="cefalotina" value="#{antibiogramaBean.antibiograma.cefalotina}"/>
+
+                                <p:outputLabel for="cefaclor" value="Cefaclor: "/>
+                                <componente:atributos-antibiograma id="cefaclor" value="#{antibiogramaBean.antibiograma.cefaclor}"/>
+
+                                <p:outputLabel for="cefoxitina" value="Cefoxitina "/>
+                                <componente:atributos-antibiograma id="cefoxitina" value="#{antibiogramaBean.antibiograma.cefoxitina}"/>
+
+                                <p:outputLabel for="cefuroxima" value="Cefuroxima: "/>
+                                <componente:atributos-antibiograma id="cefuroxima" value="#{antibiogramaBean.antibiograma.cefuroxima}"/>
+
+                                <p:outputLabel for="cefotaxima" value="Cefotaxima: "/>
+                                <componente:atributos-antibiograma id="cefotaxima" value="#{antibiogramaBean.antibiograma.cefotaxima}"/>
+
+                                <p:outputLabel for="ceftriaxona" value="Ceftriaxona: "/>
+                                <componente:atributos-antibiograma id="ceftriaxona" value="#{antibiogramaBean.antibiograma.ceftriaxona}"/>
+
+                                <p:outputLabel for="cefaperozana" value="Cefaperozana: "/>
+                                <componente:atributos-antibiograma id="cefaperozana" value="#{antibiogramaBean.antibiograma.cefaperozana}"/>
+
+                                <p:outputLabel for="ceftadizima" value="Ceftadizima: "/>
+                                <componente:atributos-antibiograma id="ceftadizima" value="#{antibiogramaBean.antibiograma.ceftadizima}"/>
+
+                            </h:panelGrid>
+
+                        </p:fieldset>
+
+                        <p:fieldset legend="Outros - Beta Lact." style="margin-top: 5px">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="imipenen" value="Imipenen: "/>
+                                <componente:atributos-antibiograma id="imipenen" value="#{antibiogramaBean.antibiograma.imipenen}"/> 
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                    </div>
+
+                    <div class="ui-g-3" >
+
+                        <p:fieldset legend="Penicilinas" style="height: 230px">
+
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="amoxicilina" value="Amoxicilina: "/>
+                                <componente:atributos-antibiograma id="amoxicilina" value="#{antibiogramaBean.antibiograma.amoxicilina}"/>
+
+                                <p:outputLabel for="ampicilina" value="Ampicilina: "/>
+                                <componente:atributos-antibiograma id="ampicilina" value="#{antibiogramaBean.antibiograma.ampicilina}"/>
+
+                                <p:outputLabel for="carbenicilina" value="Carbenicilina: "/>
+                                <componente:atributos-antibiograma id="carbenicilina" value="#{antibiogramaBean.antibiograma.carbenicilina}"/>
+
+                                <p:outputLabel for="oxacilina" value="Oxacilina: "/>
+                                <componente:atributos-antibiograma id="oxacilina" value="#{antibiogramaBean.antibiograma.oxacilina}"/>
+
+                                <p:outputLabel for="penicilinag" value="Penicilina G: "/>
+                                <componente:atributos-antibiograma id="penicilinag" value="#{antibiogramaBean.antibiograma.penicilinag}"/>
+                            </h:panelGrid>
+
+                        </p:fieldset>
+
+                        <p:fieldset legend="Quinolonas" style="margin-top: 5px; height: 220px">
+
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="norfloxacina" value="Norfloxacina: "/>
+                                <componente:atributos-antibiograma id="norfloxacina" value="#{antibiogramaBean.antibiograma.norfloxacina}"/>
+
+                                <p:outputLabel for="ciprofloxacina" value="Ciprofloxacina: "/>
+                                <componente:atributos-antibiograma id="ciprofloxacina" value="#{antibiogramaBean.antibiograma.ciprofloxacina}"/>
+
+                                <p:outputLabel for="pefloxacina" value="Pefloxacina: "/>
+                                <componente:atributos-antibiograma id="pefloxacina" value="#{antibiogramaBean.antibiograma.pefloxacina}"/>
+
+                                <p:outputLabel for="ofloxacina" value="Ofloxacina: "/>
+                                <componente:atributos-antibiograma id="ofloxacina" value="#{antibiogramaBean.antibiograma.ofloxacina}"/>
+                            </h:panelGrid>
+
+                        </p:fieldset>
+
+                    </div>
+
+                    <div class="ui-g-3" >
+                        <p:fieldset legend="Quimioterápicos" style="margin-top: 5px">
+
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="sulfatrimetroprim" value="Sulfatrimetroprim: "/>
+                                <componente:atributos-antibiograma id="sulfatrimetroprim" value="#{antibiogramaBean.antibiograma.sulfatrimetroprim}"/>
+
+                                <p:outputLabel for="nalidixico" value="Ácido nalidixico: "/>
+                                <componente:atributos-antibiograma id="nalidixico" value="#{antibiogramaBean.antibiograma.nalidixico}"/>
+
+                                <p:outputLabel for="pipemidico" value="Ácido pipemidico: "/>
+                                <componente:atributos-antibiograma id="pipemidico" value="#{antibiogramaBean.antibiograma.pipemidico}"/>
+
+                                <p:outputLabel for="nitrofurantoina" value="Nitrofurantoina: "/>
+                                <componente:atributos-antibiograma id="nitrofurantoina" value="#{antibiogramaBean.antibiograma.nitrofurantoina}"/>
+
+                            </h:panelGrid>
+
+                        </p:fieldset>
+
+                        <p:fieldset legend="Aminoglicosídeos" style="margin-top: 5px">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="amicacina" value="Amicacina: "/>
+                                <componente:atributos-antibiograma id="amicacina" value="#{antibiogramaBean.antibiograma.amicacina}"/>
+
+                                <p:outputLabel for="gentamicina" value="Gentamicina: "/>
+                                <componente:atributos-antibiograma id="gentamicina" value="#{antibiogramaBean.antibiograma.gentamicina}"/>
+
+                                <p:outputLabel for="tobramicina" value="Tobramicina: "/>
+                                <componente:atributos-antibiograma id="tobramicina" value="#{antibiogramaBean.antibiograma.tobramicina}"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                        <p:fieldset legend="Tetraciclinas" style="margin-top: 5px; height: 120px">
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="doxiciclina" value="Doxiciclina: "/>
+                                <componente:atributos-antibiograma id="doxiciclina" value="#{antibiogramaBean.antibiograma.doxiciclina}"/>
+
+                                <p:outputLabel for="tetraciclina" value="Tetraciclina: "/>
+                                <componente:atributos-antibiograma id="tetraciclina" value="#{antibiogramaBean.antibiograma.tetraciclina}"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                    </div>
+
+                    <div class="ui-g-3" >
+                        <p:fieldset legend="Macrolídeos">
+
+                            <h:panelGrid columns="2">
+                                <p:outputLabel for="eritromicina" value="Eritromicina: "/>
+                                <componente:atributos-antibiograma id="eritromicina" value="#{antibiogramaBean.antibiograma.eritromicina}"/>
+
+                                <p:outputLabel for="clindamicina" value="Clindamicina: "/>
+                                <componente:atributos-antibiograma id="clindamicina" value="#{antibiogramaBean.antibiograma.clindamicina}"/>
+
+                                <p:outputLabel for="cloranfenicol" value="Cloranfenicol: "/>
+                                <componente:atributos-antibiograma id="cloranfenicol" value="#{antibiogramaBean.antibiograma.cloranfenicol}"/>
+
+                                <p:outputLabel for="lincomicina" value="Lincomicina: "/>
+                                <componente:atributos-antibiograma id="lincomicina" value="#{antibiogramaBean.antibiograma.lincomicina}"/>
+
+                            </h:panelGrid>
+
+                        </p:fieldset>
+
+                        <!--                        <p:fieldset legend="Outros" style="margin-top: 5px; height: 285px">
+                                                    <h:panelGrid columns="2">
+                                                        <p:inputText size="15"/>
+                                                        <componente:atributos-antibiograma id="outros1" />
+                        
+                                                        <p:inputText size="15"/>
+                                                        <componente:atributos-antibiograma id="outros2" />
+                        
+                                                        <p:inputText size="15"/>
+                                                        <componente:atributos-antibiograma id="outros3" />
+                        
+                                                        <p:inputText size="15"/>
+                                                        <componente:atributos-antibiograma id="outros4" />
+                        
+                                                        <p:inputText size="15"/>
+                                                        <componente:atributos-antibiograma id="outros5" />
+                        
+                                                        <p:inputText size="15"/>
+                                                        <componente:atributos-antibiograma id="outros6"/>
+                        
+                                                        <p:inputText size="15"/>
+                                                        <componente:atributos-antibiograma id="outros7" />
+                                                    </h:panelGrid>
+                                                </p:fieldset>-->
+
+                    </div>
+                </div>
+
+                <!--<componente:observacoes-exames altura="100" largura="650"/>-->
+            </h:form>
+            <p:toolbar id="toolbarAntibiograma" style="margin-top: 10px;">
+                <f:facet name="left">
+                    <p:commandButton style="font-size: 13px;" value="Salvar" action="#{antibiogramaBean.salvar}"
+                                     id="botaoSalvar" icon="ui-icon ui-icon-disk"/>
+
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
+                              outcome="/exame/listar-exames" icon="fa fa-times">
+                    </p:button>
+                </f:facet>
+            </p:toolbar>
+        </p:fieldset>
+        <p:blockUI block="formAntibiograma" trigger="botaoSalvar"/>
+    </ui:define>
+</ui:composition>    
