@@ -19,16 +19,16 @@
 
                     <f:facet name="left">
                         <p:button value="Antibiograma" id="botaoCadastroAntibiograma"  icon="fa fa-plus" 
-                                  outcome="/exame/antibiograma"/>
+                                  outcome="/exame/antibiograma" rendered="#{!exameBean.jaCadastrado('Antibiograma')}"/>
 
                         <p:button value="Espermograma" id="botaoCadastroEspermograma"  icon="fa fa-plus" 
-                                  outcome="/exame/espermograma"/>
+                                  outcome="/exame/espermograma" rendered="#{!exameBean.jaCadastrado('Espermograma')}" />
 
                         <p:button value="Hemograma" id="botaoCadastroHemograma"  icon="fa fa-plus" 
-                                  outcome="/exame/hemograma-completo"/>
+                                  outcome="/exame/hemograma-completo" rendered="#{!exameBean.jaCadastrado('Hemograma')}"/>
 
                         <p:button value="Urinálise" id="botaoCadastroUrinalise"  icon="fa fa-plus" 
-                                  outcome="/exame/urinalise"/>
+                                  outcome="/exame/urinalise" rendered="#{!exameBean.jaCadastrado('Urinalise')}"/>
                     </f:facet>
 
                     <f:facet name="right">

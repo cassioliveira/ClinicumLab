@@ -121,7 +121,7 @@ public class ExameBean implements Serializable {
         return pagina;
     }
 
-    public boolean getJaCadastrado(String examePrincipal) {
+    public boolean jaCadastrado(String examePrincipal) {
         return exameServico.jaCadastrado(examePrincipal);
     }
 
