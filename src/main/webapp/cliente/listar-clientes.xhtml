@@ -27,8 +27,7 @@
                              paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                              {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
-                             scrollable="true" scrollRows="10" scrollHeight="290" widgetVar="pesquisaCliente"
-                             sortBy="#{cliente.nome}">
+                             scrollable="true" scrollRows="10" scrollHeight="290" widgetVar="pesquisaCliente">
 
                     <f:facet name="header">
                         <p:outputPanel id="panelFiltroCliente">
@@ -43,7 +42,7 @@
                     </p:column>
 
                     <p:column headerText="Nome" width="45%" filterMatchMode="contains" filterStyle="width: 300px; display:none"
-                              filterBy="#{cliente.nome}">
+                              filterBy="#{cliente.nome}" sortBy="#{cliente.nome}">
                         <h:outputText value="#{cliente.nome}"/>
                     </p:column>
 

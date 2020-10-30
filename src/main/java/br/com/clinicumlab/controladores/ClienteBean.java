@@ -2,10 +2,8 @@ package br.com.clinicumlab.controladores;
 
 import br.com.clinicumlab.enumeracao.Estados;
 import br.com.clinicumlab.modelo.Cliente;
-import br.com.clinicumlab.relatorios.GeraRelatorios;
 import br.com.clinicumlab.servicos.ClienteServico;
 import br.com.clinicumlab.util.jsf.FacesUtil;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +13,6 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import lombok.Getter;
 import lombok.Setter;
-import net.sf.jasperreports.engine.JRException;
 
 /**
  * Managed bean usado pela página de cadastro de consulta. É responsável por
@@ -71,7 +68,7 @@ public class ClienteBean implements Serializable {
         this.estados = clienteServico.getEstados();
         return estados;
     }
-    
+
     /**
      * Método responsável por iniciar uma transação, instanciar um objeto do
      * tipo Cliente e salvar.

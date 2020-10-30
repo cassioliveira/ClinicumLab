@@ -28,9 +28,14 @@ public class ExecutaRelatorios implements Serializable {
     @Getter
     @Setter
     private Cliente cliente;
+    
+    @Getter
+    @Setter
+    private Cliente clienteSelecionado;
 
     public ExecutaRelatorios() {
-        this.cliente = new Cliente();
+        cliente = new Cliente();
+        clienteSelecionado = new Cliente();
     }
 
     /**
@@ -40,7 +45,7 @@ public class ExecutaRelatorios implements Serializable {
      * @throws net.sf.jasperreports.engine.JRException
      */
     public void emitirCarteirinha() throws IOException, JRException {
-        clienteServico.salvar(cliente);
+//        clienteServico.salvar(cliente);
         geraRelatorios.gerarPdf("/carteirinha.jasper", "Carteirinha tipo sanguíneo.pdf", cliente);
     }
 
