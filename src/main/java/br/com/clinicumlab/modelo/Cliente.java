@@ -39,9 +39,6 @@ public class Cliente implements Serializable {
     @Column(name = "cadastro")
     private Date cadastro;
 
-    @Column(name = "codigo", length = 20)
-    private String codigo;
-
     @Column(name = "nome", nullable = false, length = 150)
     @NotNull(message = "O nome deve ser informado")
     private String nome;

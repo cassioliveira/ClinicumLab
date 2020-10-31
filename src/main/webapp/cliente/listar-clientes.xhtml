@@ -38,7 +38,7 @@
 
                     <p:column headerText="Código" style="text-align: center" width="10%" filterMatchMode="exact" 
                               filterStyle="width: 20px; display:none">
-                        <h:outputText value="#{cliente.codigo}"/>
+                        <h:outputText value="#{cliente.id lt 10 ? '000'.concat(cliente.id) : '00'.concat(cliente.id)}"/>
                     </p:column>
 
                     <p:column headerText="Nome" width="45%" filterMatchMode="contains" filterStyle="width: 300px; display:none"
