@@ -68,7 +68,8 @@
 
                         <p:commandButton id="reportButton" action="#{executaRelatorios.emitirCarteirinha}" immediate="true"
                                          ajax="false" icon="fa fa-file-pdf-o" onclick="this.form.target = '_blank'"
-                                         disabled="#{clienteBean.clientes.size() == 0}" style="font-size: 10px; padding-top: 5px">
+                                         disabled="#{clienteBean.clientes.size() == 0}" style="font-size: 10px; padding-top: 5px"
+                                         rendered="#{cliente.fatorRH ne null and cliente.tipoSanguineo ne null}">
                             <f:setPropertyActionListener target="#{executaRelatorios.cliente}" value="#{cliente}"/>
                             <p:tooltip for="reportButton" value="Emitir carteirinha"/>
                         </p:commandButton>

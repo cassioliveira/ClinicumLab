@@ -105,5 +105,5 @@ public class ClienteBean implements Serializable {
     public boolean getEditando() {
         return this.cliente.getId() != null;
     }
-
+    
 }

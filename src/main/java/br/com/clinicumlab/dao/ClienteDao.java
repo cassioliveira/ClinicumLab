@@ -2,6 +2,7 @@ package br.com.clinicumlab.dao;
 
 import br.com.clinicumlab.modelo.Cliente;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Classe que contém métodos específicos que podem ser usados para fornecer 
@@ -19,4 +20,5 @@ public class ClienteDao extends DaoAbstrato<Cliente> implements Serializable {
     public ClienteDao() {
         super(Cliente.class);
     }
+    
 }
