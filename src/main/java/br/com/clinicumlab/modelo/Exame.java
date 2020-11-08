@@ -57,7 +57,16 @@ public class Exame implements Serializable {
     @Column(name = "observacoes")
     private String observacoes;
 
-    @Column(name = "valores", length = 200)
-    private String valoresDeReferencia;
+    @Column(name = "referenciaGeral", length = 70)
+    private String referenciaGeral;
+    
+    @Column(name = "referenciaHomem", length = 70)
+    private String referenciaHomem;
+    
+    @Column(name = "referenciaMulher", length = 70)
+    private String referenciaMulher;
+    
+    @Column(name = "referenciaCrianca", length = 70)
+    private String referenciaCrianca;
 
 }

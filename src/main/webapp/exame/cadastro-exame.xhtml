@@ -35,8 +35,28 @@
                         <f:selectItem noSelectionOption="true"/>
                         <f:selectItems id="categorias" value="#{exameBean.exameCategoria}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.descricao}"/>
                     </p:selectOneMenu>
-
                 </h:panelGrid>
+
+                <p:panel header="Valores de Referência" style="text-align: center">
+
+                    <h:panelGrid columns="2">
+
+                        <p:outputLabel for="vrgeral" value="Geral: "/>
+                        <p:inputText id="vrgeral" size="21" value="#{exameBean.exame.referenciaGeral}" />
+                        
+                        <p:outputLabel for="vrhomem" value="Homem: "/>
+                        <p:inputText id="vrhomem" size="21" value="#{exameBean.exame.referenciaHomem}" />
+
+                        <p:outputLabel for="vrmulher" value="Mulher: "/>
+                        <p:inputText id="vrmulher" size="21" value="#{exameBean.exame.referenciaMulher}" />
+
+                        <p:outputLabel for="vrcrianca" value="Criança: "/>
+                        <p:inputText id="vrcrianca" size="21" value="#{exameBean.exame.referenciaCrianca}" />
+
+                    </h:panelGrid>
+                </p:panel>
+
+
 
                 <p:toolbar id="toolbarCliente" style="margin-top: 10px;">
                     <f:facet name="left">
@@ -53,6 +73,6 @@
             </p:fieldset>
             <p:blockUI block="formExame" trigger="botaoSalvar"/>
         </h:form> 
-        
+
     </ui:define>
 </ui:composition>    
