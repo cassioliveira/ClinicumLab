@@ -15,11 +15,12 @@
 
             <p:outputLabel for="cliente" value="Cliente: "/>
             <p:selectOneMenu id="cliente" style="vertical-align: middle; width: 400px" filter="true" filterMatchMode="contains"
-                             required="true" requiredMessage="É necessário informar um cliente">
+                             required="true" requiredMessage="É necessário informar um cliente" value="#{clienteBean.cliente.nome}">
                 <f:selectItem noSelectionOption="true"/>
-                <f:selectItem itemLabel="Cliente 1" itemValue="c1"/>
-                <f:selectItem itemLabel="Cliente 2" itemValue="c2"/>
-                <f:selectItem itemLabel="Cliente 3" itemValue="c3"/>
+                <f:selectItems value="#{clienteBean.clientes}" var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente}"/>
+                <!--                <f:selectItem itemLabel="Cliente 1" itemValue="c1"/>
+                                <f:selectItem itemLabel="Cliente 2" itemValue="c2"/>
+                                <f:selectItem itemLabel="Cliente 3" itemValue="c3"/>-->
             </p:selectOneMenu>
 
             <p:outputLabel for="requisitante" value="Requisitante: "/>
