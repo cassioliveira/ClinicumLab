@@ -65,6 +65,7 @@
 
                 <p:outputLabel for="tipoSanguineo" value="Tipo sanguíneo: " />
                 <p:selectOneMenu id="tipoSanguineo" style="width: 50px" value="#{clienteBean.cliente.tipoSanguineo}">
+                    <f:selectItem noSelectionOption="true"/>
                     <f:selectItem itemLabel="A" itemValue="A"/>
                     <f:selectItem itemLabel="B" itemValue="B"/>
                     <f:selectItem itemLabel="AB" itemValue="AB"/>
@@ -73,6 +74,7 @@
 
                 <p:outputLabel for="fatorRH" value="Fator RH: " />
                 <p:selectOneMenu id="fatorRH" style="width: 50px" value="#{clienteBean.cliente.fatorRH}">
+                    <f:selectItem noSelectionOption="true"/>
                     <f:selectItem itemLabel="+" itemValue="+ (positivo)"/>
                     <f:selectItem itemLabel="-" itemValue="- (negativo)"/>
                 </p:selectOneMenu>

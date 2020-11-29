@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="atendimento" value="#{atendimentoBean.atendimento}"/>
+    </f:metadata>
+    
+    <ui:define id="conteudo" name="content">
+        <h:form id="formRequisicao">
+
+            <p:messages closable="true" severity="info,warn,error">
+                <p:autoUpdate/> 
+            </p:messages>
+            <p:fieldset id="fieldsetNovoAtendimento" legend="Atendimento">
+
+                <p:tabView id="secaoAtendimento">
+                    <p:tab id="tabInformacoes" title="Informações">
+
+                        <h:panelGrid columns="2">
+
+                            <p:outputLabel for="cliente" value="Cliente: "/>
+                            <p:selectOneMenu id="cliente" style="vertical-align: middle; width: 400px" filter="true" filterMatchMode="contains"
+                                             required="true" requiredMessage="É necessário informar um cliente" value="#{atendimentoBean.atendimento.cliente}">
+                                <f:selectItem noSelectionOption="true"/>
+                                <f:selectItems value="#{atendimentoBean.clientes}" var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente.nome}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="requisitante" value="Requisitante: "/>
+                            <p:autoComplete id="requisitante" size="65" style="vertical-align: middle; width: 400px" value="#{atendimentoBean.atendimento.requisitante}"/>
+
+                            <p:outputLabel for="convenio" value="Convênio: "/>
+                            <p:selectOneMenu id="convenio" style="vertical-align: middle; width: 400px" value="#{atendimentoBean.atendimento.convenio}">
+                                <f:selectItem itemLabel="Particular" itemValue="particular" />
+                                <f:selectItem itemLabel="APCEF" itemValue="apcef" />
+                                <f:selectItem itemLabel="UNIMED" itemValue="unimed"/>
+                                <f:selectItem itemLabel="Prefeitura Municipal de Sumé" itemValue="prefeitura"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="listaExames" value="Exame(s): "/>
+                            <h:panelGroup>
+                                <!--requiredMessage="É necessário informar um ou mais exames" required="true"-->
+                                <p:selectCheckboxMenu id="listaExames" label="teste" style="width: 428px; z-index: 8; vertical-align: middle" filter="true"   
+                                                      updateLabel="true" filterMatchMode="contains">
+                                    <f:selectItem itemLabel="Espermograma" itemValue="esperma"/>
+                                    <f:selectItem itemLabel="Hemograma Completo" itemValue="hemograma"/>
+                                    <f:selectItem itemLabel="Antibiograma" itemValue="antibio"/>
+                                </p:selectCheckboxMenu>
+                                <p:commandButton id="adicionar-exames" icon="fa fa-plus" value="Adicionar Exames" style="margin-left: 5px"/>
+                            </h:panelGroup>
+
+                        </h:panelGrid>
+
+                    </p:tab>
+
+                    <p:tab id="tabColeta" title="Coleta">
+
+<!--                        <h:panelGrid columns="2">
+
+                            <p:outputLabel for="dataColeta" value="Data da coleta: "/>
+                            <p:calendar id="dataColeta" navigator="true" pattern="dd/MM/yyyy hh:MM" showOn="button" value="#{atendimentoBean.atendimento.dataColeta}" 
+                                        size="15" locale="pt" mask="true" timeInput="true" yearRange="c-100:c+100">
+                                <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy hh:MM" timeZone="#{initParam.timezone}"/>
+                            </p:calendar>
+
+                            <p:outputLabel for="material" value="Material: "/>
+                            <p:selectCheckboxMenu id="material" label="teste" style="width: 163px; z-index: 8; vertical-align: middle" 
+                                                  filter="true" updateLabel="true" filterMatchMode="contains" value="#{atendimentoBean.atendimento.material}">
+                                <f:selectItem itemLabel="Sangue" itemValue="."/>
+                                <f:selectItem itemLabel="Urina" itemValue="."/>
+                                <f:selectItem itemLabel="Fezes" itemValue="."/>
+                            </p:selectCheckboxMenu>
+
+                            <p:outputLabel for="coleta" value="Coleta: "/>
+                            <p:selectOneMenu id="coleta" style="vertical-align: middle; width: 135px" value="#{atendimentoBean.atendimento.tipoColeta}">
+                                <f:selectItem itemLabel="Local" itemValue="Local"/>
+                                <f:selectItem itemLabel="Domícilio" itemValue="Domícilio"/>
+                            </p:selectOneMenu>-->
+
+                            <!--            <p:outputLabel for="status" value="Status: "/>
+                                        <p:selectOneMenu id="status" style="vertical-align: middle; width: 135px">
+                                            <f:selectItem itemLabel="Coletado" itemValue="Coletado"/>
+                                            <f:selectItem itemLabel="Pendente" itemValue="Pendente"/>
+                                        </p:selectOneMenu>-->
+
+                        <!--</h:panelGrid>-->
+
+                    </p:tab>
+
+                    <p:tab id="tabPagamentos" title="Pagamento">
+
+                        <h:panelGrid columns="2">
+
+                            <p:outputLabel for="dataPagamento" value="Data Pagamento: "/>
+                            <p:calendar id="dataPagamento" navigator="true" pattern="dd/MM/yyyy" showOn="button" 
+                                        size="15" locale="pt" mask="true" timeInput="true" value="#{atendimentoBean.atendimento.dataPagamento}">
+                                <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy"/>
+                            </p:calendar>
+
+                            <p:outputLabel for="forma" value="Forma Pagamento: "/>
+                            <p:selectOneMenu id="forma" style="vertical-align: middle; width: 135px" value="#{atendimentoBean.atendimento.pagamento}">
+                                <f:selectItem noSelectionOption="true"/>
+                                <f:selectItems value="#{atendimentoBean.formasPagamento}" var="pagamento" itemLabel="#{pagamento.descricao}" itemValue="#{pagamento}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="valor" value="Valor Exames: "/>
+                            <p:inputNumber id="valor" size="21" symbol="R$ " decimalPlaces="2"/>
+                        </h:panelGrid>
+
+                    </p:tab>
+
+                    <!--                <p:tab title="Conclusão">
+                                        <ui:include src="conclusao.xhtml"/>
+                                    </p:tab>-->
+                </p:tabView>
+
+                <p:dataTable id="datatablePesquisaExames" var="exames" widgetVar="pesquisaExames"
+                             paginatorAlwaysVisible="false" style="margin-top: 1px; " rows="10" reflow="true" 
+                             paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
+                             scrollable="true" scrollRows="8" scrollHeight="180">
+
+                    <p:column headerText="Código" width="0.1" filterMatchMode="contains" filterStyle="width: 30px; display:none">
+                    </p:column>
+
+                    <p:column headerText="Exame" width="80" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+                    </p:column>
+
+                    <p:column headerText="Urgência" width="8" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+                    </p:column>
+
+                    <p:column headerText="Valor" style="text-align: center" width="20" filterStyle="width: 50px; display:none">
+                    </p:column>
+
+                    <p:column headerText="Validade" width="10" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+                    </p:column>
+
+                    <p:column id="acoes" headerText="Remover" style="text-align: center" width="10">
+                        <p:button id="botaoVisualizar" title="Visualizar" icon="ui-icon ui-icon-extlink" style="font-size: 10px">
+                            <p:tooltip for="botaoVisualizar" value="Visualiza detalhes da linha selecionada"/>
+                        </p:button>   
+
+                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" >
+                            <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
+                        </p:button>
+
+                    </p:column>
+                </p:dataTable>
+
+                <p:toolbar id="toolbarAtendimento" style="margin-top: 10px;">
+                    <f:facet name="left">
+                        <p:commandButton style="font-size: 13px;" value="Salvar" action="#{atendimentoBean.salvar}"
+                                         id="botaoSalvar" icon="ui-icon ui-icon-disk">
+                            <f:ajax execute="@form" render="@form"/>
+                        </p:commandButton>
+
+                        <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
+                                  outcome="/atendimento/atendimentos" icon="fa fa-times">
+                        </p:button>
+                    </f:facet>
+                </p:toolbar>
+
+            </p:fieldset>
+            <p:blockUI block="formRequisicao" trigger="botaoSalvar"/>
+        </h:form>
+    </ui:define>
+</ui:composition>    

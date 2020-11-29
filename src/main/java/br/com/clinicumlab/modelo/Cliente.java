@@ -10,8 +10,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -83,18 +81,18 @@ public class Cliente implements Serializable {
 
     @Column(name = "cidade", length = 50)
     private String cidade;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "estado")
     private Estados estado;
-    
+
     @Column(name = "cep", length = 10)
     private String cep;
-    
+
     @Column(name = "tipo_sanguineo", length = 2)
     private String tipoSanguineo;
-    
+
     @Column(name = "fator_rh", length = 15)
     private String fatorRH;
-    
+
 }
