@@ -27,8 +27,8 @@
                     <p:outputLabel id="codigo"  rendered="#{exameBean.exame.id ne null}" 
                                    value="#{'CLE'.concat(exameBean.exame.id)}" style="font-weight: bold"/>
 
-                    <p:outputLabel for="valor" value="Valor: " />
-                    <p:inputNumber id="valor" size="13" symbol="R$ " class="money" decimalPlaces="2" maxlength="8" maxValue="999999"
+                    <p:outputLabel for="preco" value="Valor: " />
+                    <p:inputNumber id="preco" size="13" symbol="R$ " class="money" decimalPlaces="2" maxlength="8" maxValue="999999"
                                    value="#{exameBean.exame.preco}" />
 
                     <p:outputLabel for="descricao" value="Descrição: "/>

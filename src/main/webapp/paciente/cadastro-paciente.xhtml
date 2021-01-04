@@ -35,7 +35,8 @@
 
                             <p:outputLabel for="nascimento" value="Nascimento: " />
                             <p:calendar id="nascimento" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" showOn="button" 
-                                        maxlength="10" mask="true" size="21" locale="pt" value="#{pacienteBean.paciente.dataNascimento}">
+                                        maxlength="10" mask="true" size="21" locale="pt" maxdate="#{dateTimeUtilBean.dateToday}"
+                                        value="#{pacienteBean.paciente.dataNascimento}">
                                 <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" />           
                             </p:calendar>
 
