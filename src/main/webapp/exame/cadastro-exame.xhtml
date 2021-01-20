@@ -20,12 +20,16 @@
             <p:fieldset legend="Novo cadastro - Exame">
                 <h:panelGrid columns="2" style="margin-left: 20px; margin-bottom: 5px">
 
-                    <p:outputLabel for="codigo" value="Código: "/>
-                    <p:inputText id="codigo" size="13" value="#{exameBean.exame.codigo}"/>
+                    <!--                    <p:outputLabel for="codigo" value="Código: "/>
+                                        <p:inputText id="codigo" size="13" value="#{exameBean.exame.codigo}"/>-->
+
+                    <p:outputLabel for="codigo" value="Código: " rendered="#{exameBean.exame.id ne null}"/>
+                    <p:outputLabel id="codigo"  rendered="#{exameBean.exame.id ne null}" 
+                                   value="#{'CLE'.concat(exameBean.exame.id)}" style="font-weight: bold"/>
 
                     <p:outputLabel for="valor" value="Valor: " />
                     <p:inputNumber id="valor" size="13" symbol="R$ " class="money" decimalPlaces="2" maxlength="8" maxValue="999999"
-                                   value="#{exameBean.exame.valor}" />
+                                   value="#{exameBean.exame.preco}" />
 
                     <p:outputLabel for="descricao" value="Descrição: "/>
                     <p:inputText id="descricao" size="21" value="#{exameBean.exame.descricao}" />
@@ -35,28 +39,12 @@
                         <f:selectItem noSelectionOption="true"/>
                         <f:selectItems id="categorias" value="#{exameBean.exameCategoria}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.descricao}"/>
                     </p:selectOneMenu>
+
+                    <p:outputLabel for="valores-referencia" value="Valores de referência: "/>
+                    <p:editor 
+                        controls="bold italic underline size color highlight numbering bullets alignleft center alignright justify undo redo" 
+                        id="valores-referencia" value="#{exameBean.exame.valoresReferencia}" height="150"/> 
                 </h:panelGrid>
-
-                <p:panel header="Valores de Referência" style="text-align: center">
-
-                    <h:panelGrid columns="2">
-
-                        <p:outputLabel for="vrgeral" value="Geral: "/>
-                        <p:inputText id="vrgeral" size="21" value="#{exameBean.exame.referenciaGeral}" />
-                        
-                        <p:outputLabel for="vrhomem" value="Homem: "/>
-                        <p:inputText id="vrhomem" size="21" value="#{exameBean.exame.referenciaHomem}" />
-
-                        <p:outputLabel for="vrmulher" value="Mulher: "/>
-                        <p:inputText id="vrmulher" size="21" value="#{exameBean.exame.referenciaMulher}" />
-
-                        <p:outputLabel for="vrcrianca" value="Criança: "/>
-                        <p:inputText id="vrcrianca" size="21" value="#{exameBean.exame.referenciaCrianca}" />
-
-                    </h:panelGrid>
-                </p:panel>
-
-
 
                 <p:toolbar id="toolbarCliente" style="margin-top: 10px;">
                     <f:facet name="left">

@@ -51,7 +51,7 @@
                     </f:facet>
 
                     <p:column headerText="Código" style="text-align: center" width="15%" filterMatchMode="exact" filterStyle="width: 20px; display:none">
-                        <h:outputText value="#{exame.codigo}"/>
+                        <h:outputText value="#{'CLE'.concat(exame.id)}"/>
                     </p:column>
 
                     <p:column headerText="Descrição" width="50%" filterMatchMode="exact" filterStyle="width: 20px; display:none">
@@ -59,7 +59,7 @@
                     </p:column>
 
                     <p:column headerText="Valor" style="text-align: center" width="20%" filterMatchMode="exact" filterStyle="width: 20px; display:none">
-                        <h:outputText value="R$ #{exame.valor}">
+                        <h:outputText value="R$ #{exame.preco}">
                             <!--<f:convertNumber type="currency" currencyCode="BRL" pattern="#.##0,00" currencySymbol="R$"/>-->
                         </h:outputText>
                     </p:column>

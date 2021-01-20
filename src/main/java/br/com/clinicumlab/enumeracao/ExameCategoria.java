@@ -5,11 +5,14 @@ import lombok.Getter;
 
 public enum ExameCategoria implements Serializable {
 
-    HEMATOLOGIA("Hematologia"),
-    URINALISE("Urinálise"),
-    PARASITOLOGIA("Parasitologia"),
     BIOQUIMICA("Bioquímica"),
-    SOROLOGIA("Sorologia");
+    ENDOCRINOLOGIA("Endocrinologia"),
+    HEMATOLOGIA("Hematologia"),
+    MICROBIOLOGIA("Microbiologia"),
+    MICOLOGIA("Micologia"),
+    PARASITOLOGIA("Parasitologia"),
+    SOROLOGIA("Sorologia"),
+    URINALISE("Urinálise");
 
     @Getter
     private final String descricao;

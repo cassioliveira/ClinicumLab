@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -43,8 +42,8 @@ public class Exame implements Serializable {
     @Column(name = "resultado", length = 50)
     private String resultado;
 
-    @Column(name = "valor")
-    private BigDecimal valor;
+    @Column(name = "preco")
+    private BigDecimal preco;
 
     @NotNull(message = "Informe o nome do exame")
     @Column(name = "descricao")
@@ -53,20 +52,10 @@ public class Exame implements Serializable {
     @Enumerated(EnumType.STRING)
     private ExameCategoria categoria;
 
-    @Lob
-    @Column(name = "observacoes")
+    @Column(name = "valores_referencia", length = 500)
+    private String valoresReferencia;
+    
+    @Column(name = "observacoes", length = 1000)
     private String observacoes;
-
-    @Column(name = "referenciaGeral", length = 70)
-    private String referenciaGeral;
-    
-    @Column(name = "referenciaHomem", length = 70)
-    private String referenciaHomem;
-    
-    @Column(name = "referenciaMulher", length = 70)
-    private String referenciaMulher;
-    
-    @Column(name = "referenciaCrianca", length = 70)
-    private String referenciaCrianca;
 
 }

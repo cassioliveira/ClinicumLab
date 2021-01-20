@@ -10,7 +10,7 @@
     <f:metadata>
         <f:viewParam name="atendimento" value="#{atendimentoBean.atendimento}"/>
     </f:metadata>
-    
+
     <ui:define id="conteudo" name="content">
         <h:form id="formRequisicao">
 
@@ -47,9 +47,11 @@
                                 <!--requiredMessage="É necessário informar um ou mais exames" required="true"-->
                                 <p:selectCheckboxMenu id="listaExames" label="teste" style="width: 428px; z-index: 8; vertical-align: middle" filter="true"   
                                                       updateLabel="true" filterMatchMode="contains">
-                                    <f:selectItem itemLabel="Espermograma" itemValue="esperma"/>
-                                    <f:selectItem itemLabel="Hemograma Completo" itemValue="hemograma"/>
-                                    <f:selectItem itemLabel="Antibiograma" itemValue="antibio"/>
+                                    <f:selectItem noSelectionOption="true"/>
+                                    <f:selectItems value="#{atendimentoBean.exames}" var="exame" itemLabel="#{exame.descricao}" itemValue="#{exame}"/>
+                                    <!--                                    <f:selectItem itemLabel="Espermograma" itemValue="esperma"/>
+                                                                        <f:selectItem itemLabel="Hemograma Completo" itemValue="hemograma"/>
+                                                                        <f:selectItem itemLabel="Antibiograma" itemValue="antibio"/>-->
                                 </p:selectCheckboxMenu>
                                 <p:commandButton id="adicionar-exames" icon="fa fa-plus" value="Adicionar Exames" style="margin-left: 5px"/>
                             </h:panelGroup>
@@ -60,33 +62,33 @@
 
                     <p:tab id="tabColeta" title="Coleta">
 
-<!--                        <h:panelGrid columns="2">
+                        <!--                        <h:panelGrid columns="2">
+                        
+                                                    <p:outputLabel for="dataColeta" value="Data da coleta: "/>
+                                                    <p:calendar id="dataColeta" navigator="true" pattern="dd/MM/yyyy hh:MM" showOn="button" value="#{atendimentoBean.atendimento.dataColeta}" 
+                                                                size="15" locale="pt" mask="true" timeInput="true" yearRange="c-100:c+100">
+                                                        <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy hh:MM" timeZone="#{initParam.timezone}"/>
+                                                    </p:calendar>
+                        
+                                                    <p:outputLabel for="material" value="Material: "/>
+                                                    <p:selectCheckboxMenu id="material" label="teste" style="width: 163px; z-index: 8; vertical-align: middle" 
+                                                                          filter="true" updateLabel="true" filterMatchMode="contains" value="#{atendimentoBean.atendimento.material}">
+                                                        <f:selectItem itemLabel="Sangue" itemValue="."/>
+                                                        <f:selectItem itemLabel="Urina" itemValue="."/>
+                                                        <f:selectItem itemLabel="Fezes" itemValue="."/>
+                                                    </p:selectCheckboxMenu>
+                        
+                                                    <p:outputLabel for="coleta" value="Coleta: "/>
+                                                    <p:selectOneMenu id="coleta" style="vertical-align: middle; width: 135px" value="#{atendimentoBean.atendimento.tipoColeta}">
+                                                        <f:selectItem itemLabel="Local" itemValue="Local"/>
+                                                        <f:selectItem itemLabel="Domícilio" itemValue="Domícilio"/>
+                                                    </p:selectOneMenu>-->
 
-                            <p:outputLabel for="dataColeta" value="Data da coleta: "/>
-                            <p:calendar id="dataColeta" navigator="true" pattern="dd/MM/yyyy hh:MM" showOn="button" value="#{atendimentoBean.atendimento.dataColeta}" 
-                                        size="15" locale="pt" mask="true" timeInput="true" yearRange="c-100:c+100">
-                                <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy hh:MM" timeZone="#{initParam.timezone}"/>
-                            </p:calendar>
-
-                            <p:outputLabel for="material" value="Material: "/>
-                            <p:selectCheckboxMenu id="material" label="teste" style="width: 163px; z-index: 8; vertical-align: middle" 
-                                                  filter="true" updateLabel="true" filterMatchMode="contains" value="#{atendimentoBean.atendimento.material}">
-                                <f:selectItem itemLabel="Sangue" itemValue="."/>
-                                <f:selectItem itemLabel="Urina" itemValue="."/>
-                                <f:selectItem itemLabel="Fezes" itemValue="."/>
-                            </p:selectCheckboxMenu>
-
-                            <p:outputLabel for="coleta" value="Coleta: "/>
-                            <p:selectOneMenu id="coleta" style="vertical-align: middle; width: 135px" value="#{atendimentoBean.atendimento.tipoColeta}">
-                                <f:selectItem itemLabel="Local" itemValue="Local"/>
-                                <f:selectItem itemLabel="Domícilio" itemValue="Domícilio"/>
-                            </p:selectOneMenu>-->
-
-                            <!--            <p:outputLabel for="status" value="Status: "/>
-                                        <p:selectOneMenu id="status" style="vertical-align: middle; width: 135px">
-                                            <f:selectItem itemLabel="Coletado" itemValue="Coletado"/>
-                                            <f:selectItem itemLabel="Pendente" itemValue="Pendente"/>
-                                        </p:selectOneMenu>-->
+                        <!--            <p:outputLabel for="status" value="Status: "/>
+                                    <p:selectOneMenu id="status" style="vertical-align: middle; width: 135px">
+                                        <f:selectItem itemLabel="Coletado" itemValue="Coletado"/>
+                                        <f:selectItem itemLabel="Pendente" itemValue="Pendente"/>
+                                    </p:selectOneMenu>-->
 
                         <!--</h:panelGrid>-->
 

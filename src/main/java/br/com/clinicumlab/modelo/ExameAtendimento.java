@@ -2,6 +2,7 @@ package br.com.clinicumlab.modelo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Data;
 
 /**
@@ -28,11 +31,21 @@ public class ExameAtendimento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "preco_exame", precision = 10, scale = 2)
-    private BigDecimal precoExame;
+    @Column(name = "preco", precision = 10, scale = 2)
+    private BigDecimal preco;
+    
+    @Column(name = "urgencia")
+    private boolean isUrgencia;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "previsao_entrega")
+    private Date previsaoEntrega;
+    
+    @Column(name = "validade", length = 20)
+    private String validade;
 
-    @ManyToOne
-    @JoinColumn(name = "exame_id", nullable = false)
-    private Exame exame;
+//    @ManyToOne
+//    @JoinColumn(name = "exame_id", nullable = false)
+//    private Exame exame;
 
 }
