@@ -19,15 +19,15 @@ import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
 /**
- * Classe que representa o modelo da entidade Cliente a ser persistida no banco,
+ * Classe que representa o modelo da entidade Paciente a ser persistida no banco,
  * com todos os seus atributos.
  *
  * @author elisangela <elysangeladesouza@gmail.com>
  */
 @Data
 @Entity
-@Table(name = "cliente")
-public class Cliente implements Serializable {
+@Table(name = "paciente")
+public class Paciente implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

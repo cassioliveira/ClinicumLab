@@ -1,6 +1,6 @@
 package br.com.clinicumlab.dao;
 
-import br.com.clinicumlab.modelo.Cliente;
+import br.com.clinicumlab.modelo.Paciente;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,12 +13,12 @@ import java.util.List;
  * 
  * @author elisangela <elysangeladesouza@gmail.com>
  */
-public class ClienteDao extends DaoAbstrato<Cliente> implements Serializable {
+public class PacienteDao extends DaoAbstrato<Paciente> implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
-    public ClienteDao() {
-        super(Cliente.class);
+    public PacienteDao() {
+        super(Paciente.class);
     }
     
 }

@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * Classe que representa o modelo da entidade Cliente a ser persistida no banco,
+ * Classe que representa o modelo da entidade Paciente a ser persistida no banco,
  * com todos os seus atributos.
  *
  * @author elisangela <elysangeladesouza@gmail.com>

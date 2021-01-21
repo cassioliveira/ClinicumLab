@@ -7,14 +7,14 @@
       xmlns:p="http://primefaces.org/ui">
 
     <f:metadata>
-        <f:viewParam name="cliente" value="#{clienteBean.cliente}"/>
+        <f:viewParam name="paciente" value="#{pacienteBean.paciente}"/>
     </f:metadata>
 
     <h:form id="dadosSangue">
         <h:panelGrid columns="2" style="margin-left: 20px; margin-bottom: 5px">
 
             <p:outputLabel for="tipoSanguineo" value="Tipo sanguíneo: " />
-            <p:selectOneMenu id="tipoSanguineo" style="width: 50px" value="#{clienteBean.cliente.tipoSanguineo}">
+            <p:selectOneMenu id="tipoSanguineo" style="width: 50px" value="#{pacienteBean.paciente.tipoSanguineo}">
                 <f:selectItem itemLabel="A" itemValue="A"/>
                 <f:selectItem itemLabel="B" itemValue="B"/>
                 <f:selectItem itemLabel="AB" itemValue="AB"/>
@@ -22,7 +22,7 @@
             </p:selectOneMenu>
 
             <p:outputLabel for="fatorRH" value="Fator RH: " />
-            <p:selectOneMenu id="fatorRH" style="width: 50px" value="#{clienteBean.cliente.fatorRH}">
+            <p:selectOneMenu id="fatorRH" style="width: 50px" value="#{pacienteBean.paciente.fatorRH}">
                 <f:selectItem itemLabel="+" itemValue="+"/>
                 <f:selectItem itemLabel="-" itemValue="-"/>
             </p:selectOneMenu>
@@ -30,15 +30,15 @@
         </h:panelGrid>
     </h:form>    
 
-    <p:toolbar id="toolbarCliente" style="margin-top: 10px;">
+    <p:toolbar id="toolbarPaciente" style="margin-top: 10px;">
         <f:facet name="left">
             <p:commandButton id="botaoSalvar" style="font-size: 13px;" value="Salvar"
-                             icon="ui-icon ui-icon-disk" action="#{clienteBean.salvar}"/>
+                             icon="ui-icon ui-icon-disk" action="#{pacienteBean.salvar}"/>
         </f:facet>
 
         <f:facet name="right">
             <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
-                      outcome="/cliente/listar-clientes" icon="fa fa-times">
+                      outcome="/paciente/listar-pacientes" icon="fa fa-times">
             </p:button>
         </f:facet>
     </p:toolbar>
@@ -52,19 +52,19 @@
                 template="/WEB-INF/templates/Layout.xhtml">
 
     <f:metadata>
-        <f:viewParam name="cliente" value="#{clienteBean.cliente}"/>
+        <f:viewParam name="paciente" value="#{pacienteBean.paciente}"/>
     </f:metadata>
 
     <ui:define name="content"> 
 
-        <h:form id="formCliente">
+        <h:form id="formPaciente">
             <p:messages closable="true" severity="info,warn,error">
                 <p:autoUpdate/> 
             </p:messages>
             <h:panelGrid columns="2" style="margin-left: 20px; margin-bottom: 5px">
 
                 <p:outputLabel for="tipoSanguineo" value="Tipo sanguíneo: " />
-                <p:selectOneMenu id="tipoSanguineo" style="width: 50px" value="#{clienteBean.cliente.tipoSanguineo}">
+                <p:selectOneMenu id="tipoSanguineo" style="width: 50px" value="#{pacienteBean.paciente.tipoSanguineo}">
                     <f:selectItem noSelectionOption="true"/>
                     <f:selectItem itemLabel="A" itemValue="A"/>
                     <f:selectItem itemLabel="B" itemValue="B"/>
@@ -73,7 +73,7 @@
                 </p:selectOneMenu>
 
                 <p:outputLabel for="fatorRH" value="Fator RH: " />
-                <p:selectOneMenu id="fatorRH" style="width: 50px" value="#{clienteBean.cliente.fatorRH}">
+                <p:selectOneMenu id="fatorRH" style="width: 50px" value="#{pacienteBean.paciente.fatorRH}">
                     <f:selectItem noSelectionOption="true"/>
                     <f:selectItem itemLabel="+" itemValue="+ (positivo)"/>
                     <f:selectItem itemLabel="-" itemValue="- (negativo)"/>
@@ -82,15 +82,15 @@
             </h:panelGrid>
         </h:form>    
 
-        <p:toolbar id="toolbarCliente" style="margin-top: 10px;">
+        <p:toolbar id="toolbarPaciente" style="margin-top: 10px;">
             <f:facet name="left">
                 <p:commandButton id="botaoSalvar" style="font-size: 13px;" value="Salvar"
-                                 icon="ui-icon ui-icon-disk" action="#{clienteBean.salvar}">
+                                 icon="ui-icon ui-icon-disk" action="#{pacienteBean.salvar}">
                     <f:ajax execute="@form" render="@form"/>
                 </p:commandButton>
 
                 <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
-                          outcome="/cliente/listar-clientes" icon="fa fa-times">
+                          outcome="/paciente/listar-pacientes" icon="fa fa-times">
                 </p:button>
             </f:facet>
         </p:toolbar>

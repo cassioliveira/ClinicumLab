@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 import lombok.Data;
 
 /**
- * Classe que representa os dados do atendimento do cliente.
+ * Classe que representa os dados do atendimento do paciente.
  *
  * @author elisangela <elysangeladesouza@gmail.com>
  */
@@ -63,8 +63,8 @@ public class Atendimento implements Serializable {
     @Column(name = "status_atendimento", nullable = false, length = 20)
     private StatusAtendimento statusAtendimento;
 
-    @Column(name = "cliente", length = 100)
-    private String cliente;
+    @Column(name = "paciente", length = 100)
+    private String paciente;
 
     @Column(name = "material", length = 100)
     private String material;
@@ -77,7 +77,7 @@ public class Atendimento implements Serializable {
     private String convenio;
 
 //    @OneToOne
-//    private Cliente cliente;
+//    private Paciente paciente;
 //    @ManyToOne
 //    @JoinColumn(name = "atendente_id", nullable = false)
 //    private Usuario atendente;

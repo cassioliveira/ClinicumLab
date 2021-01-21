@@ -1,8 +1,8 @@
 package br.com.clinicumlab.servicos;
 
-import br.com.clinicumlab.dao.ClienteDao;
+import br.com.clinicumlab.dao.PacienteDao;
 import br.com.clinicumlab.enumeracao.Estados;
-import br.com.clinicumlab.modelo.Cliente;
+import br.com.clinicumlab.modelo.Paciente;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,40 +16,40 @@ import lombok.Getter;
  *
  * @author elisangela <elysangeladesouza@gmail.com>
  */
-public class ClienteServico implements Serializable {
+public class PacienteServico implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private ClienteDao clienteDao;
+    private PacienteDao pacienteDao;
     
     @Getter
     private List<Estados> estados;
 
-    public ClienteServico() {
+    public PacienteServico() {
         estados = new ArrayList<>();
         estados = Arrays.asList(Estados.values());
     }
 
     @Transactional
-    public void salvar(Cliente cliente)   {
-        if (cliente.getId() == null) {
-            cliente.setCadastro(new Date());
+    public void salvar(Paciente paciente)   {
+        if (paciente.getId() == null) {
+            paciente.setCadastro(new Date());
         }
-        this.clienteDao.save(cliente);
+        this.pacienteDao.save(paciente);
     }
 
     @Transactional
-    public void deletar(Cliente cliente){
-        clienteDao.delete(findById(cliente.getId()));
+    public void deletar(Paciente paciente){
+        pacienteDao.delete(findById(paciente.getId()));
     }
 
-    public Cliente findById(Long id) {
-        return clienteDao.porId(id);
+    public Paciente findById(Long id) {
+        return pacienteDao.porId(id);
     }
 
-    public List<Cliente> todos() {
-        return clienteDao.todos();
+    public List<Paciente> todos() {
+        return pacienteDao.todos();
     }
 
 }

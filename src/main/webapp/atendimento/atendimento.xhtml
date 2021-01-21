@@ -24,11 +24,11 @@
 
                         <h:panelGrid columns="2">
 
-                            <p:outputLabel for="cliente" value="Cliente: "/>
-                            <p:selectOneMenu id="cliente" style="vertical-align: middle; width: 400px" filter="true" filterMatchMode="contains"
-                                             required="true" requiredMessage="É necessário informar um cliente" value="#{atendimentoBean.atendimento.cliente}">
+                            <p:outputLabel for="paciente" value="Paciente: "/>
+                            <p:selectOneMenu id="paciente" style="vertical-align: middle; width: 400px" filter="true" filterMatchMode="contains"
+                                             required="true" requiredMessage="É necessário informar um paciente" value="#{atendimentoBean.atendimento.paciente}">
                                 <f:selectItem noSelectionOption="true"/>
-                                <f:selectItems value="#{atendimentoBean.clientes}" var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente.nome}"/>
+                                <f:selectItems value="#{atendimentoBean.pacientes}" var="paciente" itemLabel="#{paciente.nome}" itemValue="#{paciente.nome}"/>
                             </p:selectOneMenu>
 
                             <p:outputLabel for="requisitante" value="Requisitante: "/>

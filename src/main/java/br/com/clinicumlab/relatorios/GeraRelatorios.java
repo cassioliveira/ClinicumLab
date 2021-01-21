@@ -1,6 +1,6 @@
 package br.com.clinicumlab.relatorios;
 
-import br.com.clinicumlab.modelo.Cliente;
+import br.com.clinicumlab.modelo.Paciente;
 import br.com.clinicumlab.util.jsf.FacesUtil;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,16 +37,16 @@ public class GeraRelatorios {
      *
      * @param jasperFileName
      * @param pdfFileName
-     * @param cliente
+     * @param paciente
      * @throws JRException
      * @throws IOException
      */
-    public void gerarPdf(String jasperFileName, String pdfFileName, Cliente cliente) throws JRException, IOException {
+    public void gerarPdf(String jasperFileName, String pdfFileName, Paciente paciente) throws JRException, IOException {
 
-        List<Cliente> listaCliente = new ArrayList<>();
-        listaCliente.add(cliente);
-        List<Cliente> atributos = new ArrayList<>();
-        listaCliente.forEach((clieteSelecionado) -> {
+        List<Paciente> listaPaciente = new ArrayList<>();
+        listaPaciente.add(paciente);
+        List<Paciente> atributos = new ArrayList<>();
+        listaPaciente.forEach((clieteSelecionado) -> {
             atributos.add(clieteSelecionado);
         });
 
@@ -55,14 +55,14 @@ public class GeraRelatorios {
         String assinatura = FacesUtil.caminhoContexto("/resources/clinicumlab/imagens/assinatura.png");
         parametros.put("microscopio", logo);
         parametros.put("assinatura", assinatura);
-        parametros.put("nome", cliente.getNome());
-        parametros.put("rua", cliente.getRua());
-        parametros.put("bairro", cliente.getBairro());
-        parametros.put("cidade", cliente.getCidade());
-        parametros.put("estado", cliente.getEstado());
-        parametros.put("fatorRH", cliente.getFatorRH());
-        parametros.put("dataNascimento", cliente.getDataNascimento());
-        parametros.put("tipoSanguineo", cliente.getTipoSanguineo());
+        parametros.put("nome", paciente.getNome());
+        parametros.put("rua", paciente.getRua());
+        parametros.put("bairro", paciente.getBairro());
+        parametros.put("cidade", paciente.getCidade());
+        parametros.put("estado", paciente.getEstado());
+        parametros.put("fatorRH", paciente.getFatorRH());
+        parametros.put("dataNascimento", paciente.getDataNascimento());
+        parametros.put("tipoSanguineo", paciente.getTipoSanguineo());
         String caminhoArquivoJasper = caminhoRelatorio() + jasperFileName;
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoArquivoJasper, parametros, new JRBeanCollectionDataSource(atributos));

@@ -8,52 +8,52 @@
                 template="/WEB-INF/templates/Layout.xhtml">
 
     <f:metadata>
-        <f:viewParam name="cliente" value="#{clienteBean.cliente}"/>
+        <f:viewParam name="paciente" value="#{pacienteBean.paciente}"/>
     </f:metadata>
 
     <ui:define name="content"> 
 
-        <p:fieldset legend="#{clienteBean.editando ? 'Editar cadastro - Cliente': 'Novo cadastro - Cliente'}">
-            <h:form id="formCliente">
+        <p:fieldset legend="#{pacienteBean.editando ? 'Editar cadastro - Paciente': 'Novo cadastro - Paciente'}">
+            <h:form id="formPaciente">
                 <p:messages closable="true" severity="info,warn,error">
                     <p:autoUpdate/> 
                 </p:messages>
                 <h:panelGrid columns="2" style="margin-left: 20px; margin-bottom: 5px">
 
-                    <p:outputLabel for="cadastro" value="Cadastro: " rendered="#{clienteBean.editando}"/>
-                    <p:outputLabel id="cadastro" value="#{clienteBean.cliente.cadastro}" rendered="#{clienteBean.editando}">
+                    <p:outputLabel for="cadastro" value="Cadastro: " rendered="#{pacienteBean.editando}"/>
+                    <p:outputLabel id="cadastro" value="#{pacienteBean.paciente.cadastro}" rendered="#{pacienteBean.editando}">
                         <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy HH:mm"/>
                     </p:outputLabel>
 
-                    <p:outputLabel for="codigo" value="Código: " rendered="#{clienteBean.cliente.id ne null}"/>
-                    <p:outputLabel id="codigo"  rendered="#{clienteBean.cliente.id ne null}" 
-                                   value="#{'CLC'.concat(clienteBean.cliente.id)}" style="font-weight: bold"/>
+                    <p:outputLabel for="codigo" value="Código: " rendered="#{pacienteBean.paciente.id ne null}"/>
+                    <p:outputLabel id="codigo"  rendered="#{pacienteBean.paciente.id ne null}" 
+                                   value="#{'CLC'.concat(pacienteBean.paciente.id)}" style="font-weight: bold"/>
 
                     <p:outputLabel for="nome" value="Nome: " />
-                    <p:inputText id="nome" size="40" value="#{clienteBean.cliente.nome}"/>
+                    <p:inputText id="nome" size="40" value="#{pacienteBean.paciente.nome}"/>
 
                     <p:outputLabel for="nome-social" value="Nome Social: " />
-                    <p:inputText id="nome-social" size="40" value="#{clienteBean.cliente.nomeSocial}"/>
+                    <p:inputText id="nome-social" size="40" value="#{pacienteBean.paciente.nomeSocial}"/>
 
                     <p:outputLabel for="email" value="E-mail: " />
-                    <p:inputText id="email" size="40" placeholder="usuario@dominio" value="#{clienteBean.cliente.email}"/>
+                    <p:inputText id="email" size="40" placeholder="usuario@dominio" value="#{pacienteBean.paciente.email}"/>
 
                     <p:outputLabel for="cpf" value="CPF: " />
-                    <p:inputMask id="cpf" mask="999.999.999-99" size="27" value="#{clienteBean.cliente.cpf}"/>
+                    <p:inputMask id="cpf" mask="999.999.999-99" size="27" value="#{pacienteBean.paciente.cpf}"/>
 
                     <p:outputLabel for="rg" value="RG: " />
-                    <p:inputText id="rg" size="27" value="#{clienteBean.cliente.rg}"/>
+                    <p:inputText id="rg" size="27" value="#{pacienteBean.paciente.rg}"/>
 
                     <p:outputLabel for="telefone" value="Telefone: " />
-                    <p:inputText id="telefone" size="27" onkeyup="mascara(this, masktel)" value="#{clienteBean.cliente.telefone}"
+                    <p:inputText id="telefone" size="27" onkeyup="mascara(this, masktel)" value="#{pacienteBean.paciente.telefone}"
                                  maxlength="15" placeholder="DDD + Número"/>
 
                     <p:outputLabel for="celular" value="Celular: " />
-                    <p:inputText id="celular" size="27" onkeyup="mascara(this, masktel)" value="#{clienteBean.cliente.celular}"
+                    <p:inputText id="celular" size="27" onkeyup="mascara(this, masktel)" value="#{pacienteBean.paciente.celular}"
                                  maxlength="15" placeholder="DDD + Número"/>
 
                     <p:outputLabel for="sexo" value="Sexo: " />
-                    <p:selectOneMenu id="sexo" style="width: 173px" value="#{clienteBean.cliente.sexo}">
+                    <p:selectOneMenu id="sexo" style="width: 173px" value="#{pacienteBean.paciente.sexo}">
                         <f:selectItem noSelectionOption="true"/>
                         <f:selectItem itemLabel="Masculino" itemValue="masculino"/>
                         <f:selectItem itemLabel="Feminino" itemValue="feminino"/>
@@ -61,44 +61,44 @@
 
                     <p:outputLabel for="nascimento" value="Nascimento: " />
                     <p:calendar id="nascimento" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" showOn="button" 
-                                maxlength="10" mask="true" size="21" locale="pt" value="#{clienteBean.cliente.dataNascimento}">
+                                maxlength="10" mask="true" size="21" locale="pt" value="#{pacienteBean.paciente.dataNascimento}">
                         <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" />           
                     </p:calendar>
 
                     <p:outputLabel for="rua" value="Rua: "/>
-                    <p:inputText id="rua" size="40" value="#{clienteBean.cliente.rua}"/>
+                    <p:inputText id="rua" size="40" value="#{pacienteBean.paciente.rua}"/>
 
                     <p:outputLabel for="bairro" value="Bairro: "/>
-                    <p:inputText id="bairro" size="40" value="#{clienteBean.cliente.bairro}"/>
+                    <p:inputText id="bairro" size="40" value="#{pacienteBean.paciente.bairro}"/>
 
                     <p:outputLabel for="estado" value="Estado: " />
-                    <p:selectOneMenu id="estado" style="width: 173px" value="#{clienteBean.cliente.estado}">
+                    <p:selectOneMenu id="estado" style="width: 173px" value="#{pacienteBean.paciente.estado}">
                         <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
-                        <f:selectItems value="#{clienteBean.estados}" var="estado" itemLabel="#{estado.descricao}" itemValue="#{estado}" />
+                        <f:selectItems value="#{pacienteBean.estados}" var="estado" itemLabel="#{estado.descricao}" itemValue="#{estado}" />
                     </p:selectOneMenu>
 
                     <p:outputLabel for="cidade" value="Cidade: " />
-                    <p:inputText id="cidade" size="27" value="#{clienteBean.cliente.cidade}"/>
+                    <p:inputText id="cidade" size="27" value="#{pacienteBean.paciente.cidade}"/>
 
                     <p:outputLabel for="cep" value="CEP: "/>
-                    <p:inputMask id="cep" mask="99999-999" size="27" value="#{clienteBean.cliente.cep}"/>
+                    <p:inputMask id="cep" mask="99999-999" size="27" value="#{pacienteBean.paciente.cep}"/>
 
                 </h:panelGrid>
             </h:form>    
 
-            <p:toolbar id="toolbarCliente" style="margin-top: 10px;">
+            <p:toolbar id="toolbarPaciente" style="margin-top: 10px;">
                 <f:facet name="left">
                     <p:commandButton id="botaoSalvar" style="font-size: 13px;" value="Salvar"
-                                     icon="ui-icon ui-icon-disk" action="#{clienteBean.salvar}">
+                                     icon="ui-icon ui-icon-disk" action="#{pacienteBean.salvar}">
                         <f:ajax execute="@form" render="@form"/>
                     </p:commandButton>
 
                     <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
-                              outcome="/cliente/listar-clientes" icon="fa fa-times">
+                              outcome="/paciente/listar-pacientes" icon="fa fa-times">
                     </p:button>
                 </f:facet>
             </p:toolbar>
         </p:fieldset>
-        <p:blockUI block="formCliente" trigger="botaoSalvar"/>
+        <p:blockUI block="formPaciente" trigger="botaoSalvar"/>
     </ui:define>
 </ui:composition>     

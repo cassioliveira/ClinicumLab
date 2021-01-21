@@ -1,7 +1,7 @@
 package br.com.clinicumlab.relatorios;
 
-import br.com.clinicumlab.modelo.Cliente;
-import br.com.clinicumlab.servicos.ClienteServico;
+import br.com.clinicumlab.modelo.Paciente;
+import br.com.clinicumlab.servicos.PacienteServico;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.enterprise.inject.Model;
@@ -23,30 +23,30 @@ public class ExecutaRelatorios implements Serializable {
     @Inject
     @Getter
     @Setter
-    private ClienteServico clienteServico;
+    private PacienteServico pacienteServico;
 
     @Getter
     @Setter
-    private Cliente cliente;
+    private Paciente paciente;
     
     @Getter
     @Setter
-    private Cliente clienteSelecionado;
+    private Paciente pacienteSelecionado;
 
     public ExecutaRelatorios() {
-        cliente = new Cliente();
-        clienteSelecionado = new Cliente();
+        paciente = new Paciente();
+        pacienteSelecionado = new Paciente();
     }
 
     /**
-     * Emite carteirinha de tipo sanguíneo do cliente.
+     * Emite carteirinha de tipo sanguíneo do paciente.
      *
      * @throws java.io.IOException
      * @throws net.sf.jasperreports.engine.JRException
      */
     public void emitirCarteirinha() throws IOException, JRException {
-//        clienteServico.salvar(cliente);
-        geraRelatorios.gerarPdf("/carteirinha.jasper", "Carteirinha tipo sanguíneo.pdf", cliente);
+//        pacienteServico.salvar(paciente);
+        geraRelatorios.gerarPdf("/carteirinha.jasper", "Carteirinha tipo sanguíneo.pdf", paciente);
     }
 
 }

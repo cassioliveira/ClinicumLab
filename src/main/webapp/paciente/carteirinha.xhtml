@@ -14,8 +14,8 @@
                     <p:autoUpdate/> 
                 </p:messages>
                 <h:panelGrid columns="2">
-                    <p:outputLabel for="nomeCliente" value="Nome: "/>
-                    <p:inputText id="nomeCliente" value="#{geraRelatorios.nome}" size="40"/>
+                    <p:outputLabel for="nomePaciente" value="Nome: "/>
+                    <p:inputText id="nomePaciente" value="#{geraRelatorios.nome}" size="40"/>
                 </h:panelGrid>
             </p:panel>
         </h:form>
@@ -27,7 +27,7 @@
                 </p:commandButton>
 
                 <p:button style="font-size: 13px;" value="Cancelar" id="botaoCancelar"
-                          outcome="/cliente/listar-clientes" icon="fa fa-times">
+                          outcome="/paciente/listar-pacientes" icon="fa fa-times">
                 </p:button>
             </f:facet>
         </p:toolbar>    

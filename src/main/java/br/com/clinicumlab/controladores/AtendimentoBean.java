@@ -2,10 +2,10 @@ package br.com.clinicumlab.controladores;
 
 import br.com.clinicumlab.enumeracao.FormaPagamento;
 import br.com.clinicumlab.modelo.Atendimento;
-import br.com.clinicumlab.modelo.Cliente;
+import br.com.clinicumlab.modelo.Paciente;
 import br.com.clinicumlab.modelo.Exame;
 import br.com.clinicumlab.servicos.AtendimentoServico;
-import br.com.clinicumlab.servicos.ClienteServico;
+import br.com.clinicumlab.servicos.PacienteServico;
 import br.com.clinicumlab.servicos.ExameServico;
 import br.com.clinicumlab.util.jsf.FacesUtil;
 import java.io.Serializable;
@@ -37,7 +37,7 @@ public class AtendimentoBean implements Serializable {
     @Getter
     @Setter
     @Inject
-    private ClienteServico clienteServico;
+    private PacienteServico pacienteServico;
 
     @Getter
     @Setter
@@ -56,7 +56,7 @@ public class AtendimentoBean implements Serializable {
     private List<Atendimento> atendimentosAbertos;
 
     @Getter
-    private List<Cliente> clientes;
+    private List<Paciente> pacientes;
 
     @Getter
     private List<Exame> exames;
@@ -77,7 +77,7 @@ public class AtendimentoBean implements Serializable {
         this.formasPagamento = Arrays.asList(FormaPagamento.values());
 //        this.atendimentosAbertos = atendimentoServico.atendimentosAbertos();
         this.atendimentosAbertos = atendimentoServico.todos();
-        this.clientes = clienteServico.todos();
+        this.pacientes = pacienteServico.todos();
 //        this.exames = exameServico.todos();
     }
 
