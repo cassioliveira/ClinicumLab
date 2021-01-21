@@ -38,13 +38,14 @@ public class Paciente implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "cadastro")
     private Date cadastro;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "atualizacao")
+    private Date atualizacao;
 
     @Column(name = "nome", nullable = false, length = 150)
     @NotNull(message = "O nome deve ser informado")
     private String nome;
-
-    @Column(name = "nome_social", length = 100)
-    private String nomeSocial;
 
     @Pattern(regexp = "^$|^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$",
             message = "E-mail com formato incorreto")

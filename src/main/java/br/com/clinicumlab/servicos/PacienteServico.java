@@ -35,6 +35,8 @@ public class PacienteServico implements Serializable {
     public void salvar(Paciente paciente)   {
         if (paciente.getId() == null) {
             paciente.setCadastro(new Date());
+        } else {
+            paciente.setAtualizacao(new Date());
         }
         this.pacienteDao.save(paciente);
     }
