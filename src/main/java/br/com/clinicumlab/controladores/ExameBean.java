@@ -27,7 +27,7 @@ import lombok.Setter;
 public class ExameBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Getter
     private final Locale locale = new Locale("pt", "BR");
 

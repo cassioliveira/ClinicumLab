@@ -1,6 +1,7 @@
 package br.com.clinicumlab.servicos;
 
 import br.com.clinicumlab.dao.ExameDao;
+import br.com.clinicumlab.excecoes.ExameJaCadastradoException;
 import br.com.clinicumlab.modelo.Exame;
 import java.io.Serializable;
 import javax.transaction.Transactional;
@@ -19,12 +20,17 @@ public class ExameServico implements Serializable {
     private ExameDao exameDao;
 
     @Transactional
-    public void salvar(Exame exame) {
-        this.exameDao.save(exame);
+    public void salvar(Exame exame) throws ExameJaCadastradoException{
+        if (exame.getId() == null && jaCadastrado(exame.getDescricao())) {
+            throw new ExameJaCadastradoException("Já existe um exame com essa descrição!");
+        } else {
+            this.exameDao.save(exame);
+        }
     }
 
     @Transactional
-    public void deletar(Exame exame) {
+    public void deletar(Exame exame
+    ) {
         exameDao.delete(findById(exame.getId()));
     }
 

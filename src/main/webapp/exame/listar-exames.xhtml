@@ -17,20 +17,6 @@
 
                 <p:toolbar>
 
-                    <f:facet name="left">
-                        <p:button value="Antibiograma" id="botaoCadastroAntibiograma"  icon="fa fa-plus" 
-                                  outcome="/exame/antibiograma" rendered="#{!exameBean.jaCadastrado('Antibiograma')}"/>
-
-                        <p:button value="Espermograma" id="botaoCadastroEspermograma"  icon="fa fa-plus" 
-                                  outcome="/exame/espermograma" rendered="#{!exameBean.jaCadastrado('Espermograma')}" />
-
-                        <p:button value="Hemograma" id="botaoCadastroHemograma"  icon="fa fa-plus" 
-                                  outcome="/exame/hemograma-completo" rendered="#{!exameBean.jaCadastrado('Hemograma')}"/>
-
-                        <p:button value="Urinálise" id="botaoCadastroUrinalise"  icon="fa fa-plus" 
-                                  outcome="/exame/urinalise" rendered="#{!exameBean.jaCadastrado('Urinalise')}"/>
-                    </f:facet>
-
                     <f:facet name="right">
                         <p:button value="Novo exame" id="botaoTelaCadastro"  icon="fa fa-plus" 
                                   outcome="/exame/cadastro-exame"/>
@@ -59,9 +45,7 @@
                     </p:column>
 
                     <p:column headerText="Valor" style="text-align: center" width="20%" filterMatchMode="exact" filterStyle="width: 20px; display:none">
-                        <h:outputText value="R$ #{exame.preco}">
-                            <!--<f:convertNumber type="currency" currencyCode="BRL" pattern="#.##0,00" currencySymbol="R$"/>-->
-                        </h:outputText>
+                        <h:outputText value="#{exame.preco eq null ? 'R$ 0,00' : 'R$ '.concat(exame.preco)}"/>
                     </p:column>
 
                     <p:column id="acoes" headerText="Ações" style="text-align: center" width="15%">

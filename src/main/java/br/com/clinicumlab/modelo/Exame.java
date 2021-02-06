@@ -52,9 +52,9 @@ public class Exame implements Serializable {
     @Enumerated(EnumType.STRING)
     private ExameCategoria categoria;
 
-    @Column(name = "valores_referencia", length = 500)
+    @Column(name = "valores_referencia", columnDefinition = "text")
     private String valoresReferencia;
-    
+
     @Column(name = "observacoes", length = 1000)
     private String observacoes;
 

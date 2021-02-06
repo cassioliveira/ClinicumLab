@@ -25,7 +25,7 @@
                         <h:panelGrid columns="2">
                             <p:outputLabel for="codigo" value="Código: " rendered="#{pacienteBean.paciente.id ne null}"/>
                             <p:outputLabel id="codigo"  rendered="#{pacienteBean.paciente.id ne null}" 
-                                           value="#{'CLC'.concat(pacienteBean.paciente.id)}" style="font-weight: bold"/>
+                                           value="#{'CLP'.concat(pacienteBean.paciente.id)}" style="font-weight: bold"/>
 
                             <p:outputLabel for="nome" value="Nome: " />
                             <p:inputText id="nome" size="40" value="#{pacienteBean.paciente.nome}"/>
