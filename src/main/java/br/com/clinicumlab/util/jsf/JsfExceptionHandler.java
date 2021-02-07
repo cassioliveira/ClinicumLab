@@ -1,5 +1,6 @@
 package br.com.clinicumlab.util.jsf;
 
+import br.com.clinicumlab.excecoes.ExameJaCadastradoException;
 import br.com.clinicumlab.excecoes.NegocioException;
 import java.io.IOException;
 import java.util.Iterator;
@@ -118,5 +119,4 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
         }
         return null;
     }
-
 }

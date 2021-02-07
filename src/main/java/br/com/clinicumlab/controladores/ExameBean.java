@@ -1,6 +1,7 @@
 package br.com.clinicumlab.controladores;
 
 import br.com.clinicumlab.enumeracao.ExameCategoria;
+import br.com.clinicumlab.excecoes.ExameJaCadastradoException;
 import br.com.clinicumlab.modelo.Exame;
 import br.com.clinicumlab.servicos.ExameServico;
 import br.com.clinicumlab.util.jsf.FacesUtil;
@@ -8,6 +9,8 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -71,14 +74,19 @@ public class ExameBean implements Serializable {
      *
      */
     public void salvar() {
-        exameServico.salvar(exame);
-        if (getEditando()) {
-            FacesUtil.mensagemSucesso("Cadastro de '" + exame.getDescricao() + "' atualizado com sucesso!");
-        } else {
-            FacesUtil.mensagemSucesso("Cadastro efetuado com sucesso!");
+        try {
+            exameServico.salvar(exame);
+            if (getEditando()) {
+                FacesUtil.mensagemSucesso("Cadastro de '" + exame.getDescricao() + "' atualizado com sucesso!");
+            } else {
+                FacesUtil.mensagemSucesso("Cadastro efetuado com sucesso!");
+            }
+            FacesUtil.redirecionaPara("listar-exames.xhtml");
+            exame = new Exame();
+        } catch (ExameJaCadastradoException ex) {
+            FacesUtil.mensagemErro(ex.getMessage());
+            Logger.getLogger(ExameBean.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
-        FacesUtil.redirecionaPara("listar-exames.xhtml");
-        exame = new Exame();
     }
 
     /**
