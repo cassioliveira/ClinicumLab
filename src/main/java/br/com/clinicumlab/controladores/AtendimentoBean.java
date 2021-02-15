@@ -13,8 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Model;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,7 +26,8 @@ import lombok.Setter;
  *
  * @author elisangela <elysangeladesouza@gmail.com>
  */
-@Model
+@Named
+@ViewScoped
 public class AtendimentoBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,10 +52,15 @@ public class AtendimentoBean implements Serializable {
 
     @Getter
     @Setter
+    @Inject
     private ExameServico exameServico;
 
     @Getter
-    private List<Atendimento> atendimentosAbertos;
+    @Setter
+    private String exameSelecionado;
+
+    @Getter
+    private List<Atendimento> atendimentosAbertos = new ArrayList<>();
 
     @Getter
     private List<Paciente> pacientes;
@@ -118,4 +125,23 @@ public class AtendimentoBean implements Serializable {
         return this.atendimento.getId() != null;
     }
 
+    public List<String> getExamesCadastrados() {
+        List<String> examesAsString = new ArrayList<>();
+        for (Exame exame : exameServico.todos()) {
+            examesAsString.add(exame.getDescricao());
+        }
+        return examesAsString;
+    }
+
+    public void adicionarExameDoAtendimento() {
+        if (!atendimento.getExames().contains(exameSelecionado)) {
+            atendimento.getExames().add(exameSelecionado);
+        } else {
+            FacesUtil.mensagemAviso("Exame já adicionado!");
+        }
+    }
+
+    public void removerExameDoAtendimento() {
+        atendimento.getExames().remove(exameSelecionado);
+    }
 }

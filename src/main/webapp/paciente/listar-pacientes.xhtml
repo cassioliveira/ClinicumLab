@@ -36,7 +36,7 @@
                         </p:outputPanel>
                     </f:facet>
 
-                    <p:column headerText="Código" style="text-align: center" width="10%" filterMatchMode="exact" 
+                    <p:column headerText="Código" width="10%" filterMatchMode="exact" 
                               filterStyle="width: 20px; display:none">
                         <h:outputText value="#{'CLP'.concat(paciente.id)}"/>
                     </p:column>
@@ -46,19 +46,19 @@
                         <h:outputText value="#{paciente.nome}"/>
                     </p:column>
 
-                    <p:column headerText="Telefone" style="text-align: center" width="15%" filterMatchMode="contains" 
+                    <p:column headerText="Telefone" width="15%" filterMatchMode="contains" 
                               filterStyle="width: 80px; display:none" filterBy="#{paciente.telefone}">
                         <h:outputText value="#{paciente.telefone}"/>
                     </p:column>
 
-                    <p:column headerText="Data de nasc." style="text-align: center" width="15%" filterMatchMode="exact" 
+                    <p:column headerText="Data de nasc." width="15%" filterMatchMode="exact" 
                               filterStyle="width: 20px; display:none" filterBy="#{paciente.dataNascimento}">
                         <h:outputText value="#{paciente.dataNascimento}">
                             <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy"/>
                         </h:outputText>
                     </p:column>
 
-                    <p:column id="acoes" headerText="Ações" style="text-align: center" width="15%">
+                    <p:column id="acoes" headerText="Ações" width="15%">
 
                         <p:button id="botaoDados" title="Editar" icon="fa fa-tint" style="font-size: 10px; padding-top: 5px"
                                   outcome="/paciente/dados-sangue">

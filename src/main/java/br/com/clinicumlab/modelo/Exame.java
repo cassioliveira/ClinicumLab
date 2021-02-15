@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -57,5 +58,8 @@ public class Exame implements Serializable {
 
     @Column(name = "observacoes", length = 1000)
     private String observacoes;
+    
+//    @ManyToOne
+//    private Atendimento atendimento;
 
 }

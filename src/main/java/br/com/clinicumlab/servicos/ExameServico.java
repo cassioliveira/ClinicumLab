@@ -46,16 +46,20 @@ public class ExameServico implements Serializable {
      * Verifica se há algum exame cadastrado no banco com a descrição igual à
      * passada como parâmetro.
      *
-     * @param examePrincipal
+     * @param descricaoExameNovo
      * @return
      */
-    public boolean jaCadastrado(String examePrincipal) {
-        for (Exame exame : todos()) {
-            if (examePrincipal.equals(exame.getDescricao())) {
-                return true;
-            }
-        }
-        return false;
+    public boolean jaCadastrado(String descricaoExameNovo) {
+        return todos().stream().anyMatch(exame -> (descricaoExameNovo.equals(exame.getDescricao())));
     }
 
+//    public boolean jaCadastrado(String examePrincipal) {
+//        for (Exame exame : todos()) {
+//            if (examePrincipal.equals(exame.getDescricao())) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+    
 }

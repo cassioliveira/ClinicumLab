@@ -41,9 +41,6 @@ public class ExameAtendimento implements Serializable {
     @Column(name = "previsao_entrega")
     private Date previsaoEntrega;
     
-    @Column(name = "validade", length = 20)
-    private String validade;
-
 //    @ManyToOne
 //    @JoinColumn(name = "exame_id", nullable = false)
 //    private Exame exame;

@@ -23,8 +23,8 @@
 
                     <f:facet name="right">
                         <p:button value="Novo atendimento" id="botaoNovoCadastro"  icon="ui-icon ui-icon-pencil" outcome="atendimento.xhtml"/>
-<!--                        <p:button value="Novo atendimento" id="botaoNovoCadastro"  icon="ui-icon ui-icon-pencil" 
-                                  onclick="PF('dialogAtendimento').show(); return 0;"/>-->
+                        <!--                        <p:button value="Novo atendimento" id="botaoNovoCadastro"  icon="ui-icon ui-icon-pencil" 
+                                                          onclick="PF('dialogAtendimento').show(); return 0;"/>-->
                     </f:facet>
                 </p:toolbar>
 
@@ -41,69 +41,65 @@
                         </p:outputPanel>
                     </f:facet>
 
-                    <p:column headerText="Protocolo" style="text-align: center" width="1.2%" filterMatchMode="exact" filterStyle="width: 20px; display:none">
+                    <p:column headerText="Protocolo" filterMatchMode="exact" filterStyle="width: 20px; display:none">
                         <h:outputText value="#{atendimento.protocolo}"/>
                     </p:column>
 
-                    <p:column headerText="Paciente" width="40" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+                    <p:column headerText="Paciente" filterMatchMode="contains" filterStyle="width: 300px; display:none">
                         <h:outputText value="#{atendimento.paciente}"/>
                     </p:column>
 
-                    <p:column headerText="Status" style="text-align: center" width="20" filterMatchMode="contains" filterStyle="width: 80px; display:none">
+                    <p:column headerText="Status" filterMatchMode="contains" filterStyle="width: 80px; display:none">
                         <h:outputText value="#{atendimento.statusAtendimento.descricao}"/>
                     </p:column>
 
-                    <p:column headerText="Pagamento" style="text-align: center" width="10" filterMatchMode="exact" filterStyle="width: 20px; display:none">
-                        <h:outputText value="#{atendimento.pagamento.descricao}"/>
-                    </p:column>
-
-                    <p:column id="acoes" headerText="Ações" style="text-align: center" width="25">
-                        <p:button id="botaoVisualizar" title="Visualizar" icon="ui-icon ui-icon-extlink" style="font-size: 10px">
+                    <p:column id="acoes" headerText="Ações">
+                        <p:button id="botaoVisualizar" title="Visualizar" icon="ui-icon ui-icon-extlink" style="font-size: 10px; padding: 2px">
                             <p:tooltip for="botaoVisualizar" value="Visualiza detalhes da linha selecionada"/>
                         </p:button>   
-                        
-                        <p:button id="botaoEditar" title="Editar" icon="fa fa-pencil" style="font-size: 10px; padding-top: 5px"
+
+                        <p:button id="botaoEditar" title="Editar" icon="fa fa-pencil" style="font-size: 10px; padding: 2px"
                                   outcome="/atendimento/atendimento">
                             <f:param name="atendimento" value="#{atendimento.id}"/>
                             <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
                         </p:button>
 
-<!--                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" >
-                            <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
-                        </p:button>-->
+                        <!--                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" >
+                                                    <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
+                                                </p:button>-->
 
                     </p:column>
                 </p:dataTable>
             </h:form>
         </p:fieldset>
 
-<!--        <p:dialog id="dialogAtendimento" draggable="false" closable="true" responsive="true" width="950" height="450" 
-                  hideEffect="fade" showEffect="fade" showHeader="true" widgetVar="dialogAtendimento" fitViewport="true"
-                  resizable="false" modal="true"  header="Protocolo - 0123456789" closeOnEscape="true" >
-            <p:tabView>
-                <p:tab title="Informações">
-                    <ui:include src="geral.xhtml"/>
-                </p:tab>
-
-                <p:tab id="tabColeta" title="Coleta">
-                    <ui:include src="coleta.xhtml"/>
-                </p:tab>
-
-                <p:tab title="Pagamento">
-                    <ui:include src="pagamento.xhtml"/>
-                </p:tab>
-
-                                <p:tab title="Conclusão">
-                                    <ui:include src="conclusao.xhtml"/>
-                                </p:tab>
-            </p:tabView>
-
-            <p:toolbar id="panelButtonsAtendimentos" style="margin-top: 10px;" >
-                <f:facet name="left">
-                    <p:commandButton style="font-size: 13px;" id="botaoSalvar" value="Salvar" update="@form" icon="ui-icon ui-icon-disk"/>
-                </f:facet>    
-            </p:toolbar> 
-
-        </p:dialog>-->
+        <!--        <p:dialog id="dialogAtendimento" draggable="false" closable="true" responsive="true" width="950" height="450" 
+                          hideEffect="fade" showEffect="fade" showHeader="true" widgetVar="dialogAtendimento" fitViewport="true"
+                          resizable="false" modal="true"  header="Protocolo - 0123456789" closeOnEscape="true" >
+                    <p:tabView>
+                        <p:tab title="Informações">
+                            <ui:include src="geral.xhtml"/>
+                        </p:tab>
+        
+                        <p:tab id="tabColeta" title="Coleta">
+                            <ui:include src="coleta.xhtml"/>
+                        </p:tab>
+        
+                        <p:tab title="Pagamento">
+                            <ui:include src="pagamento.xhtml"/>
+                        </p:tab>
+        
+                                        <p:tab title="Conclusão">
+                                            <ui:include src="conclusao.xhtml"/>
+                                        </p:tab>
+                    </p:tabView>
+        
+                    <p:toolbar id="panelButtonsAtendimentos" style="margin-top: 10px;" >
+                        <f:facet name="left">
+                            <p:commandButton style="font-size: 13px;" id="botaoSalvar" value="Salvar" update="@form" icon="ui-icon ui-icon-disk"/>
+                        </f:facet>    
+                    </p:toolbar> 
+        
+                </p:dialog>-->
     </ui:define>
 </ui:composition>    

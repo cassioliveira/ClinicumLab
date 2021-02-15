@@ -3,12 +3,15 @@ package br.com.clinicumlab.modelo;
 import br.com.clinicumlab.enumeracao.FormaPagamento;
 import br.com.clinicumlab.enumeracao.StatusAtendimento;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -71,18 +74,23 @@ public class Atendimento implements Serializable {
 
     @Column(name = "tipo_coleta", length = 50)
     private String tipoColeta;
-    
-  
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> exames = new ArrayList<>();
+
+//    @OneToMany(mappedBy = "atendimento", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Exame> exames = new ArrayList<>();
 //    @OneToOne
     private String convenio;
 
+//    private List<String> examesDoAtendimento = new ArrayList<>();
 //    @OneToOne
 //    private Paciente paciente;
 //    @ManyToOne
 //    @JoinColumn(name = "atendente_id", nullable = false)
 //    private Usuario atendente;
-    @OneToMany
-    private List<ExameAtendimento> exames;
+//    @OneToMany
+//    private List<ExameAtendimento> exames;
     public Atendimento() {
         this.setPagamento(FormaPagamento.DINHEIRO);
         this.setStatusAtendimento(StatusAtendimento.ABERTO);
