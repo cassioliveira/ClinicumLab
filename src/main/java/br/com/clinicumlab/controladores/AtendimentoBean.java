@@ -144,4 +144,5 @@ public class AtendimentoBean implements Serializable {
     public void removerExameDoAtendimento() {
         atendimento.getExames().remove(exameSelecionado);
     }
+    
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="atendimento" value="#{atendimentoBean.atendimento}"/>
+    </f:metadata>
+
+    <ui:define id="conteudo" name="content">
+        <!--<h:form id="formRequisicao">-->
+
+        <p:messages closable="true" severity="info,warn,error">
+            <p:autoUpdate/> 
+        </p:messages>
+        <p:fieldset id="fieldsetLancamentoResultados" legend="Lançamento de resultados">
+
+            <p:panel>
+                <h:panelGrid id="panelGridAtendimento" columns="2">
+
+                    <p:outputLabel for="paciente" value="Paciente: "/>
+                    <p:outputLabel id="paciente" styleClass="label-resultados" value="#{atendimentoBean.atendimento.paciente}"/>
+                    
+                    <p:outputLabel for="idade" value="Idade: "/>
+                    <p:outputLabel id="idade" styleClass="label-resultados"/>
+
+                    <p:outputLabel for="requisitante" value="Requisitante: "/>
+                    <p:outputLabel id="requisitante" styleClass="label-resultados" value="#{atendimentoBean.atendimento.requisitante}"/>
+
+                    <p:outputLabel for="convenio" value="Convênio: "/>
+                    <p:outputLabel id="convenio" styleClass="label-resultados" value="#{atendimentoBean.atendimento.convenio}"/>
+
+                    <!--                        <p:outputLabel for="exames" value="Exames: "/>
+                                            <p:outputLabel id="exames" style="vertical-align: middle; width: 250px" value="#{atendimentoBean.atendimento.exames}"/>-->
+
+                </h:panelGrid>
+            </p:panel>
+
+            <p:dataTable id="datatableExames" var="exame" widgetVar="pesquisaExames" value="#{atendimentoBean.atendimento.exames}"
+                         paginatorAlwaysVisible="false" style="margin-top: 20px; " rows="10" reflow="true" 
+                         paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                         {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
+                         scrollable="true" scrollRows="8" scrollHeight="180">
+
+                <p:column headerText="Exame" width="50%" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+                    <p:outputLabel id="descricaoExame" value="#{exame}"/>
+                </p:column>
+
+                <p:column id="acoes" headerText="Remover" width="10%">
+                    <p:commandButton id="deleteButton" title="Remover" icon="fa fa-trash" style="font-size: 10px; padding-top: 5px" 
+                                     action="#{atendimentoBean.removerExameDoAtendimento}" process="@this" update="datatableExames">
+                        <f:setPropertyActionListener target="#{atendimentoBean.exameSelecionado}" value="#{exame}"/>
+                        <p:tooltip for="deleteButton" value="Excluir Exame"/>
+                        <p:confirm icon="ui-icon-alert" header="Exclusão de exame do atendimento" message="Deseja realmente excluir o exame?"/>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>    

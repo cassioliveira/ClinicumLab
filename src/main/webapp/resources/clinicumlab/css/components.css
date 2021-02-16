@@ -311,6 +311,12 @@
     color: white !important
 }
 
+.label-resultados{
+    vertical-align: middle; 
+    width: 250px;
+    font-weight: bold;     
+}
+
 /*.ui-growl-item, ui-growl-item-container, ui-growl-info  {
     background-color: #28A745 !important;
     color: white !important

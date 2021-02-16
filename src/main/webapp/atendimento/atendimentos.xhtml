@@ -63,6 +63,12 @@
                             <f:param name="atendimento" value="#{atendimento.id}"/>
                             <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
                         </p:button>
+                        
+                        <p:button id="botaoResultados" title="Resultados" icon="fa fa-list" style="font-size: 10px; padding: 2px"
+                                  outcome="/resultados/resultados">
+                            <f:param name="atendimento" value="#{atendimento.id}"/>
+                            <p:tooltip for="botaoResultados" value="Lançamento de resultados"/>
+                        </p:button>
 
                         <!--                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" >
                                                     <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>

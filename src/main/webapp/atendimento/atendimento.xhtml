@@ -58,7 +58,7 @@
                             </p:selectOneMenu>
 
                             <p:commandButton id="adiciona-exame" process="itemPanel" action="#{atendimentoBean.adicionarExameDoAtendimento}"
-                                             update="datatableExames" icon="fa fa-plus" style="padding-left: 20px" title="Adicionar o exame"/> 
+                                             update="datatableExames formGeral:toolbar" icon="fa fa-plus" style="padding-left: 20px" title="Adicionar o exame"/> 
                         </h:panelGrid>
                     </h:panelGroup>
 
@@ -103,7 +103,7 @@
 
                         <p:column id="acoes" headerText="Remover" width="10%">
                             <p:commandButton id="deleteButton" title="Remover" icon="fa fa-trash" style="font-size: 10px; padding-top: 5px" 
-                                             action="#{atendimentoBean.removerExameDoAtendimento}" process="@this" update="datatableExames">
+                                             action="#{atendimentoBean.removerExameDoAtendimento}" process="@this" update="datatableExames formGeral:toolbar">
                                 <f:setPropertyActionListener target="#{atendimentoBean.exameSelecionado}" value="#{exame}"/>
                                 <p:tooltip for="deleteButton" value="Excluir Exame"/>
                                 <p:confirm icon="ui-icon-alert" header="Exclusão de exame do atendimento" message="Deseja realmente excluir o exame?"/>
@@ -177,19 +177,20 @@
             </p:tabView>
 
 
+            <h:panelGroup id="toolbar">
+                <p:toolbar id="toolbarAtendimento" style="margin-top: 10px;">
+                    <f:facet name="left">
+                        <p:commandButton style="font-size: 13px;" value="Salvar" action="#{atendimentoBean.salvar}"
+                                         id="botaoSalvar" icon="ui-icon ui-icon-disk" disabled="#{atendimentoBean.atendimento.exames.size() lt 1}">
+                            <f:ajax execute="@form" render="@form"/>
+                        </p:commandButton>
 
-            <p:toolbar id="toolbarAtendimento" style="margin-top: 10px;">
-                <f:facet name="left">
-                    <p:commandButton style="font-size: 13px;" value="Salvar" action="#{atendimentoBean.salvar}"
-                                     id="botaoSalvar" icon="ui-icon ui-icon-disk">
-                        <f:ajax execute="@form" render="@form"/>
-                    </p:commandButton>
-
-                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
-                              outcome="/atendimento/atendimentos" icon="fa fa-times">
-                    </p:button>
-                </f:facet>
-            </p:toolbar>
+                        <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
+                                  outcome="/atendimento/atendimentos" icon="fa fa-times">
+                        </p:button>
+                    </f:facet>
+                </p:toolbar>
+            </h:panelGroup>
 
         </p:fieldset>
 
