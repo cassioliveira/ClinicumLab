@@ -134,15 +134,23 @@ public class AtendimentoBean implements Serializable {
     }
 
     public void adicionarExameDoAtendimento() {
-        if (!atendimento.getExames().contains(exameSelecionado)) {
+        if (!atendimento.getExames().contains(exameSelecionado)
+                && exameSelecionado != null
+                && !exameSelecionado.equals("")) {
             atendimento.getExames().add(exameSelecionado);
-        } else {
+        } else if(atendimento.getExames().contains(exameSelecionado)){
             FacesUtil.mensagemAviso("Exame já adicionado!");
+        } else {
+            System.out.println("Clicou no botão adicionar sem selecionar exame");
         }
     }
 
     public void removerExameDoAtendimento() {
         atendimento.getExames().remove(exameSelecionado);
     }
-    
+
+    public boolean getPodeSalvarAtendimento() {
+        return atendimento.getExames().size() < 1;
+    }
+
 }

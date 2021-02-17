@@ -181,7 +181,7 @@
                 <p:toolbar id="toolbarAtendimento" style="margin-top: 10px;">
                     <f:facet name="left">
                         <p:commandButton style="font-size: 13px;" value="Salvar" action="#{atendimentoBean.salvar}"
-                                         id="botaoSalvar" icon="ui-icon ui-icon-disk" disabled="#{atendimentoBean.atendimento.exames.size() lt 1}">
+                                         id="botaoSalvar" icon="ui-icon ui-icon-disk" disabled="#{atendimentoBean.podeSalvarAtendimento}">
                             <f:ajax execute="@form" render="@form"/>
                         </p:commandButton>
 
