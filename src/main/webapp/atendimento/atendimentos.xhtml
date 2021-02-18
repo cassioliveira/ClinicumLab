@@ -41,11 +41,11 @@
                         </p:outputPanel>
                     </f:facet>
 
-                    <p:column headerText="Protocolo" filterMatchMode="exact" filterStyle="width: 20px; display:none">
+                    <p:column headerText="Protocolo" filterMatchMode="exact" filterStyle="width: 20px; display:none" filterBy="#{atendimento.protocolo}">
                         <h:outputText value="#{atendimento.protocolo}"/>
                     </p:column>
 
-                    <p:column headerText="Paciente" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+                    <p:column headerText="Paciente" filterMatchMode="contains" filterStyle="width: 300px; display:none" filterBy="#{atendimento.paciente}">
                         <h:outputText value="#{atendimento.paciente}"/>
                     </p:column>
 
@@ -54,21 +54,30 @@
                     </p:column>
 
                     <p:column id="acoes" headerText="Ações">
-                        <p:button id="botaoVisualizar" title="Visualizar" icon="ui-icon ui-icon-extlink" style="font-size: 10px; padding: 2px">
+                        <p:commandButton id="botaoVisualizar" title="Visualizar" icon="ui-icon ui-icon-extlink" style="font-size: 10px; padding: 2px"
+                                         oncomplete="PF('visualizaAtendimento').show()" process="@this" update="">
+                            <f:setPropertyActionListener target="#{atendimentoBean.atendimentoSelecionado}" value="#{atendimento}"/>
                             <p:tooltip for="botaoVisualizar" value="Visualiza detalhes da linha selecionada"/>
-                        </p:button>   
+                        </p:commandButton>   
 
                         <p:button id="botaoEditar" title="Editar" icon="fa fa-pencil" style="font-size: 10px; padding: 2px"
                                   outcome="/atendimento/atendimento">
                             <f:param name="atendimento" value="#{atendimento.id}"/>
                             <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
                         </p:button>
-                        
+
                         <p:button id="botaoResultados" title="Resultados" icon="fa fa-list" style="font-size: 10px; padding: 2px"
                                   outcome="/resultados/resultados">
                             <f:param name="atendimento" value="#{atendimento.id}"/>
                             <p:tooltip for="botaoResultados" value="Lançamento de resultados"/>
                         </p:button>
+
+                        <p:commandButton id="deleteButton" title="Excluir atendimento" icon="fa fa-trash" style="font-size: 10px; padding-top: 5px" 
+                                         action="#{atendimentoBean.excluir}" process="@this" update="datatablePesquisaAtendimento">
+                            <f:setPropertyActionListener target="#{atendimentoBean.atendimentoSelecionado}" value="#{atendimento}"/>
+                            <p:tooltip for="deleteButton" value="Excluir atendimento"/>
+                            <p:confirm icon="ui-icon-alert" header="Exclusão de atendimento" message="Deseja realmente excluir o atendimento?"/>
+                        </p:commandButton>
 
                         <!--                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px" >
                                                     <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
@@ -78,6 +87,30 @@
                 </p:dataTable>
             </h:form>
         </p:fieldset>
+
+        <p:dialog widgetVar="visualizaAtendimento" header="Ver atendimento" 
+                  resizable="false" responsive="true">
+
+            <h:panelGroup id="itemPanel" layout="block" styleClass="ui-fluid">
+                <p:panelGrid columns="2">
+
+                    <p:outputLabel for="paciente" value="Paciente: "/>
+                    <p:outputLabel id="paciente" styleClass="label-resultados" value="#{atendimentoBean.atendimento.paciente}"/>
+
+                    <p:outputLabel for="idade" value="Idade: "/>
+                    <p:outputLabel id="idade" styleClass="label-resultados"/>
+
+                    <p:outputLabel for="requisitante" value="Requisitante: "/>
+                    <p:outputLabel id="requisitante" styleClass="label-resultados" value="#{atendimentoBean.atendimento.requisitante}"/>
+
+                    <p:outputLabel for="convenio" value="Convênio: "/>
+                    <p:outputLabel id="convenio" styleClass="label-resultados" value="#{atendimentoBean.atendimento.convenio}"/>
+
+                </p:panelGrid>
+            </h:panelGroup>
+
+        </p:dialog>
+
 
         <!--        <p:dialog id="dialogAtendimento" draggable="false" closable="true" responsive="true" width="950" height="450" 
                           hideEffect="fade" showEffect="fade" showHeader="true" widgetVar="dialogAtendimento" fitViewport="true"
