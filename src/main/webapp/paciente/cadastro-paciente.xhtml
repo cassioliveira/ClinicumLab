@@ -20,84 +20,88 @@
                 </p:messages>
 
                 <p:tabView>
-
                     <p:tab title="Dados principais">
-                        <h:panelGrid columns="2">
-                            <p:outputLabel for="codigo" value="Código: " rendered="#{pacienteBean.paciente.id ne null}"/>
-                            <p:outputLabel id="codigo"  rendered="#{pacienteBean.paciente.id ne null}" 
-                                           value="#{'CLP'.concat(pacienteBean.paciente.id)}" style="font-weight: bold"/>
+                        <div class="ui-fluid">
+                            <p:panelGrid columns="2" styleClass="panelgrid-noborder" 
+                                         layout="grid" columnClasses="ui-grid-col-1, ui-grid-col-3, ui-grid-col-8">
+                                <p:outputLabel for="codigo" value="Código: " rendered="#{pacienteBean.paciente.id ne null}"/>
+                                <p:outputLabel id="codigo"  rendered="#{pacienteBean.paciente.id ne null}" 
+                                               value="#{'CLP'.concat(pacienteBean.paciente.id)}" style="font-weight: bold"/>
 
-                            <p:outputLabel for="nome" value="Nome: " />
-                            <p:inputText id="nome" size="40" value="#{pacienteBean.paciente.nome}"/>
+                                <p:outputLabel for="nome" value="Nome: " />
+                                <p:inputText id="nome" value="#{pacienteBean.paciente.nome}"/>
 
-                            <p:outputLabel for="cpf" value="CPF: " />
-                            <p:inputMask id="cpf" mask="999.999.999-99" size="27" value="#{pacienteBean.paciente.cpf}"/>
+                                <p:outputLabel for="cpf" value="CPF: " />
+                                <p:inputMask id="cpf" mask="999.999.999-99" value="#{pacienteBean.paciente.cpf}"/>
 
-                            <p:outputLabel for="nascimento" value="Nascimento: " />
-                            <p:calendar id="nascimento" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" showOn="button" 
-                                        maxlength="10" mask="true" size="21" locale="pt" maxdate="#{dateTimeUtilBean.dateToday}"
-                                        value="#{pacienteBean.paciente.dataNascimento}">
-                                <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" />           
-                            </p:calendar>
+                                <p:outputLabel for="nascimento" value="Nascimento: " />
+                                <p:calendar id="nascimento" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" showOn="button" 
+                                            maxlength="10" mask="true" locale="pt" maxdate="#{dateTimeUtilBean.dateToday}"
+                                            value="#{pacienteBean.paciente.dataNascimento}">
+                                    <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" />           
+                                </p:calendar>
 
-                            <p:outputLabel for="sexo" value="Sexo: " />
-                            <p:selectOneMenu id="sexo" style="width: 173px" value="#{pacienteBean.paciente.sexo}">
-                                <f:selectItem noSelectionOption="true"/>
-                                <f:selectItem itemLabel="Masculino" itemValue="masculino"/>
-                                <f:selectItem itemLabel="Feminino" itemValue="feminino"/>
-                            </p:selectOneMenu>
+                                <p:outputLabel for="sexo" value="Sexo: " />
+                                <p:selectOneMenu id="sexo" value="#{pacienteBean.paciente.sexo}">
+                                    <f:selectItem noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="Masculino" itemValue="masculino"/>
+                                    <f:selectItem itemLabel="Feminino" itemValue="feminino"/>
+                                </p:selectOneMenu>
 
-                            <p:outputLabel for="atualizacao" value="Atualizado em: " rendered="#{pacienteBean.editando}"/>
-                            <p:inputText id="atualizacao" value="#{pacienteBean.paciente.atualizacao}" rendered="#{pacienteBean.editando}"
-                                         disabled="true" style="font-weight: bold" size="23">
-                                <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy HH:mm"/>
-                            </p:inputText>
+                                <p:outputLabel for="atualizacao" value="Atualizado em: " rendered="#{pacienteBean.editando}"/>
+                                <p:inputText id="atualizacao" value="#{pacienteBean.paciente.atualizacao}" rendered="#{pacienteBean.editando}"
+                                             disabled="true" style="font-weight: bold">
+                                    <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy HH:mm"/>
+                                </p:inputText>
 
-                            <p:outputLabel for="cadastro" value="Cadastrado desde: " rendered="#{pacienteBean.editando}"/>
-                            <p:inputText id="cadastro" value="#{pacienteBean.paciente.cadastro}" rendered="#{pacienteBean.editando}"
-                                         disabled="true" style="font-weight: bold" size="23">
-                                <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy HH:mm"/>
-                            </p:inputText>
+                                <p:outputLabel for="cadastro" value="Cadastrado desde: " rendered="#{pacienteBean.editando}"/>
+                                <p:inputText id="cadastro" value="#{pacienteBean.paciente.cadastro}" rendered="#{pacienteBean.editando}"
+                                             disabled="true" style="font-weight: bold">
+                                    <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy HH:mm"/>
+                                </p:inputText>
 
-                        </h:panelGrid>
+                            </p:panelGrid>
+                        </div>
                     </p:tab>
 
                     <p:tab title="Dados complementares">
-                        <h:panelGrid columns="2">
-                            <p:outputLabel for="rg" value="RG: " />
-                            <p:inputText id="rg" size="27" value="#{pacienteBean.paciente.rg}"/>
+                        <div class="ui-fluid">
+                            <p:panelGrid columns="2" styleClass="panelgrid-noborder" 
+                                         layout="grid" columnClasses="ui-grid-col-1, ui-grid-col-3, ui-grid-col-8">
+                                <p:outputLabel for="rg" value="RG: " />
+                                <p:inputText id="rg" value="#{pacienteBean.paciente.rg}"/>
 
-                            <p:outputLabel for="telefone" value="Telefone: " />
-                            <p:inputText id="telefone" size="27" onkeyup="mascara(this, masktel)" value="#{pacienteBean.paciente.telefone}"
-                                         maxlength="15" placeholder="DDD + Número"/>
+                                <p:outputLabel for="telefone" value="Telefone: " />
+                                <p:inputText id="telefone" onkeyup="mascara(this, masktel)" value="#{pacienteBean.paciente.telefone}"
+                                             maxlength="15" placeholder="DDD + Número"/>
 
-                            <p:outputLabel for="celular" value="Celular: " />
-                            <p:inputText id="celular" size="27" onkeyup="mascara(this, masktel)" value="#{pacienteBean.paciente.celular}"
-                                         maxlength="15" placeholder="DDD + Número"/>
+                                <p:outputLabel for="celular" value="Celular: " />
+                                <p:inputText id="celular" onkeyup="mascara(this, masktel)" value="#{pacienteBean.paciente.celular}"
+                                             maxlength="15" placeholder="DDD + Número"/>
 
-                            <p:outputLabel for="email" value="E-mail: " />
-                            <p:inputText id="email" size="27" placeholder="usuario@dominio" value="#{pacienteBean.paciente.email}"/>
+                                <p:outputLabel for="email" value="E-mail: " />
+                                <p:inputText id="email" placeholder="usuario@dominio" value="#{pacienteBean.paciente.email}"/>
 
-                            <p:outputLabel for="estado" value="Estado: " />
-                            <p:selectOneMenu id="estado" style="width: 173px" value="#{pacienteBean.paciente.estado}">
-                                <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
-                                <f:selectItems value="#{pacienteBean.estados}" var="estado" itemLabel="#{estado.descricao}" itemValue="#{estado}" />
-                            </p:selectOneMenu>
+                                <p:outputLabel for="estado" value="Estado: " />
+                                <p:selectOneMenu id="estado" value="#{pacienteBean.paciente.estado}">
+                                    <f:selectItem itemLabel="Selecione..." noSelectionOption="true"/>
+                                    <f:selectItems value="#{pacienteBean.estados}" var="estado" itemLabel="#{estado.descricao}" itemValue="#{estado}" />
+                                </p:selectOneMenu>
 
-                            <p:outputLabel for="cidade" value="Cidade: " />
-                            <p:inputText id="cidade" size="27" value="#{pacienteBean.paciente.cidade}"/>
+                                <p:outputLabel for="cidade" value="Cidade: " />
+                                <p:inputText id="cidade" value="#{pacienteBean.paciente.cidade}"/>
 
-                            <p:outputLabel for="rua" value="Rua: "/>
-                            <p:inputText id="rua" size="27" value="#{pacienteBean.paciente.rua}"/>
+                                <p:outputLabel for="rua" value="Rua: "/>
+                                <p:inputText id="rua" value="#{pacienteBean.paciente.rua}"/>
 
-                            <p:outputLabel for="bairro" value="Bairro: "/>
-                            <p:inputText id="bairro" size="27" value="#{pacienteBean.paciente.bairro}"/>
+                                <p:outputLabel for="bairro" value="Bairro: "/>
+                                <p:inputText id="bairro" value="#{pacienteBean.paciente.bairro}"/>
 
-                            <p:outputLabel for="cep" value="CEP: "/>
-                            <p:inputMask id="cep" mask="99999-999" size="27" value="#{pacienteBean.paciente.cep}"/>
+                                <p:outputLabel for="cep" value="CEP: "/>
+                                <p:inputMask id="cep" mask="99999-999" value="#{pacienteBean.paciente.cep}"/>
 
-                        </h:panelGrid>
-
+                            </p:panelGrid>
+                        </div>
                     </p:tab>
 
                 </p:tabView>

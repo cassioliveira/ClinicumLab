@@ -6,6 +6,7 @@ import br.com.clinicumlab.modelo.Paciente;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -22,7 +23,7 @@ public class PacienteServico implements Serializable {
 
     @Inject
     private PacienteDao pacienteDao;
-    
+
     @Getter
     private List<Estados> estados;
 
@@ -32,7 +33,7 @@ public class PacienteServico implements Serializable {
     }
 
     @Transactional
-    public void salvar(Paciente paciente)   {
+    public void salvar(Paciente paciente) {
         if (paciente.getId() == null) {
             paciente.setCadastro(new Date());
         } else {
@@ -42,7 +43,7 @@ public class PacienteServico implements Serializable {
     }
 
     @Transactional
-    public void deletar(Paciente paciente){
+    public void deletar(Paciente paciente) {
         pacienteDao.delete(findById(paciente.getId()));
     }
 
@@ -54,4 +55,21 @@ public class PacienteServico implements Serializable {
         return pacienteDao.todos();
     }
 
+//    public long idade(Paciente paciente) {
+//        Calendar dataNascimento = Calendar.getInstance();
+//        dataNascimento.setTime(paciente.getDataNascimento());
+//        int dia = dataNascimento.get(Calendar.DAY_OF_MONTH);
+//        int mes = dataNascimento.get(Calendar.MONTH);
+//        int ano = dataNascimento.get(Calendar.YEAR);
+//        
+//        dataNascimento.set(Calendar.DAY_OF_MONTH, dia);
+//        dataNascimento.set(Calendar.MONTH, mes);
+//        dataNascimento.set(Calendar.YEAR, ano);
+//        
+//        Calendar hoje = Calendar.getInstance();
+//        
+//        long idade = hoje.get(Calendar.YEAR) - dataNascimento.get(Calendar.YEAR);
+//        
+//        return idade;
+//    }
 }

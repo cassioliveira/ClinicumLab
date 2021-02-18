@@ -5,6 +5,7 @@ import br.com.clinicumlab.modelo.Paciente;
 import br.com.clinicumlab.servicos.PacienteServico;
 import br.com.clinicumlab.util.jsf.FacesUtil;
 import java.io.Serializable;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -86,8 +87,7 @@ public class PacienteBean implements Serializable {
     }
 
     /**
-     * Método responsável por excluir um objeto do tipo Paciente e exibir ao
-     * final do processo uma mensagem informativa.
+     * Método responsável por excluir um paciente cadastrado.
      *
      */
     public void excluir() {
@@ -106,4 +106,7 @@ public class PacienteBean implements Serializable {
         return this.paciente.getId() != null;
     }
     
+//    public long getIdade(){
+//        return pacienteServico.idade(paciente);
+//    }
 }

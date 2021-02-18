@@ -20,17 +20,16 @@ public class ExameServico implements Serializable {
     private ExameDao exameDao;
 
     @Transactional
-    public void salvar(Exame exame) throws ExameJaCadastradoException{
+    public void salvar(Exame exame) throws ExameJaCadastradoException {
         if (exame.getId() == null && jaCadastrado(exame.getDescricao())) {
-            throw new ExameJaCadastradoException("Já existe um exame com essa descrição!");
+            throw new ExameJaCadastradoException("Exame já cadastrado!");
         } else {
             this.exameDao.save(exame);
         }
     }
 
     @Transactional
-    public void deletar(Exame exame
-    ) {
+    public void deletar(Exame exame) {
         exameDao.delete(findById(exame.getId()));
     }
 
@@ -52,14 +51,4 @@ public class ExameServico implements Serializable {
     public boolean jaCadastrado(String descricaoExameNovo) {
         return todos().stream().anyMatch(exame -> (descricaoExameNovo.equals(exame.getDescricao())));
     }
-
-//    public boolean jaCadastrado(String examePrincipal) {
-//        for (Exame exame : todos()) {
-//            if (examePrincipal.equals(exame.getDescricao())) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-    
 }
