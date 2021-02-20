@@ -207,7 +207,7 @@
         margin-left:-250px;  Aqui ele pega 50% da largura tela e diminui  metade do valor da largura, no caso 250 */
     box-shadow: 3px 3px 5px #ccc;
     padding: 5px;
-    z-index: 9999;
+    z-index: 10;
 }
 
 .ui-button.botao-ok-sessao-expirada{

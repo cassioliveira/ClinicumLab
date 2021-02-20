@@ -50,7 +50,7 @@
 
                     <p:column id="acoes" headerText="Ações" width="15%">
                         <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil"  
-                                  outcome="#{exameBean.getTelaEdicaoExame(exame)}" style="font-size: 10px; padding: 2px">
+                                  outcome="/exame/cadastro-exame" style="font-size: 10px; padding: 2px">
                             <f:param name="exame" value="#{exame.id}"/>
                             <p:tooltip for="botaoEditar" value="Editar cadastro"/>
                         </p:button>
@@ -69,3 +69,11 @@
         </p:fieldset>
     </ui:define>
 </ui:composition>    
+
+
+<!--
+<p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil"  
+                                  outcome="#{exameBean.getTelaEdicaoExame(exame)}" style="font-size: 10px; padding: 2px">
+                            <f:param name="exame" value="#{exame.id}"/>
+                            <p:tooltip for="botaoEditar" value="Editar cadastro"/>
+                        </p:button>-->

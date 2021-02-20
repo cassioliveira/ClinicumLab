@@ -49,7 +49,7 @@
 
                         <p:outputLabel for="listaExames" value="Exame: "/>
                         <h:panelGroup id="itemPanel">
-                            <p:selectOneMenu id="listaExames" label="teste" style="z-index: 8; vertical-align: middle; width: 85%" filter="true"   
+                            <p:selectOneMenu id="listaExames" label="teste" style="z-index: 7; vertical-align: middle; width: 85%" filter="true"   
                                              filterMatchMode="contains" value="#{atendimentoBean.exameSelecionado}">
                                 <f:selectItem noSelectionOption="true" itemLabel="Selecione um exame"/>
                                 <f:selectItems value="#{atendimentoBean.examesCadastrados}" var="exame" itemLabel="#{exame}" itemValue="#{exame}"/>
@@ -61,7 +61,7 @@
                     </p:panelGrid>
                     </div><!-- comment -->
                     <p:dataTable id="datatableExames" var="exame" widgetVar="pesquisaExames" value="#{atendimentoBean.atendimento.exames}"
-                                 paginatorAlwaysVisible="false" style="margin-top: 1px; " rows="10" reflow="true" 
+                                 paginatorAlwaysVisible="false" style="margin-top: 1px; " reflow="true" 
                                  paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" 
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                                  {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"

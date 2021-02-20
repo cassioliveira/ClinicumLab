@@ -100,34 +100,34 @@ public class ExameBean implements Serializable {
         FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
     }
 
-    /**
-     * Define qual tela de cadastro será aberta para edição ou visualização de
-     * acordo com o tipo do exame.
-     *
-     * @param exame
-     * @return
-     */
-    public String getTelaEdicaoExame(Exame exame) {
-        String pagina;
-        switch (exame.getDescricao()) {
-            case "Antibiograma":
-                pagina = "/exame/antibiograma";
-                break;
-            case "Hemograma":
-                pagina = "/exame/hemograma-completo";
-                break;
-            case "Urinalise":
-                pagina = "/exame/urinalise";
-                break;
-            case "Espermograma":
-                pagina = "/exame/espermograma";
-                break;
-            default:
-                pagina = "/exame/cadastro-exame";
-                break;
-        }
-        return pagina;
-    }
+//    /**
+//     * Define qual tela de cadastro será aberta para edição ou visualização de
+//     * acordo com o tipo do exame.
+//     *
+//     * @param exame
+//     * @return
+//     */
+//    public String getTelaEdicaoExame(Exame exame) {
+//        String pagina;
+//        switch (exame.getDescricao()) {
+//            case "Antibiograma":
+//                pagina = "/resultados/antibiograma";
+//                break;
+//            case "Hemograma":
+//                pagina = "/resultados/hemograma-completo";
+//                break;
+//            case "Urinalise":
+//                pagina = "/resultados/urinalise";
+//                break;
+//            case "Espermograma":
+//                pagina = "/resultados/espermograma";
+//                break;
+//            default:
+//                pagina = "/exame/cadastro-exame";
+//                break;
+//        }
+//        return pagina;
+//    }
 
     public boolean jaCadastrado(String examePrincipal) {
         return exameServico.jaCadastrado(examePrincipal);
