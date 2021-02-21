@@ -52,10 +52,10 @@
                             <p:selectOneMenu id="listaExames" style="z-index: 7; vertical-align: middle; width: 85%" filter="true"   
                                              filterMatchMode="contains" value="#{atendimentoBean.exameSelecionado}">
                                 <f:selectItem noSelectionOption="true" itemLabel="Selecione um exame"/>
-                                <f:selectItems value="#{atendimentoBean.atendimento.exames}" var="exame" itemLabel="#{exame}" itemValue="#{exame}"/>
+                                <f:selectItems value="#{atendimentoBean.exames}" var="exame" itemLabel="#{exame.descricao}" itemValue="#{exame}"/>
                             </p:selectOneMenu>
 
-                            <p:commandButton id="adiciona-exame" process="itemPanel" action="#{atendimentoBean.adicionarExameDoAtendimento}"
+                            <p:commandButton id="adiciona-exame" process="itemPanel" action="#{atendimentoBean.adicionarExameAoAtendimento}"
                                              update="datatableExames formGeral:toolbar" icon="fa fa-plus" title="Adicionar o exame" style="width: 13%; margin-left: 5px"/> 
                         </h:panelGroup>
                     </p:panelGrid>
@@ -68,7 +68,7 @@
                                  scrollable="true" scrollRows="8" scrollHeight="180">
 
                         <p:column headerText="Exame" width="50%" filterMatchMode="contains" filterStyle="width: 300px; display:none">
-                            <p:outputLabel id="descricaoExame" value="#{exame}"/>
+                            <p:outputLabel id="descricaoExame" value="#{exame.descricao}"/>
                         </p:column>
 
                         <p:column id="acoes" headerText="Remover" width="10%">

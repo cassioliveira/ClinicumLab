@@ -4,6 +4,7 @@ import br.com.clinicumlab.dao.AtendimentoDao;
 import br.com.clinicumlab.enumeracao.Estados;
 import br.com.clinicumlab.enumeracao.StatusAtendimento;
 import br.com.clinicumlab.modelo.Atendimento;
+import br.com.clinicumlab.modelo.Exame;
 import br.com.clinicumlab.util.jsf.FacesUtil;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -92,10 +93,9 @@ public class AtendimentoServico implements Serializable {
      * @param atendimento
      * @param exameSelecionado
      */
-    public void adicionarExameAoAtendimento(Atendimento atendimento, String exameSelecionado) {
+    public void adicionarExameAoAtendimento(Atendimento atendimento, Exame exameSelecionado) {
         if (!atendimento.getExames().contains(exameSelecionado)
-                && exameSelecionado != null
-                && !exameSelecionado.equals("")) {
+                && exameSelecionado != null) {
             atendimento.getExames().add(exameSelecionado);
         } else if (atendimento.getExames().contains(exameSelecionado)) {
             FacesUtil.mensagemAviso("Exame já adicionado!");
@@ -104,7 +104,7 @@ public class AtendimentoServico implements Serializable {
         }
     }
 
-    public void removerExameDoAtendimento(Atendimento atendimento, String exameSelecionado) {
+    public void removerExameDoAtendimento(Atendimento atendimento, Exame exameSelecionado) {
         atendimento.getExames().remove(exameSelecionado);
     }
 

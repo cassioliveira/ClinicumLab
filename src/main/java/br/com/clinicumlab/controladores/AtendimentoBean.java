@@ -57,13 +57,16 @@ public class AtendimentoBean implements Serializable {
 
     @Getter
     @Setter
-    private String exameSelecionado;
+    private Exame exameSelecionado;
 
     @Getter
     private List<Atendimento> atendimentosAbertos = new ArrayList<>();
 
     @Getter
     private List<Paciente> pacientes;
+    
+    @Getter
+    private List<Exame> exames = new ArrayList<>();
 
     @Getter
     private List<FormaPagamento> formasPagamento = new ArrayList<>();
@@ -78,6 +81,7 @@ public class AtendimentoBean implements Serializable {
         this.formasPagamento = Arrays.asList(FormaPagamento.values());
         this.atendimentosAbertos = atendimentoServico.todos();
         this.pacientes = pacienteServico.todos();
+        this.exames = exameServico.todos();
     }
 
     /**

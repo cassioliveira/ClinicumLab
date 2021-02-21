@@ -23,7 +23,7 @@
                 <h:panelGrid id="panelGridAtendimento" columns="2">
 
                     <p:outputLabel for="paciente" value="Paciente: "/>
-                    <p:outputLabel id="paciente" styleClass="label-resultados" value="#{atendimentoBean.atendimento.paciente}"/>
+                    <p:outputLabel id="paciente" styleClass="label-resultados" value="#{atendimentoBean.atendimento.paciente.nome}"/>
                     
                     <p:outputLabel for="idade" value="Idade: "/>
                     <p:outputLabel id="idade" styleClass="label-resultados"/>
@@ -48,7 +48,7 @@
                          scrollable="true" scrollRows="8" scrollHeight="180">
 
                 <p:column headerText="Exame" width="50%" filterMatchMode="contains" filterStyle="width: 300px; display:none">
-                    <p:outputLabel id="descricaoExame" value="#{exame}"/>
+                    <p:outputLabel id="descricaoExame" value="#{exame.descricao}"/>
                 </p:column>
 
                 <p:column id="acoes" headerText="Remover" width="10%">

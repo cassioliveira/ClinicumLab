@@ -49,10 +49,6 @@
                         <h:outputText value="#{atendimento.paciente.nome}"/>
                     </p:column>
 
-                    <p:column headerText="Status" filterMatchMode="contains" filterStyle="width: 80px; display:none">
-                        <h:outputText value="#{atendimento.statusAtendimento.descricao}"/>
-                    </p:column>
-
                     <p:column id="acoes" headerText="Ações">
                         <p:commandButton id="botaoVisualizar" title="Visualizar" icon="ui-icon ui-icon-extlink" style="font-size: 10px; padding: 2px"
                                          oncomplete="PF('visualizaAtendimento').show()" process="@this" update="">

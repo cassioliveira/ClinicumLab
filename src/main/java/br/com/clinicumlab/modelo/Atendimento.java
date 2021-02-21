@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -66,9 +67,6 @@ public class Atendimento implements Serializable {
     @Column(name = "status_atendimento", nullable = false, length = 20)
     private StatusAtendimento statusAtendimento;
 
-//    @Column(name = "paciente", length = 100)
-//    private String paciente;
-
     @Column(name = "material", length = 100)
     private String material;
 
@@ -76,24 +74,18 @@ public class Atendimento implements Serializable {
     private String tipoColeta;
 
     //Esse que funcionava antes de mudar pra lista do tipo 'Exame'
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> exames = new ArrayList<>();
-
-//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Exame> exames = new ArrayList<>();
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    private List<String> exames = new ArrayList<>();
+    
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Exame> exames = new ArrayList<>();
     
     @OneToOne
     private Paciente paciente;
-    
+
 //    @OneToOne
     private String convenio;
 
-//    private List<String> examesDoAtendimento = new ArrayList<>();
-//    @ManyToOne
-//    @JoinColumn(name = "atendente_id", nullable = false)
-//    private Usuario atendente;
-//    @OneToMany
-//    private List<ExameAtendimento> exames;
     public Atendimento() {
         this.setPagamento(FormaPagamento.DINHEIRO);
         this.setStatusAtendimento(StatusAtendimento.ABERTO);
