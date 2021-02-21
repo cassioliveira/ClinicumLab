@@ -46,7 +46,7 @@
                     </p:column>
 
                     <p:column headerText="Paciente" filterMatchMode="contains" filterStyle="width: 300px; display:none" filterBy="#{atendimento.paciente}">
-                        <h:outputText value="#{atendimento.paciente}"/>
+                        <h:outputText value="#{atendimento.paciente.nome}"/>
                     </p:column>
 
                     <p:column headerText="Status" filterMatchMode="contains" filterStyle="width: 80px; display:none">

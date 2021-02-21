@@ -66,14 +66,8 @@ public class AtendimentoBean implements Serializable {
     private List<Paciente> pacientes;
 
     @Getter
-    private List<Exame> exames;
-
-    @Getter
     private List<FormaPagamento> formasPagamento = new ArrayList<>();
 
-    /**
-     * Construtor da classe
-     */
     public AtendimentoBean() {
         atendimento = new Atendimento();
         atendimentoSelecionado = new Atendimento();
@@ -82,10 +76,8 @@ public class AtendimentoBean implements Serializable {
     @PostConstruct
     public void init() {
         this.formasPagamento = Arrays.asList(FormaPagamento.values());
-//        this.atendimentosAbertos = atendimentoServico.atendimentosAbertos();
         this.atendimentosAbertos = atendimentoServico.todos();
         this.pacientes = pacienteServico.todos();
-//        this.exames = exameServico.todos();
     }
 
     /**
@@ -115,14 +107,8 @@ public class AtendimentoBean implements Serializable {
         FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
     }
 
-    /**
-     * Metodo que verifica se o objeto esta nulo quando for recuperado. Se sim,
-     * refere-se a um novo cadastro, senao refere-se a um produto a ser editado
-     *
-     * @return
-     */
     public boolean getEditando() {
-        return this.atendimento.getId() != null;
+        return atendimentoServico.atendimentoExistente(atendimento);
     }
 
     public List<String> getExamesCadastrados() {
@@ -133,24 +119,16 @@ public class AtendimentoBean implements Serializable {
         return examesAsString;
     }
 
-    public void adicionarExameDoAtendimento() {
-        if (!atendimento.getExames().contains(exameSelecionado)
-                && exameSelecionado != null
-                && !exameSelecionado.equals("")) {
-            atendimento.getExames().add(exameSelecionado);
-        } else if(atendimento.getExames().contains(exameSelecionado)){
-            FacesUtil.mensagemAviso("Exame já adicionado!");
-        } else {
-            System.out.println("Clicou no botão adicionar sem selecionar exame");
-        }
+    public void adicionarExameAoAtendimento() {
+        atendimentoServico.adicionarExameAoAtendimento(atendimento, exameSelecionado);
     }
 
     public void removerExameDoAtendimento() {
-        atendimento.getExames().remove(exameSelecionado);
+        atendimentoServico.removerExameDoAtendimento(atendimento, exameSelecionado);
     }
 
     public boolean getPodeSalvarAtendimento() {
-        return atendimento.getExames().size() < 1;
+        return atendimentoServico.podeSalvarAtendimento(atendimento);
     }
 
 }

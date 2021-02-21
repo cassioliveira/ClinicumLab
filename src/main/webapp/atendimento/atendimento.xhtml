@@ -30,10 +30,10 @@
                                        value="#{atendimentoBean.atendimento.protocolo}" style="font-weight: bold"/>
 
                         <p:outputLabel for="paciente" value="Paciente: "/>
-                        <p:selectOneMenu id="paciente" style="vertical-align: middle" filter="true" filterMatchMode="contains"
+                        <p:selectOneMenu id="paciente" style="vertical-align: middle" filter="true" filterMatchMode="contains" disabled="#{atendimentoBean.editando}"
                                          required="true" requiredMessage="É necessário informar um paciente" value="#{atendimentoBean.atendimento.paciente}">
                             <f:selectItem noSelectionOption="true"/>
-                            <f:selectItems value="#{atendimentoBean.pacientes}" var="paciente" itemLabel="#{paciente.nome}" itemValue="#{paciente.nome}"/>
+                            <f:selectItems value="#{atendimentoBean.pacientes}" var="paciente" itemLabel="#{paciente.nome}" itemValue="#{paciente}"/>
                         </p:selectOneMenu>
 
                         <p:outputLabel for="requisitante" value="Requisitante: "/>
@@ -49,10 +49,10 @@
 
                         <p:outputLabel for="listaExames" value="Exame: "/>
                         <h:panelGroup id="itemPanel">
-                            <p:selectOneMenu id="listaExames" label="teste" style="z-index: 7; vertical-align: middle; width: 85%" filter="true"   
+                            <p:selectOneMenu id="listaExames" style="z-index: 7; vertical-align: middle; width: 85%" filter="true"   
                                              filterMatchMode="contains" value="#{atendimentoBean.exameSelecionado}">
                                 <f:selectItem noSelectionOption="true" itemLabel="Selecione um exame"/>
-                                <f:selectItems value="#{atendimentoBean.examesCadastrados}" var="exame" itemLabel="#{exame}" itemValue="#{exame}"/>
+                                <f:selectItems value="#{atendimentoBean.atendimento.exames}" var="exame" itemLabel="#{exame}" itemValue="#{exame}"/>
                             </p:selectOneMenu>
 
                             <p:commandButton id="adiciona-exame" process="itemPanel" action="#{atendimentoBean.adicionarExameDoAtendimento}"
