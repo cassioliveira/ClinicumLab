@@ -40,22 +40,24 @@
                         <h:outputText value="#{'CLE'.concat(exame.id)}"/>
                     </p:column>
 
-                    <p:column headerText="Descrição" width="50%" filterMatchMode="exact" filterStyle="width: 20px; display:none">
+                    <p:column headerText="Descrição" width="50%" filterMatchMode="exact" filterStyle="width: 20px; display:none"
+                              filterBy="#{exame.descricao}">
                         <h:outputText value="#{exame.descricao}"/>
                     </p:column>
 
-                    <p:column headerText="Valor" width="20%" filterMatchMode="exact" filterStyle="width: 20px; display:none">
+                    <p:column headerText="Valor" width="20%" filterMatchMode="exact" filterStyle="width: 20px; display:none"
+                              filterBy="#{exame.preco}">
                         <h:outputText value="#{exame.preco eq null ? 'R$ 0,00' : 'R$ '.concat(exame.preco)}"/>
                     </p:column>
 
                     <p:column id="acoes" headerText="Ações" width="15%">
-                        <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil"  
-                                  outcome="/exame/cadastro-exame" style="font-size: 10px; padding: 2px">
+                        <p:button id="botaoEditar" title="Editar" icon="fa fa-pencil"  
+                                  outcome="/exame/cadastro-exame" style="margin-right: 5px">
                             <f:param name="exame" value="#{exame.id}"/>
                             <p:tooltip for="botaoEditar" value="Editar cadastro"/>
                         </p:button>
 
-                        <p:commandButton id="deleteButton" title="Remover" icon="ui-icon ui-icon-trash" style="font-size: 10px; padding: 2px"  
+                        <p:commandButton id="deleteButton" title="Remover" icon="fa fa-trash"
                                          action="#{exameBean.excluir}" process="@this" update="datatablePesquisaExame">
                             <f:setPropertyActionListener target="#{exameBean.exameSelecionado}" value="#{exame}"/>
                             <p:tooltip for="deleteButton" value="Excluir exame"/>
@@ -69,11 +71,3 @@
         </p:fieldset>
     </ui:define>
 </ui:composition>    
-
-
-<!--
-<p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil"  
-                                  outcome="#{exameBean.getTelaEdicaoExame(exame)}" style="font-size: 10px; padding: 2px">
-                            <f:param name="exame" value="#{exame.id}"/>
-                            <p:tooltip for="botaoEditar" value="Editar cadastro"/>
-                        </p:button>-->

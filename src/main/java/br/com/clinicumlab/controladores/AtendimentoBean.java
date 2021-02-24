@@ -63,8 +63,11 @@ public class AtendimentoBean implements Serializable {
     private List<Atendimento> atendimentosAbertos = new ArrayList<>();
 
     @Getter
+    private List<Atendimento> atendimentosFinalizados = new ArrayList<>();
+
+    @Getter
     private List<Paciente> pacientes;
-    
+
     @Getter
     private List<Exame> exames = new ArrayList<>();
 
@@ -79,20 +82,16 @@ public class AtendimentoBean implements Serializable {
     @PostConstruct
     public void init() {
         this.formasPagamento = Arrays.asList(FormaPagamento.values());
-        this.atendimentosAbertos = atendimentoServico.todos();
+        this.atendimentosAbertos = atendimentoServico.atendimentosAbertos();
+        this.atendimentosFinalizados = atendimentoServico.atendimentosFinalizados();
         this.pacientes = pacienteServico.todos();
         this.exames = exameServico.todos();
     }
 
-    /**
-     * Método responsável por iniciar uma transação, instanciar um objeto do
-     * tipo Atendimento e salvar.
-     *
-     */
     public void salvar() {
         atendimentoServico.salvar(atendimento);
         if (getEditando()) {
-            FacesUtil.mensagemSucesso("Cadastro de protocolo'" + atendimento.getProtocolo() + "' atualizado com sucesso!");
+            FacesUtil.mensagemSucesso("Cadastro de protocolo '" + atendimento.getPaciente().getNome()+ "' atualizado com sucesso!");
         } else {
             FacesUtil.mensagemSucesso("Cadastro efetuado com sucesso!");
         }
@@ -100,27 +99,14 @@ public class AtendimentoBean implements Serializable {
         atendimento = new Atendimento();
     }
 
-    /**
-     * Método responsável por excluir um objeto do tipo Atendimento e exibir ao
-     * final do processo uma mensagem informativa.
-     *
-     */
     public void excluir() {
-        this.atendimentoServico.deletar(atendimentoSelecionado);
+        this.atendimentoServico.excluir(atendimentoSelecionado);
         this.atendimentosAbertos = atendimentoServico.todos();
         FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
     }
 
     public boolean getEditando() {
         return atendimentoServico.atendimentoExistente(atendimento);
-    }
-
-    public List<String> getExamesCadastrados() {
-        List<String> examesAsString = new ArrayList<>();
-        for (Exame exame : exameServico.todos()) {
-            examesAsString.add(exame.getDescricao());
-        }
-        return examesAsString;
     }
 
     public void adicionarExameAoAtendimento() {
@@ -135,4 +121,11 @@ public class AtendimentoBean implements Serializable {
         return atendimentoServico.podeSalvarAtendimento(atendimento);
     }
 
+    public void concluirAtendimento() {
+        atendimentoServico.concluirAtendimento(atendimento);
+    }
+
+    public void cancelarAtendimento() {
+        atendimentoServico.cancelarAtendimento(atendimento);
+    }
 }

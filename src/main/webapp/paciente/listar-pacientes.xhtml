@@ -60,7 +60,7 @@
 
                     <p:column id="acoes" headerText="Ações" width="15%">
 
-                        <p:button id="botaoDados" title="Editar" icon="fa fa-tint" style="font-size: 10px; padding-top: 5px"
+                        <p:button id="botaoDados" title="Editar" icon="fa fa-tint" style="margin-right: 5px"
                                   outcome="/paciente/dados-sangue">
                             <f:param name="paciente" value="#{paciente.id}"/>
                             <p:tooltip for="botaoDados" value="Informar tipo sanguíneo"/>
@@ -68,19 +68,19 @@
 
                         <p:commandButton id="reportButton" action="#{executaRelatorios.emitirCarteirinha}" immediate="true"
                                          ajax="false" icon="fa fa-file-pdf-o" onclick="this.form.target = '_blank'"
-                                         disabled="#{pacienteBean.pacientes.size() == 0}" style="font-size: 10px; padding-top: 5px"
+                                         disabled="#{pacienteBean.pacientes.size() == 0}" style="margin-right: 5px"
                                          rendered="#{paciente.fatorRH ne null and paciente.tipoSanguineo ne null}">
                             <f:setPropertyActionListener target="#{executaRelatorios.paciente}" value="#{paciente}"/>
                             <p:tooltip for="reportButton" value="Emitir carteirinha"/>
                         </p:commandButton>
 
-                        <p:button id="botaoEditar" title="Editar" icon="fa fa-pencil" style="font-size: 10px; padding-top: 5px"
+                        <p:button id="botaoEditar" title="Editar" icon="fa fa-pencil" style="margin-right: 5px"
                                   outcome="/paciente/cadastro-paciente">
                             <f:param name="paciente" value="#{paciente.id}"/>
-                            <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
+                            <p:tooltip for="botaoEditar" value="Edita dados do cadastro do paciente"/>
                         </p:button>
 
-                        <p:commandButton id="deleteButton" title="Remover" icon="fa fa-trash" style="font-size: 10px; padding-top: 5px" 
+                        <p:commandButton id="deleteButton" title="Remover" icon="fa fa-trash" 
                                          action="#{pacienteBean.excluir}" process="@this" update="datatablePesquisaPaciente">
                             <f:setPropertyActionListener target="#{pacienteBean.pacienteSelecionado}" value="#{paciente}"/>
                             <p:tooltip for="deleteButton" value="Excluir paciente"/>

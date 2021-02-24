@@ -37,6 +37,12 @@ public class AtendimentoServico implements Serializable {
         estados = Arrays.asList(Estados.values());
     }
 
+    /**
+     * Salva o atendimento no  banco de dados, armazenando a data do cadastro e
+     * o protocolo, caso seja um novo atendimento.
+     * 
+     * @param atendimento 
+     */
     @Transactional
     public void salvar(Atendimento atendimento) {
         if (atendimento.getId() == null) {
@@ -47,10 +53,16 @@ public class AtendimentoServico implements Serializable {
     }
 
     @Transactional
-    public void deletar(Atendimento atendimento) {
+    public void excluir(Atendimento atendimento) {
         atendimentoDao.delete(findById(atendimento.getId()));
     }
 
+    /**
+     * Faz a busca no banco de dados por um atendimento através do ID.
+     * 
+     * @param id
+     * @return 
+     */
     public Atendimento findById(Long id) {
         return atendimentoDao.porId(id);
     }
@@ -59,10 +71,33 @@ public class AtendimentoServico implements Serializable {
         return atendimentoDao.todos();
     }
 
+    /**
+     * Retorna uma lista de atendimentos em que o status esteja definido como
+     * ABERTO.
+     *
+     * @return
+     */
     public List<Atendimento> atendimentosAbertos() {
         List<Atendimento> atendimentosAbertos = new ArrayList<>();
         for (Atendimento atendimento : atendimentoDao.todos()) {
             if (atendimento.getStatusAtendimento().equals(StatusAtendimento.ABERTO)) {
+                atendimentosAbertos.add(atendimento);
+            }
+        }
+        return atendimentosAbertos;
+    }
+
+    /**
+     * Retorna uma lista de atendimentos em que o status dos atendimentos esteja
+     * definido como CANCELADO ou CONCLUIDO.
+     *
+     * @return
+     */
+    public List<Atendimento> atendimentosFinalizados() {
+        List<Atendimento> atendimentosAbertos = new ArrayList<>();
+        for (Atendimento atendimento : atendimentoDao.todos()) {
+            if (atendimento.getStatusAtendimento().equals(StatusAtendimento.CANCELADO)
+                    || atendimento.getStatusAtendimento().equals(StatusAtendimento.CONCLUIDO)) {
                 atendimentosAbertos.add(atendimento);
             }
         }
@@ -118,7 +153,7 @@ public class AtendimentoServico implements Serializable {
      * @return
      */
     public boolean podeSalvarAtendimento(Atendimento atendimento) {
-        return atendimento.getExames().size() < 0;
+        return atendimento.getExames().size() < 1;
     }
 
     /**
@@ -132,4 +167,23 @@ public class AtendimentoServico implements Serializable {
         return atendimento.getId() != null;
     }
 
+    @Transactional
+    public void concluirAtendimento(Atendimento atendimento) {
+        atendimento.setStatusAtendimento(StatusAtendimento.CONCLUIDO);
+        this.atendimentoDao.save(atendimento);
+    }
+    
+    public void cancelarAtendimento(Atendimento atendimento) {
+        atendimento.setStatusAtendimento(StatusAtendimento.CANCELADO);
+        salvar(atendimento);
+    }
+
+//    public void finalizarAtendimento(Atendimento atendimento, StatusAtendimento status) {
+//        if (status.equals(StatusAtendimento.CONCLUIDO)) {
+//            atendimento.setStatusAtendimento(StatusAtendimento.CONCLUIDO);
+//        } else if (status.equals(StatusAtendimento.CANCELADO)) {
+//            atendimento.setStatusAtendimento(StatusAtendimento.CANCELADO);
+//        }
+//        salvar(atendimento);
+//    }
 }

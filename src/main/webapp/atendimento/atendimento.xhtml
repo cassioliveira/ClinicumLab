@@ -37,10 +37,10 @@
                         </p:selectOneMenu>
 
                         <p:outputLabel for="requisitante" value="Requisitante: "/>
-                        <p:inputText id="requisitante" style="vertical-align: middle;" value="#{atendimentoBean.atendimento.requisitante}"/>
+                        <p:inputText id="requisitante" style="vertical-align: middle" value="#{atendimentoBean.atendimento.requisitante}"/>
 
                         <p:outputLabel for="convenio" value="Convênio: "/>
-                        <p:selectOneMenu id="convenio" style="vertical-align: middle;" value="#{atendimentoBean.atendimento.convenio}">
+                        <p:selectOneMenu id="convenio" style="vertical-align: middle" value="#{atendimentoBean.atendimento.convenio}">
                             <f:selectItem itemLabel="Particular" itemValue="particular" />
                             <f:selectItem itemLabel="APCEF" itemValue="apcef" />
                             <f:selectItem itemLabel="UNIMED" itemValue="unimed"/>
@@ -49,7 +49,7 @@
 
                         <p:outputLabel for="listaExames" value="Exame: "/>
                         <h:panelGroup id="itemPanel">
-                            <p:selectOneMenu id="listaExames" style="z-index: 7; vertical-align: middle; width: 85%" filter="true"   
+                            <p:selectOneMenu id="listaExames" style="z-index: 7; vertical-align: middle; width: 81%" filter="true"   
                                              filterMatchMode="contains" value="#{atendimentoBean.exameSelecionado}">
                                 <f:selectItem noSelectionOption="true" itemLabel="Selecione um exame"/>
                                 <f:selectItems value="#{atendimentoBean.exames}" var="exame" itemLabel="#{exame.descricao}" itemValue="#{exame}"/>
