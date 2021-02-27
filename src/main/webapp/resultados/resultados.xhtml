@@ -24,7 +24,7 @@
 
                     <p:outputLabel for="paciente" value="Paciente: "/>
                     <p:outputLabel id="paciente" styleClass="label-resultados" value="#{atendimentoBean.atendimento.paciente.nome}"/>
-                    
+
                     <p:outputLabel for="idade" value="Idade: "/>
                     <p:outputLabel id="idade" styleClass="label-resultados"/>
 
@@ -52,14 +52,21 @@
                 </p:column>
 
                 <p:column id="acoes" headerText="Remover" width="10%">
-                    <p:commandButton id="deleteButton" title="Remover" icon="fa fa-trash" style="font-size: 10px; padding-top: 5px" 
-                                     action="#{atendimentoBean.removerExameDoAtendimento}" process="@this" update="datatableExames">
-                        <f:setPropertyActionListener target="#{atendimentoBean.exameSelecionado}" value="#{exame}"/>
-                        <p:tooltip for="deleteButton" value="Excluir Exame"/>
-                        <p:confirm icon="ui-icon-alert" header="Exclusão de exame do atendimento" message="Deseja realmente excluir o exame?"/>
-                    </p:commandButton>
+                    <p:button id="botaoEditar" title="Editar" icon="fa fa-pencil" style="margin-right: 5px"
+                              outcome="/resultados/resultado-exame">
+                        <f:param name="exame" value="#{exame.id}"/>
+                        <p:tooltip for="botaoEditar" value="Edita dados do atendimento"/>
+                    </p:button>
                 </p:column>
             </p:dataTable>
+
+            <p:toolbar id="toolbarAntibiograma" style="margin-top: 10px;">
+                <f:facet name="left">
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
+                              icon="fa fa-times" href="javascript:history.back();">
+                    </p:button>
+                </f:facet>
+            </p:toolbar>
         </p:fieldset>
     </ui:define>
 </ui:composition>    

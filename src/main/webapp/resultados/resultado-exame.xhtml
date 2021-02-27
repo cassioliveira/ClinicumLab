@@ -5,60 +5,56 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/Layout.xhtml"
-                xmlns:componente="http://xmlns.jcp.org/jsf/composite/components"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <f:metadata>
-        <f:viewParam name="antibiograma" value="#{antibiogramaBean.antibiograma}" />
+        <f:viewParam name="exame" value="#{exameBean.exame}" />
     </f:metadata>
 
     <ui:define name="content">
 
         <p:fieldset legend="Resultado de exame">
-                <p:messages closable="true" severity="info,warn,error">
-                    <p:autoUpdate/> 
-                </p:messages>
+            <p:messages closable="true" severity="info,warn,error">
+                <p:autoUpdate/> 
+            </p:messages>
 
-                <h:panelGrid columns="2">
-                    <p:outputLabel for="codigo" value="Código: "/>
-                    <p:inputText id="codigo" value="#{antibiogramaBean.antibiograma.codigo}" size="13" 
-                                 style="font-weight: bold"/>
+            <h:panelGrid columns="2">
+                <p:outputLabel for="material" value="Material: "/>
+                <p:selectOneMenu id="material" style="width: 102px; z-index: 8; vertical-align: middle">
+                    <f:selectItem noSelectionOption="true"/>
+                    <f:selectItem itemLabel="Sangue" itemValue="sangue"/>
+                    <f:selectItem itemLabel="Urina" itemValue="urina"/>
+                    <f:selectItem itemLabel="Fezes" itemValue="fezes"/>
+                </p:selectOneMenu>
 
-                    <!--                    <p:outputLabel for="preco" value="Valor: " />
-                                        <p:inputNumber id="preco" size="13" symbol="R$ " class="money" decimalPlaces="2" maxlength="8" maxValue="999999"
-                                                       value="#{antibiogramaBean.antibiograma.preco}" />-->
+                <p:outputLabel for="codigo" value="Código: " rendered="#{exameBean.exame.id ne null}"/>
+                <p:outputLabel id="codigo"  rendered="#{exameBean.exame.id ne null}" 
+                               value="#{'CLE'.concat(exameBean.exame.id)}" style="font-weight: bold"/>
 
-                    <p:outputLabel for="material" value="Material: "/>
-                    <p:selectOneMenu id="material" style="width: 102px; z-index: 8; vertical-align: middle"
-                                     value="#{antibiogramaBean.antibiograma.material}">
-                        <f:selectItem noSelectionOption="true"/>
-                        <f:selectItem itemLabel="Sangue" itemValue="sangue"/>
-                        <f:selectItem itemLabel="Urina" itemValue="urina"/>
-                        <f:selectItem itemLabel="Fezes" itemValue="fezes"/>
-                    </p:selectOneMenu>
+                <p:outputLabel for="preco" value="Valor: " />
+                <p:outputLabel id="preco" value="#{atendimentoBean.atendimento.exames}" />
 
-                    <p:outputLabel for="negativo" value="Negativo? "/>
-                    <p:selectOneMenu id="negativo" style="width: 102px; z-index: 8; vertical-align: middle" 
-                                     value="#{antibiogramaBean.antibiograma.negativo}">
-                        <f:selectItem itemLabel="Não" itemValue="false"/>
-                        <f:selectItem itemLabel="Sim" itemValue="true"/>
-                    </p:selectOneMenu>
+                <p:outputLabel for="descricao" value="Descrição: "/>
+                <p:outputLabel id="descricao" value="#{exameBean.exame.descricao}" />
 
+                <p:outputLabel for="setor" value="Setor: " />
+                <p:outputLabel id="setor" value="#{exameBean.exame.categoria}" />
 
-                </h:panelGrid>
+                <p:outputLabel for="referencia" value="Valores de referência: "/>
+                <p:outputLabel id="referencia" value="#{exameBean.exame.valoresReferencia}"/>
 
-                <!--<componente:observacoes-exames altura="100" largura="650"/>-->
+            </h:panelGrid>
+
             <p:toolbar id="toolbarAntibiograma" style="margin-top: 10px;">
                 <f:facet name="left">
-                    <p:commandButton style="font-size: 13px;" value="Salvar" action="#{antibiogramaBean.salvar}"
+                    <p:commandButton style="font-size: 13px;" value="Salvar" action="#{exameBean.salvar}"
                                      id="botaoSalvar" icon="ui-icon ui-icon-disk"/>
 
                     <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
-                              outcome="/exame/listar-exames" icon="fa fa-times">
+                              icon="fa fa-times" href="javascript:history.back();">
                     </p:button>
                 </f:facet>
             </p:toolbar>
         </p:fieldset>
-        <!--<p:blockUI block="formAntibiograma" trigger="botaoSalvar"/>-->
     </ui:define>
 </ui:composition>    

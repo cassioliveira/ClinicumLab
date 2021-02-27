@@ -41,6 +41,11 @@
                         </p:outputPanel>
                     </f:facet>
 
+                    <p:column headerText="ID" filterMatchMode="exact" filterStyle="display:none" 
+                              filterBy="#{atendimento.id}">
+                        <h:outputText value="#{atendimento.id}"/>
+                    </p:column>
+                    
                     <p:column headerText="Protocolo" filterMatchMode="exact" filterStyle="display:none" 
                               filterBy="#{atendimento.protocolo}">
                         <h:outputText value="#{atendimento.protocolo}"/>

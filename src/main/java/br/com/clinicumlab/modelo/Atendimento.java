@@ -73,17 +73,12 @@ public class Atendimento implements Serializable {
     @Column(name = "tipo_coleta", length = 50)
     private String tipoColeta;
 
-    //Esse que funcionava antes de mudar pra lista do tipo 'Exame'
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    private List<String> exames = new ArrayList<>();
-    
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Exame> exames = new ArrayList<>();
     
     @OneToOne
     private Paciente paciente;
 
-//    @OneToOne
     private String convenio;
 
     public Atendimento() {

@@ -36,15 +36,15 @@
                         <p:outputLabel for="descricao" value="Descrição: "/>
                         <p:inputText id="descricao" value="#{exameBean.exame.descricao}" />
 
-                        <p:outputLabel for="categoria" value="Categoria: " />
-                        <p:selectOneMenu id="categoria" value="#{exameBean.exame.categoria}" >
+                        <p:outputLabel for="setor" value="Setor: " />
+                        <p:selectOneMenu id="setor" value="#{exameBean.exame.categoria}" >
                             <f:selectItem noSelectionOption="true"/>
                             <f:selectItems id="categorias" value="#{exameBean.exameCategoria}" var="categoria" itemValue="#{categoria}" itemLabel="#{categoria.descricao}"/>
                         </p:selectOneMenu>
 
                         <p:outputLabel for="valores-referencia" value="Valores de referência: "/>
                         <p:editor 
-                            controls="bold italic underline size numbering bullets alignleft center alignright justify" 
+                            controls="bold underline size" 
                             id="valores-referencia" value="#{exameBean.exame.valoresReferencia}" height="150"/> 
                     </p:panelGrid>
                 </div>
