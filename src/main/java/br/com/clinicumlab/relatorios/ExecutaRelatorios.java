@@ -48,5 +48,9 @@ public class ExecutaRelatorios implements Serializable {
 //        pacienteServico.salvar(paciente);
         geraRelatorios.gerarPdf("/carteirinha.jasper", "Carteirinha tipo sanguíneo.pdf", paciente);
     }
+    
+    public void emitirHemograma() throws IOException, JRException {
+        geraRelatorios.gerarPdf("/hemograma.jasper", "Exame de Hemograma.pdf", paciente);
+    }
 
 }

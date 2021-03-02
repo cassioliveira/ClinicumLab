@@ -81,6 +81,13 @@
                             <p:tooltip for="downButton" value="Concluir atendimento"/>
                             <p:confirm icon="ui-icon-alert" header="Concluir atendimento" message="Deseja realmente finalizar o atendimento?"/>
                         </p:commandButton>
+                        
+                        <p:commandButton id="botaoRelatorio" action="#{executaRelatorios.emitirHemograma()}" immediate="true"
+                                         ajax="false" icon="fa fa-file-pdf-o" onclick="this.form.target = '_blank'"
+                                         style="margin-right: 5px">
+                            <p:tooltip for="botaoRelatorio" value="Emitir Hemograma"/>
+                        </p:commandButton>
+
                     </p:column>
                 </p:dataTable>
             </h:form>
