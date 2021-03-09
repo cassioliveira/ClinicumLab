@@ -1,5 +1,6 @@
 package br.com.clinicumlab.relatorios;
 
+import br.com.clinicumlab.modelo.Atendimento;
 import br.com.clinicumlab.modelo.Paciente;
 import br.com.clinicumlab.util.jsf.FacesUtil;
 import java.io.IOException;
@@ -17,6 +18,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class GeraRelatorios {
+
+    private static final String LOGO = FacesUtil.caminhoContexto("/resources/clinicumlab/imagens/microscopio.png");
+    private static final String ASSINATURA = FacesUtil.caminhoContexto("/resources/clinicumlab/imagens/assinatura.png");
 
     /**
      * Captura o caminho completo onde os arquivos de template compilados
@@ -41,7 +45,7 @@ public class GeraRelatorios {
      * @throws JRException
      * @throws IOException
      */
-    public void gerarPdf(String jasperFileName, String pdfFileName, Paciente paciente) throws JRException, IOException {
+    public void carteirinhaPaciente(String jasperFileName, String pdfFileName, Paciente paciente) throws JRException, IOException {
 
         List<Paciente> listaPaciente = new ArrayList<>();
         listaPaciente.add(paciente);
@@ -51,10 +55,9 @@ public class GeraRelatorios {
         });
 
         Map<String, Object> parametros = new HashMap<>();
-        String logo = FacesUtil.caminhoContexto("/resources/clinicumlab/imagens/microscopio.png");
-        String assinatura = FacesUtil.caminhoContexto("/resources/clinicumlab/imagens/assinatura.png");
-        parametros.put("microscopio", logo);
-        parametros.put("assinatura", assinatura);
+
+        parametros.put("microscopio", LOGO);
+        parametros.put("assinatura", ASSINATURA);
         parametros.put("nome", paciente.getNome());
         parametros.put("rua", paciente.getRua());
         parametros.put("bairro", paciente.getBairro());
@@ -65,6 +68,26 @@ public class GeraRelatorios {
         parametros.put("tipoSanguineo", paciente.getTipoSanguineo());
         String caminhoArquivoJasper = caminhoRelatorio() + jasperFileName;
 
+        geraPDF(caminhoArquivoJasper, pdfFileName, parametros, atributos);
+    }
+    
+    public void resultadoExame(String jasperFileName, String pdfFileName, Atendimento atendimento) throws JRException, IOException {
+
+        List<Atendimento> listaAtendimento = new ArrayList<>();
+        listaAtendimento.add(atendimento);
+        List<Atendimento> atributos = new ArrayList<>();
+        listaAtendimento.forEach((atendimentoSelecionado) -> {
+            atributos.add(atendimentoSelecionado);
+        });
+
+        Map<String, Object> parametros = new HashMap<>();
+
+        String caminhoArquivoJasper = caminhoRelatorio() + jasperFileName;
+
+        geraPDF(caminhoArquivoJasper, pdfFileName, parametros, atributos);
+    }
+
+    private void geraPDF(String caminhoArquivoJasper, String pdfFileName, Map<String, Object> parametros, List<?> atributos) throws JRException, IOException {
         JasperPrint jasperPrint = JasperFillManager.fillReport(caminhoArquivoJasper, parametros, new JRBeanCollectionDataSource(atributos));
         HttpServletResponse response = (HttpServletResponse) FacesUtil.responseHTTP();
         response.setContentType("application/pdf");

@@ -1,5 +1,6 @@
 package br.com.clinicumlab.relatorios;
 
+import br.com.clinicumlab.modelo.Atendimento;
 import br.com.clinicumlab.modelo.Paciente;
 import br.com.clinicumlab.servicos.PacienteServico;
 import java.io.IOException;
@@ -29,13 +30,23 @@ public class ExecutaRelatorios implements Serializable {
     @Setter
     private Paciente paciente;
     
+//    @Getter
+//    @Setter
+//    private Paciente pacienteSelecionado;
+    
     @Getter
     @Setter
-    private Paciente pacienteSelecionado;
+    private Atendimento atendimento;
+    
+//    @Getter
+//    @Setter
+//    private Atendimento atendimentoSelecionado;
 
     public ExecutaRelatorios() {
         paciente = new Paciente();
-        pacienteSelecionado = new Paciente();
+//        pacienteSelecionado = new Paciente();
+        atendimento = new Atendimento();
+//        atendimentoSelecionado = new Atendimento();
     }
 
     /**
@@ -46,11 +57,11 @@ public class ExecutaRelatorios implements Serializable {
      */
     public void emitirCarteirinha() throws IOException, JRException {
 //        pacienteServico.salvar(paciente);
-        geraRelatorios.gerarPdf("/carteirinha.jasper", "Carteirinha tipo sanguíneo.pdf", paciente);
+        geraRelatorios.carteirinhaPaciente("/carteirinha.jasper", "Carteirinha tipo sanguíneo.pdf", paciente);
     }
     
     public void emitirHemograma() throws IOException, JRException {
-        geraRelatorios.gerarPdf("/hemograma.jasper", "Exame de Hemograma.pdf", paciente);
+        geraRelatorios.resultadoExame("/hemograma.jasper", "Exame de Hemograma.pdf", atendimento);
     }
 
 }
